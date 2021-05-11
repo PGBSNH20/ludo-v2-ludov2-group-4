@@ -10,6 +10,6 @@ namespace LudoAPI.Models
         public int Id { get; set; }
         public DateTime StarTime { get; set; }
         public Player Winner { get; set; }
-
+        public bool GameOver { get; set; }
     }
 }

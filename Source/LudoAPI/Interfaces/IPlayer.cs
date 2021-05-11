@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace LudoAPI.Interfaces
 {
-    public class IPlayer
+    public interface IPlayer
     {
+        public void AddPlayer();
+        public void MovePlayer();
     }
 }
