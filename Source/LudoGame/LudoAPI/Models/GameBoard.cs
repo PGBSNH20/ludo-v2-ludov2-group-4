@@ -11,6 +11,7 @@ namespace LudoAPI.Models
         public DateTime Created { get; set; }
         public string Name { get; set; }
         public bool Done { get; set; }
-        public List<Player> Player { get; set; }
+        public string Winner { get; set; }
+        public List<Player> Players { get; set; }
     }
 }
