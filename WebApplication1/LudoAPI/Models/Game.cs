@@ -11,6 +11,5 @@ namespace LudoAPI.Models
         public DateTime StarTime { get; set; }
         public Player Winner { get; set; }
 
-
     }
 }
