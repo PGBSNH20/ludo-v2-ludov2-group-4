@@ -13,8 +13,17 @@ namespace LudoAPI.Models
         public int Position { get; set; }
         public bool IsActive { get; set; }
         public bool IsDone { get; set; }
+
         [ForeignKey("Player")]
         public int PlayerId { get; set; }
         public Player Player { get; set; }
+    }
+
+    public enum Colors
+    {
+        Yellow = 0,
+        Red = 1,
+        Blue = 2,
+        Green = 3
     }
 }
