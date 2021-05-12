@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace LudoAPI.Dockerfiles
-{
-    public class docker_compose
-    {
-    }
-}
+﻿version: "3.8"
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-CU10-ubuntu-20.04
+    ports:
+      - "41433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "secretpassword123!"
+      MSSQL_PID: Express
