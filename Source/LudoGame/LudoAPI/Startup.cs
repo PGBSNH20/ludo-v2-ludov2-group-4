@@ -29,7 +29,7 @@ namespace LudoAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<LudoContext>(opt => opt.UseSqlServer("LudoDatabase"));
+            services.AddDbContext<LudoContext>(opt => opt.UseSqlServer(@"Server = localhost, 41433; Database = LudoGameDb; User ID = sa; Password = secretpassword123!"));
 
 
 
