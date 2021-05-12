@@ -3,20 +3,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LudoAPI.Models;
 
 namespace LudoAPI.Data.Repository
 {
     public class PlayerRepository : IPlayer
     {
-        public void CreatePlayer(int amountOfPlayers)
+
+        private readonly LudoContext _dbContext;
+
+        public PlayerRepository(LudoContext dbContext)
         {
-            for (int i = 0; i <= amountOfPlayers; i++)
+            _dbContext = dbContext;
+        }
+
+        public void PostPlayer(Player player, int amountOfPlayers)
+        {
+
+            for (int i = 0; i < amountOfPlayers; i++)
             {
-                Console.WriteLine("Enter a name: ");
-                string name = Console.ReadLine();
+                player.Name = 
             }
 
-            throw new NotImplementedException();
         }
     }
 }
