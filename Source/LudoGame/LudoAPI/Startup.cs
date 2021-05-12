@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LudoAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace LudoAPI
 {
@@ -26,6 +28,10 @@ namespace LudoAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<LudoContext>(opt => opt.UseSqlServer("LudoDatabase"));
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
