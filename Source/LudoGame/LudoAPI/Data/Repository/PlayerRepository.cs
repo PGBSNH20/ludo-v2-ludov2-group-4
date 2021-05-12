@@ -17,13 +17,17 @@ namespace LudoAPI.Data.Repository
             _dbContext = dbContext;
         }
 
-        public void PostPlayer(Player player, int amountOfPlayers)
+        public Player PostPlayer(Player player)
         {
 
-            for (int i = 0; i < amountOfPlayers; i++)
-            {
-                player.Name = 
-            }
+
+            _dbContext.Players.Add(player);
+            _dbContext.SaveChanges();
+            return player;
+            //for (int i = 0; i < amountOfPlayers; i++)
+            //{
+            //    player.Name = 
+            //}
 
         }
     }

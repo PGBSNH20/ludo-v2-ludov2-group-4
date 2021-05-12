@@ -4,14 +4,16 @@ using LudoAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LudoAPI.Migrations
 {
     [DbContext(typeof(LudoContext))]
-    partial class LudoContextModelSnapshot : ModelSnapshot
+    [Migration("20210512122308_RemovedGameBoardForeignKey")]
+    partial class RemovedGameBoardForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

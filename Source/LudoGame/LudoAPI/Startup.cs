@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LudoAPI.Data;
+using LudoAPI.Data.Repository;
+using LudoAPI.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LudoAPI
@@ -31,7 +33,7 @@ namespace LudoAPI
 
             services.AddDbContext<LudoContext>(opt => opt.UseSqlServer(@"Server = localhost, 41433; Database = LudoGameDb; User ID = sa; Password = secretpassword123!"));
 
-
+            services.AddTransient<IPlayer, PlayerRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
