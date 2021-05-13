@@ -22,14 +22,14 @@ namespace LudoAPI.Data.Repository
             {
                 Piece piece = new Piece
                 {
-                    Color = player.Color,
-                    PlayerId = player.Id
+                    Color = player.Color
                 };
                await _dbContext.Pieces.AddAsync(piece);
+               await _dbContext.Players.AddAsync(player);
+               await _dbContext.SaveChangesAsync();
             }
 
-            await _dbContext.Players.AddAsync(player);
-            await _dbContext.SaveChangesAsync();
+            
 
             return player;
         }

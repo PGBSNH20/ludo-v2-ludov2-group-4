@@ -29,6 +29,9 @@ namespace LudoAPI.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("CurrentPlayerId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Done")
                         .HasColumnType("bit");
 
@@ -78,6 +81,9 @@ namespace LudoAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GameBoardId")
                         .HasColumnType("int");

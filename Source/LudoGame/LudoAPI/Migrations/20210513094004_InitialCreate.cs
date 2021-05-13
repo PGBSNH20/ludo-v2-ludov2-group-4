@@ -16,7 +16,8 @@ namespace LudoAPI.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Done = table.Column<bool>(type: "bit", nullable: false),
-                    Winner = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Winner = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CurrentPlayerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,6 +31,7 @@ namespace LudoAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GameBoardId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -49,7 +51,7 @@ namespace LudoAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Color = table.Column<int>(type: "int", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Position = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsDone = table.Column<bool>(type: "bit", nullable: false),
