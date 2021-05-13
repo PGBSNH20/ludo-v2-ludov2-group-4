@@ -1,28 +1,28 @@
 ﻿using LudoAPI.Interfaces;
+using LudoAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LudoAPI.Models;
-using LudoAPI.Data.Interfaces;
 
 namespace LudoAPI.Data.Repository
 {
-    public class GameRepository : IGameBoard
+    public class PlayerRepository : IPlayer
     {
         private readonly LudoContext _dbContext;
 
-        public GameRepository(LudoContext dbContext)
+        public PlayerRepository(LudoContext dbContext)
         {
             _dbContext = dbContext;
         }
-            
-        public async Task<GameBoard> AddNewGame(GameBoard gameBoard)
+
+        public async Task<Player> AddPlayer(Player player)
         {
-            await _dbContext.GameBoards.AddAsync(gameBoard);
+
+            await _dbContext.Players.AddAsync(player);
             await _dbContext.SaveChangesAsync();
 
-            return gameBoard;
-        }       
+            return player;
+        }
     }
 }
