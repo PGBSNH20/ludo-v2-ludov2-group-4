@@ -8,6 +8,8 @@ namespace LudoAPI.Interfaces
 {
     public interface IPlayer
     {
-        Player PostPlayer(Player player);
+        Task<Player> AddPlayer(Player player);
+        //Player PostPlayer(Player player);
+        //void CreatePieces(Player player);
     }
 }

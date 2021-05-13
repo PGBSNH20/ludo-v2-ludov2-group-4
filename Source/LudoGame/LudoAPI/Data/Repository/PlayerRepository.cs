@@ -9,7 +9,6 @@ namespace LudoAPI.Data.Repository
 {
     public class PlayerRepository : IPlayer
     {
-
         private readonly LudoContext _dbContext;
 
         public PlayerRepository(LudoContext dbContext)
@@ -17,18 +16,22 @@ namespace LudoAPI.Data.Repository
             _dbContext = dbContext;
         }
 
-        public Player PostPlayer(Player player)
+        public async Task<Player> AddPlayer(Player player)
         {
+            for (int i = 0; i < 5; i++)
+            {
+                Piece piece = new Piece
+                {
+                    Color = player.Color,
+                    PlayerId = player.Id
+                };
+               await _dbContext.Pieces.AddAsync(piece);
+            }
 
+            await _dbContext.Players.AddAsync(player);
+            await _dbContext.SaveChangesAsync();
 
-            _dbContext.Players.Add(player);
-            _dbContext.SaveChanges();
             return player;
-            //for (int i = 0; i < amountOfPlayers; i++)
-            //{
-            //    player.Name = 
-            //}
-
         }
     }
 }

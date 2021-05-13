@@ -13,5 +13,6 @@ namespace LudoAPI.Models
         public bool Done { get; set; }
         public string? Winner { get; set; }
         public List<Player> Players { get; set; }
+        public int CurrentPlayerId { get; set; }
     }
 }

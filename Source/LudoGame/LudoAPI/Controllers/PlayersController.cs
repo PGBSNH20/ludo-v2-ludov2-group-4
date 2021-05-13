@@ -23,7 +23,7 @@ namespace LudoAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Player>> Post([FromForm] Player player)
         {
-            var result = _iPlayer.PostPlayer(player);
+            var result = await _iPlayer.AddPlayer(player);
 
             if (result == null)
             {
