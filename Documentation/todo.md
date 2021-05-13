@@ -5,13 +5,14 @@
 ### 
 
 ### API
-1. [ ]  Skapa Models: 
-1. [ ]  Skapa Interfaces:
-1. [ ]  Skapa Repositories:
-1. [ ]  Skapa Controllers:
-1. [x]  Skapa DbContext & DbSet:
-1. [x]  Skapa Dockerfiler:
-1. [ ]  
+1. [ ]  Skapa Models (tabeller i databasen): GameBoard, Player, Pieces, Colors.
+1. [ ]  Skapa Interfaces: IGameBoard, IPlayer.
+1. [ ]  Skapa övriga klasser: 
+3. [ ]  Skapa Repositories:
+4. [ ]  Skapa Controllers:
+5. [x]  Skapa DbContext & DbSet:
+6. [x]  Skapa Dockerfiler:
+7. [ ]  
 
 ### Razor pages
 1. [ ]  
