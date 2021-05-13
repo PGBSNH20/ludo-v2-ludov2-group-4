@@ -11,5 +11,6 @@ namespace LudoAPI.Interfaces
         Task<Player> AddPlayer(Player player);
         //Player PostPlayer(Player player);
         //void CreatePieces(Player player);
+        Task AddPieces(Player player);
     }
 }

@@ -33,7 +33,7 @@ namespace LudoAPI
 
             services.AddDbContext<LudoContext>(opt => opt.UseSqlServer(@"Server = localhost, 41433; Database = LudoGameDb; User ID = sa; Password = secretpassword123!"));
 
-            services.AddTransient<IPlayer, PlayerRepository>();
+            services.AddTransient<IPlayer, GameRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
