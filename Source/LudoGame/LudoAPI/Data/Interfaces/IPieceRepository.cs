@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace LudoAPI.Data.Interfaces
 {
-    interface IPieceRepository
+   public interface IPieceRepository
     {
+
     }
 }
