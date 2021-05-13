@@ -11,7 +11,6 @@
 4. [ ]  Skapa Controllers:
 5. [x]  Skapa DbContext & DbSet:
 6. [x]  Skapa Dockerfiler:
-7. [ ]  
 
 ### Razor pages
 1. [ ]  
