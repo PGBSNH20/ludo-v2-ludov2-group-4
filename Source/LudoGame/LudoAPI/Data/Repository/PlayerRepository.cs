@@ -26,5 +26,12 @@ namespace LudoAPI.Data.Repository
 
             return player;
         }
+
+        public List<Player> GetPlayersByGameBoardId(int gameBoardId)
+        {
+            var result = _dbContext.Players.Where(p => p.GameBoardId == gameBoardId).ToList();
+
+            return result;
+        }
     }
 }

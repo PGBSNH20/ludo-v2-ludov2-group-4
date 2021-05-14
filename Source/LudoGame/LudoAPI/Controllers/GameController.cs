@@ -29,14 +29,37 @@ namespace LudoAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer([FromForm] Player player)
         {
+
+
+            var gameBoard = _board.GetGameBoard(player.GameBoardId);
+
+            var trueColor = gameBoard.Colors.Any(x => x == player.Color);
+
+            var opponents = _player.GetPlayersByGameBoardId(player.GameBoardId);
+
+            var colorNotAvailable = opponents.Any(o => o.Color == player.Color.ToLower());
+
+
+            if (!trueColor)
+            {
+                return BadRequest("Invalid Color");
+            }
+
+            if (colorNotAvailable)
+            {
+                return BadRequest("Color is occupied");
+            }
+
             var result = await _player.AddPlayer(player);
             await _piece.AddPieces(result);
 
-            if (result == null)
+            if (result == null )
             {
                     return BadRequest();
             }
-                
+
+
+
 
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
         }
@@ -55,13 +78,27 @@ namespace LudoAPI.Controllers
             return StatusCode(StatusCodes.Status201Created, "You have created a gameboard");
         }
 
-
-        [Route("pieces/{id}")]
+        [Route("gameboards/{id}")]
         [HttpGet]
-        public async Task<IActionResult> GetPiecesByPlayerId(int id)
+        public async Task<IActionResult> GetGameBoardById(int id)
+        {
+            var gameBoard = _board.GetGameBoard(id);
+
+            if (gameBoard == null)
+            {
+                return NotFound("That gameboard id doesn't exist");
+            }
+
+            return Ok(gameBoard);
+        }
+
+
+        [Route("pieces/{playerId}")]
+        [HttpGet]
+        public async Task<IActionResult> GetPiecesByPlayerId(int playerId)
         {
             
-            var result = await _piece.GetPlayerPieces(id);
+            var result = await _piece.GetPlayerPieces(playerId);
 
             if (result == null)
             {

@@ -17,5 +17,6 @@ namespace LudoAPI.Data
         public DbSet<Player> Players { get; set; }
         public DbSet<GameBoard> GameBoards { get; set; }
         public DbSet<Piece> Pieces { get; set; }
+        
     }
 }

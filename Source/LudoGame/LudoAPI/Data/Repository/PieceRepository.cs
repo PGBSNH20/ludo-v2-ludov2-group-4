@@ -39,6 +39,8 @@ namespace LudoAPI.Data.Repository
 
             piece.Position += die;
 
+            
+
             _dbContext.Pieces.Update(piece);
             await _dbContext.SaveChangesAsync();
 
@@ -51,8 +53,8 @@ namespace LudoAPI.Data.Repository
 
             List<Piece> pieces =  _dbContext.Pieces.Where(p => p.PlayerId == result.Id).ToList();
 
-            
             return pieces;
         }
+
     }
 }

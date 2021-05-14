@@ -9,6 +9,6 @@ namespace LudoAPI.Interfaces
     public interface IPlayer
     {
         Task<Player> AddPlayer(Player player);
-        
+        List<Player> GetPlayersByGameBoardId(int gameBoardId);
     }
 }
