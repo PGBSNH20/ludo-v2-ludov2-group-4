@@ -55,6 +55,22 @@ namespace LudoAPI.Controllers
             return StatusCode(StatusCodes.Status201Created, "You have created a gameboard");
         }
 
+
+        [Route("pieces/{id}")]
+        [HttpGet]
+        public async Task<IActionResult> GetPiecesByPlayerId(int id)
+        {
+            
+            var result = await _piece.GetPlayerPieces(id);
+
+            if (result == null)
+            {
+                return NotFound("That player id doesn't exist");
+            }
+
+            return Ok(result);
+        }
+
         [Route("pieces")]
         [HttpPut]
         public async Task<IActionResult> PutPiece([FromForm] Piece piece)
