@@ -5,16 +5,16 @@
 
 ### API
 1. [ ]  Models (tabeller i databasen): GameBoard, Player, Pieces, Colors.
-1. [ ]  Interfaces: IGameBoard, IPlayer.
-3. [ ]  Repositories: GameRepository, PieceRepository, PlayerRepository.
-4. [x]  Controllers: GameController.
-5. [x]  DbContext & DbSet:
-6. [x]  Dockerfiler:
-7. [ ]  Metoder i GameRepository: AddNewGame(), CreatePieces(), MovePiece(), DecideTurnOrder(), NextPlayer()
-8. [ ]  Metoder i PlayerRepository: AddPlayer(),
-9. [ ]  Metoder i PieceRepository: CreatePieces(), MovePiece(),
-10. [ ]  Övriga klasser: Die.cs, 
-11. [ ] Övriga metoder: RollDie(),    
+1. [ ]  Interfaces: IGameBoard, IPlayer, IPiece.
+1. [ ]  Repositories: GameRepository, PieceRepository, PlayerRepository.
+1. [x]  Controllers: GameController.
+1. [x]  DbContext & DbSet:
+1. [x]  Dockerfiler:
+1. [ ]  Metoder i GameRepository: AddNewGame(), CreatePieces(), MovePiece(), DecideTurnOrder(), NextPlayer()
+1. [ ]  Metoder i PlayerRepository: AddPlayer(),
+1. [ ]  Metoder i PieceRepository: CreatePieces(), MovePiece(),
+1. [ ]  Övriga klasser: Die.cs, 
+1. [ ]  Övriga metoder: RollDie(),    
 
 ### Razor pages
 1. [ ]  
