@@ -12,7 +12,7 @@
 1. [x]  Dockerfiler:
 1. [ ]  Metoder i GameRepository: AddNewGame(), **DecideTurnOrder(), NextPlayer()**
 1. [ ]  Metoder i PlayerRepository: AddPlayer(),
-1. [ ]  Metoder i PieceRepository: CreatePieces(), MovePiece(), **ChoosePiece(), IsValidMove()**,
+1. [ ]  Metoder i PieceRepository: CreatePieces(), **ChoosePiece(List(Piece) pieceList), IsValidMove(int die, Piece piece)**, MovePiece(int die, Piece piece).
 1. [ ]  Övriga klasser: Die.cs, 
 1. [ ]  Övriga metoder: RollDie(),    
 
