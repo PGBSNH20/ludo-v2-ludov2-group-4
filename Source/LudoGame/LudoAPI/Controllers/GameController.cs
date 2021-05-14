@@ -34,8 +34,9 @@ namespace LudoAPI.Controllers
 
             if (result == null)
             {
-                return BadRequest();
+                    return BadRequest();
             }
+                
 
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
         }
@@ -65,7 +66,7 @@ namespace LudoAPI.Controllers
                 return BadRequest();
             }
 
-            return StatusCode(StatusCodes.Status200OK, "You have moved a piece");
+            return StatusCode(StatusCodes.Status200OK, $"You have moved a piece with id {piece.Id} ");
         }
     }
 }
