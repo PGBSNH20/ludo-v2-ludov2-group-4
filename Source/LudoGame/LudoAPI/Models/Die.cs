@@ -9,12 +9,8 @@ namespace LudoAPI.Models
     {
         public static int RollDie()
         {
-            var rnd = new Random();
-            int roll = rnd.Next(1, 7);
-            return roll;
 
         }
-
-
+        
     }
 }

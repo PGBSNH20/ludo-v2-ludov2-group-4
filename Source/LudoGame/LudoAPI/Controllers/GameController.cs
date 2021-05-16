@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using LudoAPI.Data.Interfaces;
 using LudoAPI.Interfaces;
 using LudoAPI.Models;
-using LudoAPI.Data.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LudoAPI.Controllers
 {
@@ -29,36 +27,23 @@ namespace LudoAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer([FromForm] Player player)
         {
-
-
             var gameBoard = _board.GetGameBoard(player.GameBoardId);
-
-            var trueColor = gameBoard.Colors.Any(x => x == player.Color);
-
             var opponents = _player.GetPlayersByGameBoardId(player.GameBoardId);
+            var trueColor = gameBoard.Colors.Any(x => x == player.Color);
+            var colorNotAvailable = opponents.Any(o => o.Color.ToLower() == player.Color.ToLower());
+            var nameNotAvailable = opponents.Any(o => o.Name.ToLower() == player.Name.ToLower());
 
-            var colorNotAvailable = opponents.Any(o => o.Color == player.Color.ToLower());
 
+            if (!trueColor) return BadRequest("Invalid Color");
 
-            if (!trueColor)
-            {
-                return BadRequest("Invalid Color");
-            }
+            if (colorNotAvailable) return BadRequest("Color is occupied");
 
-            if (colorNotAvailable)
-            {
-                return BadRequest("Color is occupied");
-            }
+            if (nameNotAvailable) return BadRequest("The name already exists");
 
             var result = await _player.AddPlayer(player);
             await _piece.AddPieces(result);
 
-            if (result == null )
-            {
-                    return BadRequest();
-            }
-
-
+            if (result == null) return BadRequest();
 
 
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
@@ -70,10 +55,7 @@ namespace LudoAPI.Controllers
         {
             var result = await _board.AddNewGame(gameBoard);
 
-            if (result == null)
-            {
-                return NotFound();
-            }
+            if (result == null) return NotFound();
 
             return StatusCode(StatusCodes.Status201Created, "You have created a gameboard");
         }
@@ -84,10 +66,7 @@ namespace LudoAPI.Controllers
         {
             var gameBoard = _board.GetGameBoard(id);
 
-            if (gameBoard == null)
-            {
-                return NotFound("That gameboard id doesn't exist");
-            }
+            if (gameBoard == null) return NotFound("That gameboard id doesn't exist");
 
             return Ok(gameBoard);
         }
@@ -97,13 +76,9 @@ namespace LudoAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPiecesByPlayerId(int playerId)
         {
-            
             var result = await _piece.GetPlayerPieces(playerId);
 
-            if (result == null)
-            {
-                return NotFound("That player id doesn't exist");
-            }
+            if (result == null) return NotFound("That player id doesn't exist");
 
             return Ok(result);
         }
@@ -114,10 +89,7 @@ namespace LudoAPI.Controllers
         {
             var result = await _piece.MovePiece(piece);
 
-            if (result.Position == 0)
-            {
-                return BadRequest();
-            }
+            if (result.Position == 0) return BadRequest();
 
             return StatusCode(StatusCodes.Status200OK, $"You have moved a piece with id {piece.Id} ");
         }

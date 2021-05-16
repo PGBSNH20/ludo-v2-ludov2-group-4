@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LudoAPI.Data.Repository
 {
-    public class GameRepository : IGameBoard
+    public class GameBoardRepository : IGameBoard
     {
         private readonly LudoContext _dbContext;
 
-        public GameRepository(LudoContext dbContext)
+        public GameBoardRepository(LudoContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -44,5 +44,8 @@ namespace LudoAPI.Data.Repository
 
             return result;
         }
+
+       
+        
     }
 }

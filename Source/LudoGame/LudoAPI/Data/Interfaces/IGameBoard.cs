@@ -9,6 +9,7 @@ namespace LudoAPI.Interfaces
     public interface IGameBoard
     {
        Task<GameBoard> AddNewGame(GameBoard gameBoard);
-       GameBoard GetGameBoard(int id);
+       GameBoard GetGameBoard(int id); 
+       
     }
 }

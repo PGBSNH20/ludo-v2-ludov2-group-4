@@ -36,7 +36,7 @@ namespace LudoAPI
 
             services.AddTransient<IPlayer, PlayerRepository>();
             services.AddTransient<IPiece, PieceRepository>();
-            services.AddTransient<IGameBoard, GameRepository>();
+            services.AddTransient<IGameBoard, GameBoardRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

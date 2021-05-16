@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace LudoAPI.Data.Repository
 {
@@ -35,7 +36,10 @@ namespace LudoAPI.Data.Repository
 
         public async Task<Piece> MovePiece(Piece piece)
         {
-            int die = Die.RollDie();
+            GameBoard game = new GameBoard();
+            
+            game.
+            
 
             piece.Position += die;
 
@@ -49,12 +53,14 @@ namespace LudoAPI.Data.Repository
 
         public async Task<List<Piece>> GetPlayerPieces(int id)
         {
-            var result =  _dbContext.Players.Where(p => p.Id == id).FirstOrDefault();
+            var result =  await _dbContext.Players.Where(p => p.Id == id).FirstOrDefaultAsync();
 
             List<Piece> pieces =  _dbContext.Pieces.Where(p => p.PlayerId == result.Id).ToList();
 
             return pieces;
         }
+
+        
 
     }
 }
