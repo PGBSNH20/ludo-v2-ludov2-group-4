@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using LudoAPI.Data.Interfaces;
 using LudoAPI.Interfaces;
@@ -64,7 +65,7 @@ namespace LudoAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetGameBoardById(int id)
         {
-            var gameBoard = _board.GetGameBoard(id);
+            var gameBoard =  _board.GetGameBoard(id);
 
             if (gameBoard == null) return NotFound("That gameboard id doesn't exist");
 
@@ -74,9 +75,9 @@ namespace LudoAPI.Controllers
 
         [Route("pieces/{playerId}")]
         [HttpGet]
-        public async Task<IActionResult> GetPiecesByPlayerId(int playerId)
+        public  IActionResult GetPiecesByPlayerId(int playerId)
         {
-            var result = await _piece.GetPlayerPieces(playerId);
+            var result =  _piece.GetPlayerPieces(playerId);
 
             if (result == null) return NotFound("That player id doesn't exist");
 

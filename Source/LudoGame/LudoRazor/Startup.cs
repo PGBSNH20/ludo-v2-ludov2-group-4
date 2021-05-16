@@ -8,6 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LudoAPI.Data;
+using LudoAPI.Data.Interfaces;
+using LudoAPI.Data.Repository;
+using LudoAPI.Interfaces;
+using LudoAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace LudoRazor
 {
@@ -24,6 +31,24 @@ namespace LudoRazor
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+
+            services.AddDbContext<LudoContext>(opt => opt.UseSqlServer(@"Server = localhost, 41433; Database = LudoGameDb; User ID = sa; Password = secretpassword123!"));
+
+
+            services.AddHttpClient<IGameBoard,
+                GameBoardRepository>(client =>
+                client.BaseAddress = new Uri(Configuration.GetSection("LudoAPI").Value));
+
+            services.AddHttpClient<IPlayer,
+                PlayerRepository>(client =>
+                client.BaseAddress = new Uri(Configuration.GetSection("LudoAPI").Value));
+
+            services.AddHttpClient<IPiece,
+                PieceRepository>(client =>
+                client.BaseAddress = new Uri(Configuration.GetSection("LudoAPI").Value));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

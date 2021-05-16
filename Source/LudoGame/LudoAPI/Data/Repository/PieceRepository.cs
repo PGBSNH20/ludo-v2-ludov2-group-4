@@ -36,30 +36,41 @@ namespace LudoAPI.Data.Repository
 
         public async Task<Piece> MovePiece(Piece piece)
         {
-            GameBoard game = new GameBoard();
-            
-            game.
-            
-
-            piece.Position += die;
-
-            
-
             _dbContext.Pieces.Update(piece);
             await _dbContext.SaveChangesAsync();
 
             return piece;
         }
 
-        public async Task<List<Piece>> GetPlayerPieces(int id)
+        public  List<Piece> GetPlayerPieces(int id)
         {
-            var result =  await _dbContext.Players.Where(p => p.Id == id).FirstOrDefaultAsync();
+            var result =   _dbContext.Players.Where(p => p.Id == id).FirstOrDefaultAsync();
 
             List<Piece> pieces =  _dbContext.Pieces.Where(p => p.PlayerId == result.Id).ToList();
 
             return pieces;
         }
 
+        //public bool PossibleOptions(int die, Player currentPlayer)
+        //{
+        //    var playerPieces = _dbContext.Pieces.Where(p => p.PlayerId == currentPlayer.Id).ToList();
+        //    int activatedPieces = playerPieces.Count(p => p.IsActive == true);
+
+        //    if (activatedPieces == 0 && die < 6)
+        //    {
+        //        // NextPlayer(Player currentPlayer)
+        //    }
+
+        //    else if (activatedPieces == 0 && die == 6)
+        //    {
+        //        // MoveBasePiece(int die, Piece choosedPiece)
+        //    }
+
+        //    else if (activatedPieces == 4)
+        //    {
+        //        // MovePiece()
+        //    }
+        //}
         
 
     }
