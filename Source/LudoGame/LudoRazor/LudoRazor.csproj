@@ -23,4 +23,8 @@
     <ProjectReference Include="..\LudoAPI\LudoAPI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Players\" />
+  </ItemGroup>
+
 </Project>
