@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LudoAPI.Migrations
 {
     [DbContext(typeof(LudoContext))]
-    [Migration("20210514070551_initialCreate")]
-    partial class initialCreate
+    [Migration("20210517114241_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,6 +70,9 @@ namespace LudoAPI.Migrations
                     b.Property<int>("Position")
                         .HasColumnType("int");
 
+                    b.Property<int>("Steps")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PlayerId");
@@ -95,8 +98,6 @@ namespace LudoAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameBoardId");
-
                     b.ToTable("Players");
                 });
 
@@ -109,20 +110,6 @@ namespace LudoAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("LudoAPI.Models.Player", b =>
-                {
-                    b.HasOne("LudoAPI.Models.GameBoard", null)
-                        .WithMany("Players")
-                        .HasForeignKey("GameBoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LudoAPI.Models.GameBoard", b =>
-                {
-                    b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
         }

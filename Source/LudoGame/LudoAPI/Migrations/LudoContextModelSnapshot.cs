@@ -96,31 +96,7 @@ namespace LudoAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameBoardId");
-
                     b.ToTable("Players");
-                });
-
-            modelBuilder.Entity("LudoAPI.Models.Square", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("GameBoardId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OccupiedByPlayerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameBoardId");
-
-                    b.HasIndex("OccupiedByPlayerId");
-
-                    b.ToTable("Square");
                 });
 
             modelBuilder.Entity("LudoAPI.Models.Piece", b =>
@@ -132,35 +108,6 @@ namespace LudoAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("LudoAPI.Models.Player", b =>
-                {
-                    b.HasOne("LudoAPI.Models.GameBoard", null)
-                        .WithMany("Players")
-                        .HasForeignKey("GameBoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LudoAPI.Models.Square", b =>
-                {
-                    b.HasOne("LudoAPI.Models.GameBoard", null)
-                        .WithMany("Squares")
-                        .HasForeignKey("GameBoardId");
-
-                    b.HasOne("LudoAPI.Models.Player", "OccupiedByPlayer")
-                        .WithMany()
-                        .HasForeignKey("OccupiedByPlayerId");
-
-                    b.Navigation("OccupiedByPlayer");
-                });
-
-            modelBuilder.Entity("LudoAPI.Models.GameBoard", b =>
-                {
-                    b.Navigation("Players");
-
-                    b.Navigation("Squares");
                 });
 #pragma warning restore 612, 618
         }

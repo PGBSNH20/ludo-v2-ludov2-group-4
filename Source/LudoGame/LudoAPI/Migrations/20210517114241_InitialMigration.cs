@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LudoAPI.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,12 +37,6 @@ namespace LudoAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Players", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Players_GameBoards_GameBoardId",
-                        column: x => x.GameBoardId,
-                        principalTable: "GameBoards",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,6 +47,7 @@ namespace LudoAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Position = table.Column<int>(type: "int", nullable: false),
+                    Steps = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsDone = table.Column<bool>(type: "bit", nullable: false),
                     PlayerId = table.Column<int>(type: "int", nullable: false)
@@ -72,23 +67,18 @@ namespace LudoAPI.Migrations
                 name: "IX_Pieces_PlayerId",
                 table: "Pieces",
                 column: "PlayerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Players_GameBoardId",
-                table: "Players",
-                column: "GameBoardId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "GameBoards");
+
+            migrationBuilder.DropTable(
                 name: "Pieces");
 
             migrationBuilder.DropTable(
                 name: "Players");
-
-            migrationBuilder.DropTable(
-                name: "GameBoards");
         }
     }
 }

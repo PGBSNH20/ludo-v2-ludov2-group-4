@@ -19,8 +19,6 @@ namespace LudoAPI.Data.Repository
 
         public async Task<Player> AddPlayer(Player player)
         {
-            
-
             await _dbContext.Players.AddAsync(player);
             await _dbContext.SaveChangesAsync();
 

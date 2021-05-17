@@ -32,23 +32,19 @@ namespace LudoRazor
         {
             services.AddRazorPages();
 
-
             services.AddDbContext<LudoContext>(opt => opt.UseSqlServer(@"Server = localhost, 41433; Database = LudoGameDb; User ID = sa; Password = secretpassword123!"));
-
 
             services.AddHttpClient<IGameBoard,
                 GameBoardRepository>(client =>
-                client.BaseAddress = new Uri(Configuration.GetSection("LudoAPI").Value));
+                client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5001").Value));
 
             services.AddHttpClient<IPlayer,
                 PlayerRepository>(client =>
-                client.BaseAddress = new Uri(Configuration.GetSection("LudoAPI").Value));
+                client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5001").Value));
 
             services.AddHttpClient<IPiece,
                 PieceRepository>(client =>
-                client.BaseAddress = new Uri(Configuration.GetSection("LudoAPI").Value));
-
-
+                client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5001").Value));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,11 +63,8 @@ namespace LudoRazor
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
