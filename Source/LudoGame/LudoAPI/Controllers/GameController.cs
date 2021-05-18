@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LudoAPI.Data;
 using LudoAPI.Data.Interfaces;
 using LudoAPI.Interfaces;
 using LudoAPI.Models;
@@ -14,28 +15,31 @@ namespace LudoAPI.Controllers
     public class GameController : ControllerBase
     {
         private readonly IPiece _piece;
+        private readonly LudoContext _dbContext;
         private readonly IPlayer _player;
         private readonly IGameBoard _board;
+        
 
-        public GameController(IPlayer player, IGameBoard board, IPiece piece)
+        public GameController(IPlayer player, IGameBoard board, IPiece piece, LudoContext dbContext)
         {
             _player = player;
             _board = board;
             _piece = piece;
+            _dbContext = dbContext;
         }
 
         [Route("players")]
         [HttpPost]
-        public async Task<ActionResult<Player>> PostPlayer([FromForm] Player player)
+        public async Task<ActionResult<Player>> PostPlayer([FromBody] Player player)
         {
             var gameBoard = _board.GetGameBoard(player.GameBoardId);
             var opponents = _player.GetPlayersByGameBoardId(player.GameBoardId);
-            var trueColor = gameBoard.Colors.Any(x => x == player.Color);
+            //var trueColor = gameBoard.Colors.Any(x => x == player.Color);
             var colorNotAvailable = opponents.Any(o => o.Color.ToLower() == player.Color.ToLower());
             var nameNotAvailable = opponents.Any(o => o.Name.ToLower() == player.Name.ToLower());
 
 
-            if (!trueColor) return BadRequest("Invalid Color");
+            //if (!trueColor) return BadRequest("Invalid Color");
 
             if (colorNotAvailable) return BadRequest("Color is occupied");
 
@@ -46,7 +50,8 @@ namespace LudoAPI.Controllers
 
             if (result == null) return BadRequest();
 
-
+            await _dbContext.Players.AddAsync(player);
+            await _dbContext.SaveChangesAsync();
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
         }
 

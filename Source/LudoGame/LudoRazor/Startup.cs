@@ -36,15 +36,15 @@ namespace LudoRazor
 
             services.AddHttpClient<IGameBoard,
                 GameBoardRepository>(client =>
-                client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5001").Value));
+                client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5000").Value));
 
             services.AddHttpClient<IPlayer,
                 PlayerRepository>(client =>
-                client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5001").Value));
+                client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5000").Value));
 
             services.AddHttpClient<IPiece,
                 PieceRepository>(client =>
-                client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5001").Value));
+                client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5000").Value));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

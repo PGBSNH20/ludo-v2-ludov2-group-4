@@ -39,7 +39,15 @@ namespace LudoRazor.Pages.Players
             }
 
 
-            //using (var client = new HttpClient())
+            var client = new RestClient("https://localhost:5001/api/Game/players");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddJsonBody(Player);
+            IRestResponse response = client.Execute(request);
+
+            return RedirectToPage("/Index");
+
+            //using (var client = new ResClient())
             //{
             //    client.BaseAddress = new Uri("http://localhost:5001/api/Game/players");
             //    var postPlayer = client.PostAsJsonAsync<Player>("Player", player);
