@@ -15,31 +15,36 @@ namespace LudoAPI.Controllers
     public class GameController : ControllerBase
     {
         private readonly IPiece _piece;
-        private readonly LudoContext _dbContext;
         private readonly IPlayer _player;
         private readonly IGameBoard _board;
         
 
-        public GameController(IPlayer player, IGameBoard board, IPiece piece, LudoContext dbContext)
+        public GameController(IPlayer player, IGameBoard board, IPiece piece)
         {
             _player = player;
             _board = board;
             _piece = piece;
-            _dbContext = dbContext;
+            
         }
 
         [Route("players")]
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer([FromBody] Player player)
         {
+            
+
             var gameBoard = _board.GetGameBoard(player.GameBoardId);
             var opponents = _player.GetPlayersByGameBoardId(player.GameBoardId);
-            //var trueColor = gameBoard.Colors.Any(x => x == player.Color);
+            var trueColor = gameBoard.Colors.Any(x => x == player.Color);
             var colorNotAvailable = opponents.Any(o => o.Color.ToLower() == player.Color.ToLower());
             var nameNotAvailable = opponents.Any(o => o.Name.ToLower() == player.Name.ToLower());
+            var amountOfPlayer = _player.GetPlayersByGameBoardId(player.GameBoardId).Count();
 
+            
 
-            //if (!trueColor) return BadRequest("Invalid Color");
+            if (amountOfPlayer == 4) return BadRequest("You can't add another player");
+            
+            if (!trueColor) return BadRequest("Invalid Color");
 
             if (colorNotAvailable) return BadRequest("Color is occupied");
 
@@ -50,14 +55,13 @@ namespace LudoAPI.Controllers
 
             if (result == null) return BadRequest();
 
-            await _dbContext.Players.AddAsync(player);
-            await _dbContext.SaveChangesAsync();
+            
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
         }
 
         [Route("gameboards")]
         [HttpPost]
-        public async Task<IActionResult> PostGameBoard([FromForm] GameBoard gameBoard)
+        public async Task<IActionResult> PostGameBoard([FromBody] GameBoard gameBoard)
         {
             var result = await _board.AddNewGame(gameBoard);
 

@@ -26,10 +26,13 @@ namespace LudoAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AmountOfPlayers")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CurrentPlayerId")
+                    b.Property<int?>("CurrentPlayerId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Done")

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,17 +11,14 @@ using LudoAPI.Models;
 using RestSharp;
 using System.Net.Http;
 using System.Net.Http.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace LudoRazor.Pages.Players
 {
     public class IndexModel : PageModel
     {
-        private readonly LudoAPI.Data.LudoContext _context;
-
-        public IndexModel(LudoAPI.Data.LudoContext context)
-        {
-            _context = context;
-        }
+        
+        public string Message { get; set; }
 
         public IActionResult OnGet()
         {
@@ -31,7 +29,7 @@ namespace LudoRazor.Pages.Players
         public Player Player { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync(Player player)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -39,17 +37,28 @@ namespace LudoRazor.Pages.Players
             }
 
 
-            var client = new RestClient("https://localhost:5001/api/Game/players");
+            var client = new RestClient("http://localhost:5000/api/Game/players");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddJsonBody(Player);
             IRestResponse response = client.Execute(request);
 
-            return RedirectToPage("/Index");
+
+            Message = response.Content;
+
+            return Page();
+
+            
+            
+            
+
+
+            //return RedirectToPage("/Error");
+            //return RedirectToPage("/Index");
 
             //using (var client = new ResClient())
             //{
-            //    client.BaseAddress = new Uri("http://localhost:5001/api/Game/players");
+            //    client.BaseAddress = new Uri("http://localhost:44335/api/Game/players");
             //    var postPlayer = client.PostAsJsonAsync<Player>("Player", player);
             //    postPlayer.Wait();
             //    var postResult = postPlayer.Result;

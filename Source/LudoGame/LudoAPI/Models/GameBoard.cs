@@ -11,10 +11,11 @@ namespace LudoAPI.Models
         public int Id { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
         public string Name { get; set; }
+        public int AmountOfPlayers { get; set; }
         public bool Done { get; set; }
         public string? Winner { get; set; }
 
-        public int CurrentPlayerId { get; set; }
+        public int? CurrentPlayerId { get; set; }
 
         [NotMapped]
         public List<Square> Squares { get; set; }
