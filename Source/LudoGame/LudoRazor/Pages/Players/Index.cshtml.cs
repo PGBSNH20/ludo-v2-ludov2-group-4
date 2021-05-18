@@ -45,6 +45,8 @@ namespace LudoRazor.Pages.Players
             request.AddJsonBody(Player);
             IRestResponse response = client.Execute(request);
 
+            
+
             return RedirectToPage("/Index");
 
             //using (var client = new ResClient())

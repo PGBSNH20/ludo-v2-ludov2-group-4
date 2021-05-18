@@ -15,17 +15,17 @@ namespace LudoAPI.Controllers
     public class GameController : ControllerBase
     {
         private readonly IPiece _piece;
-        private readonly LudoContext _dbContext;
+        //private readonly LudoContext _dbContext;
         private readonly IPlayer _player;
         private readonly IGameBoard _board;
         
 
-        public GameController(IPlayer player, IGameBoard board, IPiece piece, LudoContext dbContext)
+        public GameController(IPlayer player, IGameBoard board, IPiece piece/*, LudoContext dbContext*/)
         {
             _player = player;
             _board = board;
             _piece = piece;
-            _dbContext = dbContext;
+            //_dbContext = dbContext;
         }
 
         [Route("players")]
@@ -50,8 +50,8 @@ namespace LudoAPI.Controllers
 
             if (result == null) return BadRequest();
 
-            await _dbContext.Players.AddAsync(player);
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.Players.AddAsync(player);
+            //await _dbContext.SaveChangesAsync();
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
         }
 
