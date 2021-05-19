@@ -24,6 +24,7 @@ namespace LudoAPI.Data.Repository
                 var piece = new Piece()
                 {
                     Color = player.Color,
+                    GameBoardId = player.GameBoardId,
                     PlayerId = player.Id,
                     IsActive = false,
                     IsDone = false

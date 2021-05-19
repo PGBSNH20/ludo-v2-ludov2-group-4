@@ -1,0 +1,40 @@
+﻿@page
+@model LudoRazor.Pages.LoadGame1.IndexModel1
+
+@{
+    ViewData["Title"] = "Load game1";
+}
+
+<h4>Load game 1</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <ul>
+            @foreach(var player in Model.players)
+            {
+                <li>
+                    @player.Id,
+                    @player.Name,
+                    @player.Color,
+                </li>
+
+                foreach(var piece in Model.pieces)
+                {
+                    if(piece.PlayerId == player.Id)
+                    {
+                        <li>
+                            @piece.Id,
+                            @piece.Color,
+                            @piece.Steps,
+                        </li>
+                    }                 
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

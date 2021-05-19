@@ -14,6 +14,7 @@ namespace LudoAPI.Models
         public int Steps { get; set; }
         public bool IsActive { get; set; }
         public bool IsDone { get; set; }
+        public int GameBoardId { get; set; }
 
         [ForeignKey("Player")]
         public int PlayerId { get; set; }
