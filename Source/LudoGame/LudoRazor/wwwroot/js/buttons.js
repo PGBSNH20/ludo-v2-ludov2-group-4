@@ -1,4 +1,4 @@
-﻿function loadGame() {
-    document.getElementById("demo").innerHTML = "Hello World";
+﻿function loadGame(input) {
+    document.getElementById("gameId").innerHTML = input;
 }
 

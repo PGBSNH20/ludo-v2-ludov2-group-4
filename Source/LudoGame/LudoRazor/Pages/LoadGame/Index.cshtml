@@ -29,8 +29,9 @@
         </tr>
     </thead>
     <tbody>
+
         @foreach (var item in Model.GameBoard)
-        {
+         {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Created)
@@ -45,15 +46,15 @@
                     @Html.DisplayFor(modelItem => item.Winner)
                 </td>
                 <td>
-                    <button class="btn btn-primary" onclick="loadGame()">Continue</button>
+                    <button class="btn btn-primary" onclick="loadGame(@item.Id)">Continue</button>
 
                     <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
-        }
+         }
     </tbody>
 </table>
 
-<p id="demo"></p>
+<p id="gameId"></p>
 
 
