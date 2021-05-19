@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LudoAPI.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,6 @@ namespace LudoAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AmountOfPlayers = table.Column<int>(type: "int", nullable: false),
                     Done = table.Column<bool>(type: "bit", nullable: false),
                     Winner = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CurrentPlayerId = table.Column<int>(type: "int", nullable: true)
@@ -31,8 +30,8 @@ namespace LudoAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GameBoardId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

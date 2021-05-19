@@ -22,6 +22,9 @@ namespace LudoAPI.Data.Repository
             await _dbContext.Players.AddAsync(player);
             await _dbContext.SaveChangesAsync();
 
+            var gameboard = _dbContext.GameBoards.FirstOrDefault(g => g.Id == player.GameBoardId);
+            gameboard.Players.Add(player);
+
             return player;
         }
 

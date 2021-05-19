@@ -15,34 +15,30 @@ namespace LudoAPI.Controllers
     public class GameController : ControllerBase
     {
         private readonly IPiece _piece;
+        private readonly LudoContext dbcontext;
         private readonly IPlayer _player;
         private readonly IGameBoard _board;
         
-
-        public GameController(IPlayer player, IGameBoard board, IPiece piece)
+        public GameController(IPlayer player, IGameBoard board, IPiece piece, LudoContext dbcontext)
         {
             _player = player;
             _board = board;
             _piece = piece;
-            
+            this.dbcontext = dbcontext;
         }
 
         [Route("players")]
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer([FromBody] Player player)
-        {
-            
-
+        {           
             var gameBoard = _board.GetGameBoard(player.GameBoardId);
             var opponents = _player.GetPlayersByGameBoardId(player.GameBoardId);
             var trueColor = gameBoard.Colors.Any(x => x == player.Color);
             var colorNotAvailable = opponents.Any(o => o.Color.ToLower() == player.Color.ToLower());
             var nameNotAvailable = opponents.Any(o => o.Name.ToLower() == player.Name.ToLower());
-            var amountOfPlayer = _player.GetPlayersByGameBoardId(player.GameBoardId).Count();
+            var amountOfPlayer = _player.GetPlayersByGameBoardId(player.GameBoardId).Count();           
 
-            
-
-            if (amountOfPlayer == 4) return BadRequest("You can't add another player");
+            if (amountOfPlayer == 4) return BadRequest("A ludo game can only include 2-4 players");
             
             if (!trueColor) return BadRequest("Invalid Color");
 
@@ -55,7 +51,6 @@ namespace LudoAPI.Controllers
 
             if (result == null) return BadRequest();
 
-            
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
         }
 
@@ -74,7 +69,7 @@ namespace LudoAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetGameBoardById(int id)
         {
-            var gameBoard =  _board.GetGameBoard(id);
+            var gameBoard = _board.GetGameBoard(id);
 
             if (gameBoard == null) return NotFound("That gameboard id doesn't exist");
 

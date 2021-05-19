@@ -45,7 +45,14 @@ namespace LudoAPI.Data.Repository
             return result;
         }
 
-       
-        
+        //public Task RunGame(GameBoard gameBoard)
+        //{
+        //    bool done = false;
+        //    Player currentPlayer = gameBoard.Players.FirstOrDefault(p => p.Color == "yellow");
+        //    while (!done)
+        //    {
+        //        var die = Die.RollDie();  
+        //    }
+        //}
     }
 }

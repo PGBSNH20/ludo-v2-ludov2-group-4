@@ -31,9 +31,6 @@ namespace LudoRazor.Pages.NewGame
                 return Page();
             }
 
-
-            
-
             var client = new RestClient("http://localhost:5000/api/Game/GameBoards");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);

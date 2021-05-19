@@ -36,47 +36,16 @@ namespace LudoRazor.Pages.Players
                 return Page();
             }
 
-
             var client = new RestClient("http://localhost:5000/api/Game/players");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddJsonBody(Player);
             IRestResponse response = client.Execute(request);
 
-
-            Message = response.Content;
+           Message = response.Content;
 
             return Page();
 
-            
-            
-            
-
-
-            //return RedirectToPage("/Error");
-            //return RedirectToPage("/Index");
-
-            //using (var client = new ResClient())
-            //{
-            //    client.BaseAddress = new Uri("http://localhost:44335/api/Game/players");
-            //    var postPlayer = client.PostAsJsonAsync<Player>("Player", player);
-            //    postPlayer.Wait();
-            //    var postResult = postPlayer.Result;
-
-            //    if(postResult.IsSuccessStatusCode)
-            //    {
-            //        return RedirectToPage("./Index");
-            //    }
-            //    else 
-            //    {
-            //        return NotFound();
-            //    }
-            //}
-
-            //_context.Players.Add(Player);
-            //await _context.SaveChangesAsync();
-
-            //return RedirectToPage("./Index");
         }
     }
 }
