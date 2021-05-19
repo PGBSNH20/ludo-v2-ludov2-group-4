@@ -12,20 +12,24 @@ namespace LudoRazor.Pages.LoadGame
 {
     public class IndexModel : PageModel
     {
-        public string ButtonMessage { get; set; }
+        readonly LudoContext _dbContext;
 
-        private readonly LudoAPI.Data.LudoContext _context;
-
-        public IndexModel(LudoAPI.Data.LudoContext context)
+        public IndexModel(LudoContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
 
-        public IList<GameBoard> GameBoard { get;set; }
+        public IList<GameBoard> GameBoard { get; set; }
+        public List<Player> players { get; set; }
+        public List<Piece> pieces { get; set; }       
 
         public async Task OnGetAsync()
         {
-            GameBoard = await _context.GameBoards.ToListAsync();
+            GameBoard = await _dbContext.GameBoards.ToListAsync();
+
+            players = _dbContext.Players.Where(pl => pl.GameBoardId == 1).ToList();
+
+            pieces = _dbContext.Pieces.Where(pi => pi.GameBoardId == 1).ToList();
         }
     }
 }

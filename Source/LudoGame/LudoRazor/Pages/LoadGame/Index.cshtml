@@ -28,27 +28,27 @@
             <th></th>
         </tr>
     </thead>
+    
     <tbody>
-
-        @foreach (var item in Model.GameBoard)
+        @foreach (var gameBoard in Model.GameBoard)
          {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Created)
+                    @Html.DisplayFor(modelItem => gameBoard.Created)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => gameBoard.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Done)
+                    @Html.DisplayFor(modelItem => gameBoard.Done)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Winner)
+                    @Html.DisplayFor(modelItem => gameBoard.Winner)
                 </td>
                 <td>
-                    <button class="btn btn-primary" onclick="loadGame(@item.Id)">Continue</button>
+                    <button class="btn btn-primary" onclick="loadGame(@gameBoard.Id)">Continue</button>
 
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-page="./Delete" asp-route-id="@gameBoard.Id">Delete</a>
                 </td>
             </tr>
          }
