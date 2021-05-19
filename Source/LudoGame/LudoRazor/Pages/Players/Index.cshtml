@@ -3,12 +3,10 @@
 @using Microsoft.AspNetCore.Razor.TagHelpers
 @model LudoRazor.Pages.Players.IndexModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Players";
 }
 
-<h1>Index</h1>
-
-<h4>Player</h4>
+<h4>Add player</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -32,15 +30,8 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
-            <div class="form-group">
-                <input type="submit" id="StartGameBtn" value="Start Game" class="btn btn-primary"/>
-            </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 <div>

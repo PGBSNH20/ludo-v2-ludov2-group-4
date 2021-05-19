@@ -41,8 +41,6 @@ namespace LudoRazor.Pages.NewGame
             GameBoardMessage = response.Content;
 
             return RedirectToPage("/Players/Index");
-
-            
         }
     }
 }
