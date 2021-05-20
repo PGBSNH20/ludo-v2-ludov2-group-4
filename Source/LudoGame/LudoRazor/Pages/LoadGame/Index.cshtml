@@ -9,52 +9,54 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.GameBoard[0].Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GameBoard[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GameBoard[0].Done)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GameBoard[0].Winner)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GameBoard[0].CurrentPlayerId)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GameBoard[0].Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameBoard[0].Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameBoard[0].Done)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameBoard[0].Winner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameBoard[0].CurrentPlayerId)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     
     <tbody>
-        @foreach (var gameBoard in Model.GameBoard)
-         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => gameBoard.Created)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => gameBoard.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => gameBoard.Done)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => gameBoard.Winner)
-                </td>
-                <td>
-                    <button class="btn btn-primary" onclick="loadGame(@gameBoard.Id)">Continue</button>
+    @foreach (var gameBoard in Model.GameBoard)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => gameBoard.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => gameBoard.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => gameBoard.Done)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => gameBoard.Winner)
+            </td>
+            <td>
+                <button class="btn btn-primary" onclick="loadGame(@gameBoard.Id)">Continue</button>
 
-                    <a asp-page="./Delete" asp-route-id="@gameBoard.Id">Delete</a>
-                </td>
-            </tr>
-         }
+                <a asp-page="./Delete" asp-route-id="@gameBoard.Id">Delete</a>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
 
-<p id="gameId"></p>
+
+@*<p id="gameId"></p>*@
+
 
 

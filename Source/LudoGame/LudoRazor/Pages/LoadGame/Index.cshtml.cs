@@ -31,5 +31,9 @@ namespace LudoRazor.Pages.LoadGame
 
             pieces = _dbContext.Pieces.Where(pi => pi.GameBoardId == 1).ToList();
         }
+
+        ////function loadGame(input) {
+        ////    document.getElementById("gameId").innerHTML = input;
+        ////}
     }
 }

@@ -1,0 +1,100 @@
+﻿@page
+@using LudoAPI.Models
+@model LudoRazor.Pages.PlayGame.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{ var newPlayer = new Player();}
+
+<h1>Index</h1>
+
+<h4>GameBoard</h4>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentGame.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentGame.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentGame.Done)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentGame.Winner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentGame.CurrentPlayerId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var player in Model.Players)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => player.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => player.Color)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("Color")
+            </th>
+            <th>
+                @Html.DisplayName("Steps")
+            </th>
+            <th>
+                @Html.DisplayName("Position")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var piece in Model.Pieces)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => piece.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => piece.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => piece.Steps)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => piece.Position)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

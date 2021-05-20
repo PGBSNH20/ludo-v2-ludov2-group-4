@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LudoAPI.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace LudoAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Done = table.Column<bool>(type: "bit", nullable: false),
                     Winner = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CurrentPlayerId = table.Column<int>(type: "int", nullable: true)
@@ -37,6 +37,12 @@ namespace LudoAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Players", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Players_GameBoards_GameBoardId",
+                        column: x => x.GameBoardId,
+                        principalTable: "GameBoards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,6 +56,7 @@ namespace LudoAPI.Migrations
                     Steps = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsDone = table.Column<bool>(type: "bit", nullable: false),
+                    GameBoardId = table.Column<int>(type: "int", nullable: false),
                     PlayerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -67,18 +74,23 @@ namespace LudoAPI.Migrations
                 name: "IX_Pieces_PlayerId",
                 table: "Pieces",
                 column: "PlayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Players_GameBoardId",
+                table: "Players",
+                column: "GameBoardId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GameBoards");
-
-            migrationBuilder.DropTable(
                 name: "Pieces");
 
             migrationBuilder.DropTable(
                 name: "Players");
+
+            migrationBuilder.DropTable(
+                name: "GameBoards");
         }
     }
 }
