@@ -90,7 +90,7 @@ namespace LudoAPI.Controllers
 
         [Route("pieces")]
         [HttpPut]
-        public async Task<IActionResult> PutPiece([FromForm] Piece piece)
+        public async Task<IActionResult> PutPiece([FromBody] Piece piece)
         {
             var result = await _piece.MovePiece(piece);
 

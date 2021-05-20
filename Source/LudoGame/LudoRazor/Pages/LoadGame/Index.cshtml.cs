@@ -23,13 +23,15 @@ namespace LudoRazor.Pages.LoadGame
         public List<Player> players { get; set; }
         public List<Piece> pieces { get; set; }       
 
-        public async Task OnGetAsync()
+        public IActionResult OnGet()
         {
-            GameBoard = await _dbContext.GameBoards.ToListAsync();
+            GameBoard =  _dbContext.GameBoards.ToList();
 
             players = _dbContext.Players.Where(pl => pl.GameBoardId == 1).ToList();
 
             pieces = _dbContext.Pieces.Where(pi => pi.GameBoardId == 1).ToList();
+
+            return Page();
         }
 
         ////function loadGame(input) {

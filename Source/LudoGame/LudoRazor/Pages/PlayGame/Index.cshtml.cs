@@ -23,13 +23,14 @@ namespace LudoRazor.Pages.PlayGame
         public GameBoard CurrentGame { get; set; }
         public List<Piece> Pieces { get; set; }
         public List<Player> Players { get; set; }
+        public Die Die { get; set; }
         
 
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int id)
         {
-            CurrentGame = _context.GameBoards.FirstOrDefault(g => g.Id == 1);
-            Pieces = _context.Pieces.Where(p => p.GameBoardId == 1).ToList();
+            CurrentGame = _context.GameBoards.FirstOrDefault(g => g.Id == id);
+            Pieces = _context.Pieces.Where(p => p.GameBoardId == id).ToList();
             Players = _context.Players.Where(p => p.GameBoardId == CurrentGame.Id).ToList();
            
             return Page();
@@ -37,6 +38,9 @@ namespace LudoRazor.Pages.PlayGame
 
         [BindProperty]
         public GameBoard GameBoard { get; set; }
+
+        [BindProperty]
+        public Piece Piece { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -46,10 +50,13 @@ namespace LudoRazor.Pages.PlayGame
                 return Page();
             }
 
-            _context.GameBoards.Add(GameBoard);
-            await _context.SaveChangesAsync();
+            var client = new RestClient("http://localhost:5000/api/Game/pieces");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.PUT);
+            request.AddJsonBody(Piece);
+            IRestResponse response = client.Execute(request);
 
-            return RedirectToPage("./Index");
+            return Page();
         }
     }
 }
