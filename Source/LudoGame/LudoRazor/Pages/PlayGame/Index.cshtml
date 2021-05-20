@@ -16,36 +16,41 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CurrentGame.Created)
+                @Html.DisplayNameFor(model => newPlayer.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CurrentGame.Name)
+                @Html.DisplayNameFor(model => newPlayer.Name)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => newPlayer.Color)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CurrentGame.Done)
+                @Html.DisplayNameFor(model => newPlayer.GameBoardId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CurrentGame.Winner)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CurrentGame.CurrentPlayerId)
-            </th>
-            <th></th>
         </tr>
     </thead>
 
     <tbody>
         @foreach (var player in Model.Players)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => player.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => player.Color)
-                </td>
+        <tr>
 
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => player.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => player.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => player.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => player.GameBoardId)
+            </td>
+
+        </tr>
         }
     </tbody>
 </table>
@@ -87,7 +92,8 @@
                     @Html.DisplayFor(modelItem => piece.Position)
                 </td>
                 
-                <button class="btn btn-primary" onclick="movePiece(@piece.Id)">Choose Piece</button>
+                <td><button class="btn btn-primary" onclick="movePiece(@piece.Id)">Choose Piece</button></td>
+                
             </tr>
         }
     </tbody>
