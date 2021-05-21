@@ -16,7 +16,7 @@ namespace LudoAPI.Models
         public string Name { get; set; }
         public bool Done { get; set; }
         public string? Winner { get; set; }
-        public int? CurrentPlayerId { get; set; }
+        public int CurrentPlayerId { get; set; } = 0;
 
         [NotMapped]
         public List<Square> Squares { get; set; }

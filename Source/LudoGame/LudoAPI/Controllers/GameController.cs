@@ -76,6 +76,25 @@ namespace LudoAPI.Controllers
             return Ok(gameBoard);
         }
 
+        [Route("nextplayer/{id}")]
+        [HttpGet]
+        public IActionResult GetNextPlayer(int id)
+        {
+            var gameBoard = _board.GetGameBoard(id);
+
+            if (gameBoard.CurrentPlayerId == gameBoard.Players.Count())
+            {
+                gameBoard.CurrentPlayerId = 0;
+            }
+            else
+            {
+                gameBoard.CurrentPlayerId++;
+            }
+
+            dbcontext.GameBoards.Update(gameBoard);
+            dbcontext.SaveChanges();
+            return Ok(gameBoard);
+        }
 
         [Route("pieces/{playerId}")]
         [HttpGet]
