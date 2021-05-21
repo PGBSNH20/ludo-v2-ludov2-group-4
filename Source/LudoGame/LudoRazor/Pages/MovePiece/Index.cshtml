@@ -1,0 +1,59 @@
+﻿@page "{id}"
+@model LudoRazor.Pages.MovePiece.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>@Model.ValidatePlayer you rolled @Model.die, Choose a piece to move</h3>
+
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayName("Id")
+        </th>
+        <th>
+            @Html.DisplayName("Color")
+        </th>
+        <th>
+            @Html.DisplayName("Steps")
+        </th>
+        <th>
+            @Html.DisplayName("Position")
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (var piece in Model.Pieces)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => piece.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => piece.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => piece.Steps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => piece.Position)
+            </td>
+                
+            <td><button class="btn btn-primary" onclick="movePiece(@piece.Id)">Choose Piece</button></td>
+                
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+
+
+

@@ -99,13 +99,12 @@
     </tbody>
 </table>
 
+
 <p>@Model.ShowNextPlayer</p>
 
 
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+<a asp-page="/MovePiece/Index" asp-route-id="@Model.CurrentGame.Id" class="btn btn-primary">Roll the die</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
