@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LudoAPI.Data;
 using LudoAPI.Models;
-using RestSharp;
 
 namespace LudoRazor.Pages.MovePiece
 {
@@ -20,26 +20,58 @@ namespace LudoRazor.Pages.MovePiece
             _context = context;
         }
 
-        public GameBoard CurrentGame { get;set; }
-        public int die { get; set; }
-        public Player CurrentPlayer { get; set; }
-        public List<Player> Players { get; set; }
-        public List<Piece> Pieces { get; set; }
-        public string ValidatePlayer { get; set; } = "";
+        [BindProperty]
+        public GameBoard GameBoard { get; set; }
 
-
-        public async Task OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            CurrentGame = _context.GameBoards.FirstOrDefault(g => g.Id == id);
-            
-            Players = _context.Players.Where(p => p.GameBoardId == CurrentGame.Id).ToList();
-            CurrentPlayer = Players[CurrentGame.CurrentPlayerId];
-            Pieces = _context.Pieces.Where(p => p.PlayerId == CurrentPlayer.Id ).ToList();
-            ValidatePlayer = $"{CurrentPlayer.Name}";
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-           die = Die.RollDie();
+            GameBoard = await _context.GameBoards.FirstOrDefaultAsync(m => m.Id == id);
 
+            if (GameBoard == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
 
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see https://aka.ms/RazorPagesCRUD.
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Attach(GameBoard).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!GameBoardExists(GameBoard.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToPage("./Index");
+        }
+
+        private bool GameBoardExists(int id)
+        {
+            return _context.GameBoards.Any(e => e.Id == id);
         }
     }
 }

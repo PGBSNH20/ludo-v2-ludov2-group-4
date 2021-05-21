@@ -37,6 +37,7 @@ namespace LudoAPI.Data.Repository
 
         public async Task<Piece> MovePiece(Piece piece)
         {
+            
             _dbContext.Pieces.Update(piece);
             await _dbContext.SaveChangesAsync();
 

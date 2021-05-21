@@ -1,59 +1,55 @@
-﻿@page "{id}"
+﻿@page
 @model LudoRazor.Pages.MovePiece.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h3>@Model.ValidatePlayer you rolled @Model.die, Choose a piece to move</h3>
+<h1>Index</h1>
 
+<h4>GameBoard</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="GameBoard.Id" />
+            <div class="form-group">
+                <label asp-for="GameBoard.Created" class="control-label"></label>
+                <input asp-for="GameBoard.Created" class="form-control" />
+                <span asp-validation-for="GameBoard.Created" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameBoard.Name" class="control-label"></label>
+                <input asp-for="GameBoard.Name" class="form-control" />
+                <span asp-validation-for="GameBoard.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="GameBoard.Done" /> @Html.DisplayNameFor(model => model.GameBoard.Done)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameBoard.Winner" class="control-label"></label>
+                <input asp-for="GameBoard.Winner" class="form-control" />
+                <span asp-validation-for="GameBoard.Winner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameBoard.CurrentPlayerId" class="control-label"></label>
+                <input asp-for="GameBoard.CurrentPlayerId" class="form-control" />
+                <span asp-validation-for="GameBoard.CurrentPlayerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayName("Id")
-        </th>
-        <th>
-            @Html.DisplayName("Color")
-        </th>
-        <th>
-            @Html.DisplayName("Steps")
-        </th>
-        <th>
-            @Html.DisplayName("Position")
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    
-    <tbody>
-    @foreach (var piece in Model.Pieces)
-    {
-        <tr>
-
-            <td>
-                @Html.DisplayFor(modelItem => piece.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => piece.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => piece.Steps)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => piece.Position)
-            </td>
-                
-            <td><button class="btn btn-primary" onclick="movePiece(@piece.Id)">Choose Piece</button></td>
-                
-        </tr>
-    }
-    </tbody>
-</table>
-
-
-
-
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

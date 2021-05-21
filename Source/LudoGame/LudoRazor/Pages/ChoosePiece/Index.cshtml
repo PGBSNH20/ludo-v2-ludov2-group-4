@@ -1,0 +1,82 @@
+﻿@page "{id}"
+@using LudoAPI.Data
+@using LudoAPI.Models
+@using Microsoft.IdentityModel.Tokens
+@model LudoRazor.Pages.ChoosePiece.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>@Model.ValidatePlayer you rolled @Model.die, Choose a piece to move</h3>
+
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayName("Id")
+        </th>
+        <th>
+            @Html.DisplayName("Color")
+        </th>
+        <th>
+            @Html.DisplayName("Steps")
+        </th>
+        <th>
+            @Html.DisplayName("Position")
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (var piece in Model.Pieces)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => piece.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => piece.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => piece.Steps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => piece.Position)
+            </td>
+                
+            <td><button id="move-@piece.Id" class="btn btn-primary" onclick="movePiece(@piece.Id)">Choose Piece</button></td>
+            <script>
+                function movePiece(input) {
+                    
+                    
+                        const data = {​​ username: 'example' }​​;fetch('http://localhost:5000', {​​
+                        method: 'POST', // or 'PUT'
+                        headers: {​​'Content-Type': 'application/json',}​​,
+                        body: JSON.stringify(data),}​​).then(response => response.json()).then(data => {​​
+                        console.log('Success:', data);}​​).catch((error) => {​​
+                        console.error('Error:', error);}​​);
+
+
+
+
+                    
+                }
+
+
+            </script>
+        </tr>
+    }
+    </tbody>
+    
+    <a asp-page="/PlayGame/Index" asp-route-id="@Model.CurrentGame.Id" class="btn btn-primary">Next player</a>
+</table>
+
+
+
+
+

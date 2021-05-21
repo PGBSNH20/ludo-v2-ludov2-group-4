@@ -117,5 +117,7 @@ namespace LudoAPI.Controllers
 
             return StatusCode(StatusCodes.Status200OK, $"You have moved a piece with id {piece.Id} ");
         }
+
+      
     }
 }
