@@ -17,10 +17,13 @@ using LudoAPI.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using LudoAPI.Data.Interfaces;
 
+
 namespace LudoAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -43,6 +46,20 @@ namespace LudoAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LudoAPI", Version = "v1" });
             });
+
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:44370")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowAnyOrigin();
+                    });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,8 +76,12 @@ namespace LudoAPI
 
             app.UseRouting();
 
+
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseAuthorization();
 
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

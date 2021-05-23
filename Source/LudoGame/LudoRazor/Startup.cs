@@ -20,6 +20,7 @@ namespace LudoRazor
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -45,7 +46,13 @@ namespace LudoRazor
             services.AddHttpClient<IPiece,
                 PieceRepository>(client =>
                 client.BaseAddress = new Uri(Configuration.GetSection("http://localhost:5000").Value));
+
+       
+
+
         }
+
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -64,7 +71,11 @@ namespace LudoRazor
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            
             app.UseAuthorization();
+
+            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

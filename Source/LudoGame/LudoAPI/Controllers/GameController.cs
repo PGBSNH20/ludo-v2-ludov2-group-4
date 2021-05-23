@@ -5,11 +5,13 @@ using LudoAPI.Data;
 using LudoAPI.Data.Interfaces;
 using LudoAPI.Interfaces;
 using LudoAPI.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LudoAPI.Controllers
 {
+    //[EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class GameController : ControllerBase

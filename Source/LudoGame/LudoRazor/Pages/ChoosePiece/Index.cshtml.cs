@@ -37,7 +37,9 @@ namespace LudoRazor.Pages.ChoosePiece
             Pieces = _context.Pieces.Where(p => p.PlayerId == CurrentPlayer.Id ).ToList();
             ValidatePlayer = $"{CurrentPlayer.Name}";
 
-           die = Die.RollDie();
+            die = Die.RollDie();
+
+            
 
 
         }
