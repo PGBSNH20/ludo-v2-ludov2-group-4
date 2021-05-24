@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using LudoAPI.Data;
 using LudoAPI.Models;
+using RestSharp;
 
 namespace LudoRazor.Pages.LoadGame
 {
@@ -24,7 +25,15 @@ namespace LudoRazor.Pages.LoadGame
 
         public IActionResult OnGet()
         {
-            GameBoard =  _dbContext.GameBoards.ToList();
+            var client = new RestClient("https://localhost:44370/api/Game/get-gameboards");
+            var request = new RestRequest(Method.GET);
+            request.AddJsonBody(GameBoard);
+            var response = client.Execute<List<GameBoard>>(request);
+
+            GameBoard = response.Data.ToList();
+
+            //Following code works, GETs GameBoards straight from Db: 
+            //GameBoard =  _dbContext.GameBoards.ToList();
 
             return Page();
         }

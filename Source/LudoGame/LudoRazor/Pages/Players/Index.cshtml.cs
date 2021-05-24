@@ -42,7 +42,7 @@ namespace LudoRazor.Pages.Players
             request.AddJsonBody(Player);
             IRestResponse response = client.Execute(request);
 
-           Message = response.Content;
+            Message = response.Content;
 
             return Page();
 

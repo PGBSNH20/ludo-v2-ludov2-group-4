@@ -56,6 +56,22 @@ namespace LudoAPI.Controllers
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
         }
 
+
+        [Route("get-gameboards")]
+        [HttpGet]
+        public async Task<ActionResult<List<GameBoard>>> GetGameBoards()
+        {
+            var result = _board.GetGameBoards();
+
+            if (result == null) return NotFound("That player id doesn't exist");
+
+            return Ok(result);
+        }
+
+
+
+
+
         [Route("gameboards")]
         [HttpPost]
         public async Task<IActionResult> PostGameBoard([FromBody] GameBoard gameBoard)
@@ -119,7 +135,5 @@ namespace LudoAPI.Controllers
 
             return StatusCode(StatusCodes.Status200OK, $"You have moved a piece with id {piece.Id} ");
         }
-
-      
     }
 }
