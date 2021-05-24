@@ -66,28 +66,31 @@
     document.getElementById('getData').addEventListener('click', getData);
     
     function getData() {
-        
-        fetch('https://localhost:44370/api/game/gameboards/1')
-            .then((res) => res.json())
-            .then((data) => {
-                let output = "<h2>asdas</h2>";
-                for (let i in data) {
-                    output += `
-                    <div>
-                    <h3>${i.Name}<h3>
-                    </div>
-                    `;
-                    
-                }
-                   
-                console.log(data);
-                document.getElementById('output').innerHTML = output;
-                
 
-            });
-        
-        
-        
+
+        //const response = fetch("https://localhost:44370/api/game/gameboards/1");
+        //const json = response.json();
+        //    doc
+        //fetch('https://localhost:44370/api/game/gameboards/1')
+        //    .then((res) => res.json())
+        //    .then((data) => {
+        //        let output = "<h2>asdas</h2>";
+        //        for (let i in data) {
+        //            output += `
+        //            <div>
+        //            <h3>${i.Name}<h3>
+        //            </div>
+        //            `;
+
+        //        }
+
+        //        console.log(data);
+        //        document.getElementById('output').innerHTML = output;
+
+
+        //    });
+
+
     }
     
 </script>

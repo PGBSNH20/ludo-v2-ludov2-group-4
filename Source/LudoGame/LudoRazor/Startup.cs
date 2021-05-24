@@ -79,6 +79,7 @@ namespace LudoRazor
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+
             });
         }
     }

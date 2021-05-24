@@ -22,15 +22,30 @@ namespace LudoRazor.Pages.MovePiece
 
         [BindProperty]
         public GameBoard GameBoard { get; set; }
+        public Player CurrentPlayer { get; set; }
+        public List<Piece> Pieces { get; set; }
+        public List<Player> Players { get; set; }
+        public Piece ChoosedPiece { get; set; }
+        public int Die { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+
+        public async Task<IActionResult> OnGetAsync(int? gameId, int dieValue, int pieceId)
         {
-            if (id == null)
+            Die = dieValue;
+
+            if (gameId == null)
             {
                 return NotFound();
             }
 
-            GameBoard = await _context.GameBoards.FirstOrDefaultAsync(m => m.Id == id);
+            GameBoard = await _context.GameBoards.FirstOrDefaultAsync(m => m.Id == gameId);
+            Players = _context.Players.Where(p => p.GameBoardId == GameBoard.Id).ToList();
+            CurrentPlayer = Players[GameBoard.CurrentPlayerId];
+            Pieces = _context.Pieces.Where(p => p.PlayerId == CurrentPlayer.Id).ToList();
+            ChoosedPiece = _context.Pieces.FirstOrDefault(p => p.Id == pieceId);
+
+            ChoosedPiece.Position += dieValue;
+           await _context.SaveChangesAsync();
 
             if (GameBoard == null)
             {

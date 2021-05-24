@@ -48,28 +48,33 @@
             <td>
                 @Html.DisplayFor(modelItem => piece.Position)
             </td>
-                
-            <td><button id="move-@piece.Id" class="btn btn-primary" onclick="movePiece(@piece.Id)">Choose Piece</button></td>
+
+            @*<td><button id="move-@piece.Id" class="btn btn-primary" onclick="movePiece(@piece.Id)">Choose Piece</button></td>*@
+        <td>
+            <a asp-page="/Movepiece/index" asp-route-gameId="@Model.CurrentGame.Id" asp-route-pieceId="@piece.Id" asp-route-dieValue="@Model.die" class="btn btn-primary">Move piece</a>
+
+        </td>
             
+
             @*<script>
-                function movePiece(input) {
-                    
-                    
-                        const data = {​​ username: 'example' }​​;fetch('http://localhost:5000', {​​
-                        method: 'POST', // or 'PUT'
-                        headers: {​​'Content-Type': 'application/json',}​​,
-                        body: JSON.stringify(data),}​​).then(response => response.json()).then(data => {​​
-                        console.log('Success:', data);}​​).catch((error) => {​​
-                        console.error('Error:', error);}​​);
+            function movePiece(input) {
+
+
+                    const data = {​​ username: 'example' }​​;fetch('http://localhost:5000', {
+                    method: 'POST', // or 'PUT'
+                    headers: {​​'Content-Type': 'application/json',}​​,
+                    body: JSON.stringify(data),}​​).then(response => response.json()).then(data => {
+                    console.log('Success:', data);}​​).catch((error) => {
+                    console.error('Error:', error);}​​);
 
 
 
 
-                    
-                }
+
+            }
 
 
-            </script>*@
+        </script>*@
         </tr>
     }
     </tbody>
