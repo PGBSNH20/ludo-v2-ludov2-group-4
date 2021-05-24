@@ -1,0 +1,17 @@
+﻿@page
+@model LudoRazor.Pages.NextPlayer.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h4>Next player is: @Model.NextPlayer.Name</h4>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -28,6 +28,7 @@ namespace LudoRazor.Pages.MovePiece
         public Piece ChoosedPiece { get; set; }
         public int Die { get; set; }
 
+        
 
         public async Task<IActionResult> OnGetAsync(int? gameId, int dieValue, int pieceId)
         {
@@ -45,6 +46,7 @@ namespace LudoRazor.Pages.MovePiece
             ChoosedPiece = _context.Pieces.FirstOrDefault(p => p.Id == pieceId);
 
             ChoosedPiece.Position += dieValue;
+            
            await _context.SaveChangesAsync();
 
             if (GameBoard == null)
