@@ -39,9 +39,6 @@ namespace LudoRazor.Pages.ChoosePiece
 
             die = Die.RollDie();
 
-            
-
-
         }
     }
 }

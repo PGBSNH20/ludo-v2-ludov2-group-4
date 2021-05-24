@@ -22,11 +22,14 @@ namespace LudoRazor.Pages.MovePiece
 
         [BindProperty]
         public GameBoard GameBoard { get; set; }
+        public int CurrentPlayerId { get; set; }
         public Player CurrentPlayer { get; set; }
         public List<Piece> Pieces { get; set; }
         public List<Player> Players { get; set; }
         public Piece ChoosedPiece { get; set; }
         public int Die { get; set; }
+        public int NextPlayerId { get; private set; }
+        public Player NextPlayer { get; private set; }
 
         public async Task<IActionResult> OnGetAsync(int? gameId, int dieValue, int pieceId)
         {
@@ -40,12 +43,30 @@ namespace LudoRazor.Pages.MovePiece
             GameBoard = await _context.GameBoards.FirstOrDefaultAsync(m => m.Id == gameId);
             Players = _context.Players.Where(p => p.GameBoardId == GameBoard.Id).ToList();
             CurrentPlayer = Players[GameBoard.CurrentPlayerId];
+            CurrentPlayerId = GameBoard.CurrentPlayerId;
             Pieces = _context.Pieces.Where(p => p.PlayerId == CurrentPlayer.Id).ToList();
             ChoosedPiece = _context.Pieces.FirstOrDefault(p => p.Id == pieceId);
-
-            ChoosedPiece.Position += dieValue;
             
-           await _context.SaveChangesAsync();
+            // Moving the choosed piece by adding the die.
+            ChoosedPiece.Position += dieValue;
+
+
+            // Deciding next player. If last player, it's the first player again:
+            if (GameBoard.CurrentPlayerId == GameBoard.Players.Count() - 1)
+            {
+                GameBoard.CurrentPlayerId = 0;
+                NextPlayerId = GameBoard.CurrentPlayerId;
+            }
+            else
+            {
+                GameBoard.CurrentPlayerId++;
+                NextPlayerId = GameBoard.CurrentPlayerId;
+            }
+
+            NextPlayer = GameBoard.Players.FirstOrDefault(p => p.Id == NextPlayerId);
+            _context.SaveChanges();
+
+            await _context.SaveChangesAsync();
 
             return Page();
         }
