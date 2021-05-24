@@ -28,9 +28,5 @@ namespace LudoRazor.Pages.LoadGame
 
             return Page();
         }
-
-        ////function loadGame(input) {
-        ////    document.getElementById("gameId").innerHTML = input;
-        ////}
     }
 }

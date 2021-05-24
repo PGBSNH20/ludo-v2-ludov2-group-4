@@ -5,11 +5,9 @@
     ViewData["Title"] = "Index";
 }
 
+<h4>Click on the button to continue the game.</h4>
 
-
-<h4>Next player is: @Model.NextPlayer.Name</h4>
-
-
+<a asp-page="/PlayGame/Index" asp-route-id="@Model.GameBoard.Id" class="btn btn-primary">Continue</a>
 
 
 @section Scripts {

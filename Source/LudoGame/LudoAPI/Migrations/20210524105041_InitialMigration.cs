@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LudoAPI.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,7 @@ namespace LudoAPI.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Done = table.Column<bool>(type: "bit", nullable: false),
                     Winner = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CurrentPlayerId = table.Column<int>(type: "int", nullable: true)
+                    CurrentPlayerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

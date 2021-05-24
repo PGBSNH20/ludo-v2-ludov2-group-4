@@ -28,8 +28,6 @@ namespace LudoRazor.Pages.MovePiece
         public Piece ChoosedPiece { get; set; }
         public int Die { get; set; }
 
-        
-
         public async Task<IActionResult> OnGetAsync(int? gameId, int dieValue, int pieceId)
         {
             Die = dieValue;
@@ -49,10 +47,6 @@ namespace LudoRazor.Pages.MovePiece
             
            await _context.SaveChangesAsync();
 
-            if (GameBoard == null)
-            {
-                return NotFound();
-            }
             return Page();
         }
 

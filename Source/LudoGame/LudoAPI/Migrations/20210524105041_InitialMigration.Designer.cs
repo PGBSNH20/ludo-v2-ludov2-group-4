@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LudoAPI.Migrations
 {
     [DbContext(typeof(LudoContext))]
-    [Migration("20210520073942_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210524105041_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,7 @@ namespace LudoAPI.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CurrentPlayerId")
+                    b.Property<int>("CurrentPlayerId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Done")

@@ -5,24 +5,19 @@
 @model LudoRazor.Pages.ChoosePiece.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Choose piece";
 }
 
-<h3>@Model.ValidatePlayer you rolled @Model.die, Choose a piece to move</h3>
-
-
+<h4>@Model.ValidatePlayer you rolled @Model.die! Choose a piece to move.</h4>
 
 <table class="table">
     <thead>
     <tr>
         <th>
-            @Html.DisplayName("Id")
+            @Html.DisplayName("Piece Id")
         </th>
         <th>
             @Html.DisplayName("Color")
-        </th>
-        <th>
-            @Html.DisplayName("Steps")
         </th>
         <th>
             @Html.DisplayName("Position")
@@ -32,54 +27,26 @@
     </thead>
     
     <tbody>
-    @foreach (var piece in Model.Pieces)
-    {
-        <tr>
+        @foreach (var piece in Model.Pieces)
+         {
+            <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => piece.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => piece.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => piece.Steps)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => piece.Position)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => piece.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => piece.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => piece.Position)
+                </td>
+                <td>
+                    <a asp-page="/Movepiece/index" asp-route-gameId="@Model.CurrentGame.Id" asp-route-pieceId="@piece.Id" asp-route-dieValue="@Model.die" class="btn btn-primary">Move piece</a>
+                </td>
 
-            @*<td><button id="move-@piece.Id" class="btn btn-primary" onclick="movePiece(@piece.Id)">Choose Piece</button></td>*@
-        <td>
-            <a asp-page="/Movepiece/index" asp-route-gameId="@Model.CurrentGame.Id" asp-route-pieceId="@piece.Id" asp-route-dieValue="@Model.die" class="btn btn-primary">Move piece</a>
-
-        </td>
-            
-
-            @*<script>
-            function movePiece(input) {
-
-
-                    const data = {​​ username: 'example' }​​;fetch('http://localhost:5000', {
-                    method: 'POST', // or 'PUT'
-                    headers: {​​'Content-Type': 'application/json',}​​,
-                    body: JSON.stringify(data),}​​).then(response => response.json()).then(data => {
-                    console.log('Success:', data);}​​).catch((error) => {
-                    console.error('Error:', error);}​​);
-
-
-
-
-
-            }
-
-
-        </script>*@
-        </tr>
-    }
+            </tr>
+         }
     </tbody>
-    
-    <a asp-page="/PlayGame/Index" asp-route-id="@Model.CurrentGame.Id" class="btn btn-primary">Next player</a>
 </table>
 
 

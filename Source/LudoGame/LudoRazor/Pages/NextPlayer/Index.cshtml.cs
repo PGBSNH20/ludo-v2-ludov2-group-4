@@ -33,7 +33,7 @@ namespace LudoRazor.Pages.NextPlayer
             CurrentPlayerId = GameBoard.CurrentPlayerId;
             Players = _context.Players.Where(p => p.GameBoardId == GameBoard.Id).ToList();
 
-            if (GameBoard.CurrentPlayerId == GameBoard.Players.Count())
+            if (GameBoard.CurrentPlayerId == GameBoard.Players.Count() - 1)
             {
                 GameBoard.CurrentPlayerId = 0;
                 NextPlayerId = GameBoard.CurrentPlayerId;
@@ -42,12 +42,11 @@ namespace LudoRazor.Pages.NextPlayer
             {
                 GameBoard.CurrentPlayerId++;
                 NextPlayerId = GameBoard.CurrentPlayerId;
-
             }
 
-            
             NextPlayer = GameBoard.Players.FirstOrDefault(p => p.Id == NextPlayerId);
             _context.SaveChanges();
+
             return Page();
         }
 

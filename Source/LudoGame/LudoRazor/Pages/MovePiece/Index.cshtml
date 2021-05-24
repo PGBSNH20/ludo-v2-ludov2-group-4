@@ -4,6 +4,9 @@
 @{
     ViewData["Title"] = "Index";
 }
+<br />
+
+<h4>Good job @Model.CurrentPlayer.Name! Press the button to let next player roll the die. </h4>
 
 <table class="table">
     <thead>
@@ -41,38 +44,10 @@
             <td>
                 @Html.DisplayFor(modelItem => piece.Position)
             </td>
-
-            @*<td><button id="move-@piece.Id" class="btn btn-primary" onclick="movePiece(@piece.Id)">Choose Piece</button></td>*@
-            @*<td>
-                <a asp-page="/Movepiece/index" asp-route-id="@Model.GameBoard.Id" asp-route-pieceId="@piece.Id" asp-route-dieValue="@Model.Die" class="btn btn-primary">Move piece</a>
-
-            </td>*@
-            
-
-            @*<script>
-            function movePiece(input) {
-
-
-                    const data = {​​ username: 'example' }​​;fetch('http://localhost:5000', {
-                    method: 'POST', // or 'PUT'
-                    headers: {​​'Content-Type': 'application/json',}​​,
-                    body: JSON.stringify(data),}​​).then(response => response.json()).then(data => {
-                    console.log('Success:', data);}​​).catch((error) => {
-                    console.error('Error:', error);}​​);
-
-
-
-
-
-            }
-
-
-        </script>*@
         </tr>
     }
     </tbody>
-    
-    
+
 </table>
 
 
