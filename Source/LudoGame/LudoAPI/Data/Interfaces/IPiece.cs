@@ -11,6 +11,7 @@ namespace LudoAPI.Data.Interfaces
         Task AddPieces(Player player);
         Task<Piece> MovePiece(Piece piece);
         Task<List<Piece>> GetPlayerPieces(int id);
-        
+        Task<Piece> GetPieceById(int id);
+
     }
 }

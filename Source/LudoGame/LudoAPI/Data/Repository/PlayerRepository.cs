@@ -20,10 +20,13 @@ namespace LudoAPI.Data.Repository
         public async Task<Player> AddPlayer(Player player)
         {
             await _dbContext.Players.AddAsync(player);
-            await _dbContext.SaveChangesAsync();
+            
 
             var gameboard = _dbContext.GameBoards.FirstOrDefault(g => g.Id == player.GameBoardId);
             gameboard.Players.Add(player);
+
+            _dbContext.GameBoards.Update(gameboard);
+            await _dbContext.SaveChangesAsync();
 
             return player;
         }

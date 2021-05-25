@@ -105,22 +105,28 @@ namespace LudoAPI.Controllers
 
         [Route("nextplayer/{id}")]
         [HttpGet]
-        public IActionResult GetNextPlayer(int id)
+        public async Task GetNextPlayer(int id)
         {
-            var gameBoard = _board.GetGameBoard(id);
+            var currentPlayer = dbcontext.Players.FirstOrDefault(p => p.Id == id);
+
+            var gameBoard = dbcontext.GameBoards.FirstOrDefault(g => g.Id == currentPlayer.GameBoardId);      /*_board.GetGameBoard(currentPlayer.Id);*/
 
             if (gameBoard.CurrentPlayerId == gameBoard.Players.Count())
             {
                 gameBoard.CurrentPlayerId = 0;
+
             }
             else
             {
                 gameBoard.CurrentPlayerId++;
-            }
 
+            }
+            
+            
+            currentPlayer = gameBoard.Players.FirstOrDefault(p => p.Id == gameBoard.CurrentPlayerId);
             dbcontext.GameBoards.Update(gameBoard);
-            dbcontext.SaveChanges();
-            return Ok(gameBoard);
+            await dbcontext.SaveChangesAsync();
+            //return currentPlayer;
         }
 
         [Route("pieces/{playerId}")]
@@ -132,6 +138,15 @@ namespace LudoAPI.Controllers
             if (result == null) return NotFound("That player id doesn't exist");
 
             return Ok(result);
+        }
+
+        [Route("get-piece/{id}")]
+        public async Task<Piece> GetPieceById(int id)
+        {
+            var result = await _piece.GetPieceById(id);
+
+            
+            return result;
         }
 
         [Route("pieces")]

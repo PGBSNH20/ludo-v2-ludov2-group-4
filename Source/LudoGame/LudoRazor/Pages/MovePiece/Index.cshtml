@@ -7,48 +7,7 @@
 <br />
 
 <h4>Good job @Model.CurrentPlayer.Name! Press the button to let next player roll the die. </h4>
-
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayName("Id")
-        </th>
-        <th>
-            @Html.DisplayName("Color")
-        </th>
-        <th>
-            @Html.DisplayName("Steps")
-        </th>
-        <th>
-            @Html.DisplayName("Position")
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    
-    <tbody>
-    @foreach (var piece in Model.Pieces)
-    {
-        <tr>
-
-            <td>
-                @Html.DisplayFor(modelItem => piece.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => piece.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => piece.Steps)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => piece.Position)
-            </td>
-        </tr>
-    }
-    </tbody>
-
-</table>
+@*<h2>@Model.NextPlayer.Name</h2>*@
 
 <a asp-page="/PlayGame/Index" asp-route-id="@Model.GameBoard.Id" class="btn btn-primary">Continue</a>
 
