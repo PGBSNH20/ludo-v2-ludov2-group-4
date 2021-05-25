@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LudoAPI.Migrations
 {
     [DbContext(typeof(LudoContext))]
-    [Migration("20210524105041_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20210525081938_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

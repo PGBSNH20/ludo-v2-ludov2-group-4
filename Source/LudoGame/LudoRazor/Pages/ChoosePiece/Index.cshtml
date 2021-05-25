@@ -1,4 +1,4 @@
-﻿@page "{id}"
+﻿@page "{gameId}"
 @using LudoAPI.Data
 @using LudoAPI.Models
 @using Microsoft.IdentityModel.Tokens
@@ -27,7 +27,7 @@
     </thead>
     
     <tbody>
-        @foreach (var piece in Model.Pieces)
+        @foreach (var piece in Model.CurrentPlayerPieces)
          {
             <tr>
 

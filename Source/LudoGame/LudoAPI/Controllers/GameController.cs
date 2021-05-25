@@ -68,7 +68,16 @@ namespace LudoAPI.Controllers
             return Ok(result);
         }
 
+        [Route("get-gameboard/players/{id}")]
+        [HttpGet]
+        public async Task<ActionResult<List<Player>>> GetPlayersByGameBoard(int id)
+        {
+            var result = _player.GetPlayersByGameBoardId(id);
 
+            if (result == null) return NotFound();
+
+            return Ok(result);
+        }
 
 
 
@@ -116,9 +125,9 @@ namespace LudoAPI.Controllers
 
         [Route("pieces/{playerId}")]
         [HttpGet]
-        public  IActionResult GetPiecesByPlayerId(int playerId)
+        public async Task<ActionResult<List<Piece>>> GetPiecesByPlayerId(int playerId)
         {
-            var result =  _piece.GetPlayerPieces(playerId);
+            var result =  await _piece.GetPlayerPieces(playerId);
 
             if (result == null) return NotFound("That player id doesn't exist");
 

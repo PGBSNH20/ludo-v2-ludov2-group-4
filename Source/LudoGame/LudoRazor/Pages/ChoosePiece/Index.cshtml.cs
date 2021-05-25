@@ -24,20 +24,49 @@ namespace LudoRazor.Pages.ChoosePiece
         public int die { get; set; }
         public Player CurrentPlayer { get; set; }
         public List<Player> Players { get; set; }
-        public List<Piece> Pieces { get; set; }
+        public List<Piece> CurrentPlayerPieces { get; set; }
         public string ValidatePlayer { get; set; } = "";
 
 
-        public async Task OnGetAsync(int id)
+        public async Task OnGetAsync(int gameId)
         {
-            CurrentGame = _context.GameBoards.FirstOrDefault(g => g.Id == id);
+            //CurrentGame = _context.GameBoards.FirstOrDefault(g => g.Id == id);
+
+            /*_context.Players.Where(p => p.GameBoardId == CurrentGame.Id).ToList();*/
             
-            Players = _context.Players.Where(p => p.GameBoardId == CurrentGame.Id).ToList();
-            CurrentPlayer = Players[CurrentGame.CurrentPlayerId];
-            Pieces = _context.Pieces.Where(p => p.PlayerId == CurrentPlayer.Id ).ToList();
-            ValidatePlayer = $"{CurrentPlayer.Name}";
+            //Pieces = _context.Pieces.Where(p => p.PlayerId == CurrentPlayer.Id ).ToList();
+            
 
             die = Die.RollDie();
+
+
+            var client = new RestClient("https://localhost:44370");
+            var request = new RestRequest("api/game/gameboards/" + gameId, Method.GET);
+            var queryResult = client.Execute<GameBoard>(request).Data;
+
+            CurrentGame = queryResult;
+
+            var client3 = new RestClient("https://localhost:44370");
+            var request3 = new RestRequest("api/game/get-gameboard/players/" + CurrentGame.Id, Method.GET);
+            var queryResult3 = client3.Execute<List<Player>>(request3).Data;
+
+            Players = queryResult3;
+
+
+
+            //Players = queryResult.Players;
+            CurrentPlayer = Players[queryResult.CurrentPlayerId];
+            ValidatePlayer = $"{CurrentPlayer.Name}";
+
+
+            var client2 = new RestClient("https://localhost:44370");
+            var request2 = new RestRequest("api/game/pieces/" + CurrentPlayer.Id, Method.GET);
+            var queryResult2 = client2.Execute<List<Piece>>(request2).Data;
+
+            CurrentPlayerPieces = queryResult2;
+
+
+           
 
         }
     }

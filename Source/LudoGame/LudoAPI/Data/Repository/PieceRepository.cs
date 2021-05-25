@@ -44,11 +44,11 @@ namespace LudoAPI.Data.Repository
             return piece;
         }
 
-        public  List<Piece> GetPlayerPieces(int id)
+        public async Task<List<Piece>> GetPlayerPieces(int id)
         {
-            var result =   _dbContext.Players.Where(p => p.Id == id).FirstOrDefaultAsync();
+            var result =  await _dbContext.Players.Where(p => p.Id == id).FirstOrDefaultAsync();
 
-            List<Piece> pieces =  _dbContext.Pieces.Where(p => p.PlayerId == result.Id).ToList();
+            List<Piece> pieces = await _dbContext.Pieces.Where(p => p.PlayerId == result.Id).ToListAsync();
 
             return pieces;
         }
