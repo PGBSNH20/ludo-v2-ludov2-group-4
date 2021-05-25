@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudoAPI", "LudoAPI\LudoAPI.csproj", "{81121C47-9AF7-4268-B912-0C5DE6A65234}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LudoAPI", "LudoAPI\LudoAPI.csproj", "{81121C47-9AF7-4268-B912-0C5DE6A65234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LudoRazor", "LudoRazor\LudoRazor.csproj", "{8EC74675-5169-4154-806B-3201F507CC20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LudoRazor", "LudoRazor\LudoRazor.csproj", "{8EC74675-5169-4154-806B-3201F507CC20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTests", "ApiTests\ApiTests.csproj", "{402402FD-0B21-4014-AA55-2811CDC0A46F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTestProject", "ApiTestProject\ApiTestProject.csproj", "{09C4151A-8AE2-48FA-8FE9-57FF2B83662D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{8EC74675-5169-4154-806B-3201F507CC20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EC74675-5169-4154-806B-3201F507CC20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EC74675-5169-4154-806B-3201F507CC20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{402402FD-0B21-4014-AA55-2811CDC0A46F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{402402FD-0B21-4014-AA55-2811CDC0A46F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{402402FD-0B21-4014-AA55-2811CDC0A46F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{402402FD-0B21-4014-AA55-2811CDC0A46F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09C4151A-8AE2-48FA-8FE9-57FF2B83662D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09C4151A-8AE2-48FA-8FE9-57FF2B83662D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09C4151A-8AE2-48FA-8FE9-57FF2B83662D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09C4151A-8AE2-48FA-8FE9-57FF2B83662D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

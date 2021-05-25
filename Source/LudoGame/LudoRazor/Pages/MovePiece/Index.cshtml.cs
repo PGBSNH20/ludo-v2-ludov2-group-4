@@ -96,18 +96,18 @@ namespace LudoRazor.Pages.MovePiece
 
 
 
-            // Deciding next player. If last player, it's the first player again:
-            //if (CurrentPlayerId == Players.Count() - 1)
-            //{
-            //    GameBoard.CurrentPlayerId = 0;
-            //    NextPlayerId = GameBoard.CurrentPlayerId;
-            //}
-            //else
-            //{
-            //    GameBoard.CurrentPlayerId++;
-            //    NextPlayerId = GameBoard.CurrentPlayerId;
+            //Deciding next player.If last player, it's the first player again:
+            if (CurrentPlayerId == Players.Count() - 1)
+            {
+                GameBoard.CurrentPlayerId = 0;
+                NextPlayerId = GameBoard.CurrentPlayerId;
+            }
+            else
+            {
+                GameBoard.CurrentPlayerId++;
+                NextPlayerId = GameBoard.CurrentPlayerId;
 
-            //}
+            }
 
             NextPlayer = GameBoard.Players.FirstOrDefault(p => p.Id == NextPlayerId);
             _context.GameBoards.Update(GameBoard);

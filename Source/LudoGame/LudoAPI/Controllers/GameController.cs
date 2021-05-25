@@ -8,6 +8,7 @@ using LudoAPI.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LudoAPI.Controllers
 {
@@ -105,28 +106,38 @@ namespace LudoAPI.Controllers
 
         [Route("nextplayer/{id}")]
         [HttpGet]
-        public async Task GetNextPlayer(int id)
+        public async Task<Player> GetNextPlayer(int id)
         {
+
             var currentPlayer = dbcontext.Players.FirstOrDefault(p => p.Id == id);
 
-            var gameBoard = dbcontext.GameBoards.FirstOrDefault(g => g.Id == currentPlayer.GameBoardId);      /*_board.GetGameBoard(currentPlayer.Id);*/
+            var gameBoard = await dbcontext.GameBoards.FirstOrDefaultAsync(g => g.Id == currentPlayer.GameBoardId);
+           
+            var playersList = dbcontext.GameBoards
+                .Where(g => g.Id == currentPlayer.GameBoardId)
+                .Select(g => g.Players)
+                .ToList();
 
-            if (gameBoard.CurrentPlayerId == gameBoard.Players.Count())
-            {
-                gameBoard.CurrentPlayerId = 0;
+            /*_board.GetGameBoard(currentPlayer.Id);*/
 
-            }
-            else
-            {
-                gameBoard.CurrentPlayerId++;
+            //if (gameBoard.CurrentPlayerId != playersList.Count) 
+            //{
+            //    gameBoard.CurrentPlayerId = 0;
+                
 
-            }
-            
-            
-            currentPlayer = gameBoard.Players.FirstOrDefault(p => p.Id == gameBoard.CurrentPlayerId);
-            dbcontext.GameBoards.Update(gameBoard);
-            await dbcontext.SaveChangesAsync();
-            //return currentPlayer;
+            //}
+            //else
+            //{
+            //    gameBoard.CurrentPlayerId++;
+                
+            //}
+
+            //currentPlayer.Id = gameBoard.CurrentPlayerId;
+
+            //currentPlayer = gameBoard.Players.FirstOrDefault(p => p.Id == gameBoard.CurrentPlayerId);
+            //dbcontext.GameBoards.Update(gameBoard);
+            //await dbcontext.SaveChangesAsync();
+            return currentPlayer;
         }
 
         [Route("pieces/{playerId}")]
