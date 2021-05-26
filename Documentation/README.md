@@ -48,7 +48,7 @@ Except these folders we have the standard Program- and Startup classes. At last 
 
 ## Requests
 
-| Endpoints | Description | Status Code | Description |
+| Endpoints | Description | Status Code | Message |
 | :--- | :--- | :--- | :--- |
 | Test | Test | 200 | `OK` |
 | Test | Test | 201 | `CREATED` |
@@ -64,28 +64,4 @@ This is a diagram of the Database:
 This is how the Users table look like in the database with some data:
 
 ![users](https://user-images.githubusercontent.com/43240053/117458434-978d6980-af4a-11eb-829b-56178d98a481.png)
-
-This is how the Spaceports table look like in the database with some data:
-
-![Spaceports](https://user-images.githubusercontent.com/43240053/117457440-8132de00-af49-11eb-9ff8-5d2c8b657559.png)
-
-This is how the Parkings table look like in the database with some data: 
-
-![parkings](https://user-images.githubusercontent.com/43240053/117457469-87c15580-af49-11eb-8cff-9affc23d604d.png)
-
-This is how the Payments table look like in the database with some data: 
-
-![payments](https://user-images.githubusercontent.com/43240053/117457495-8f80fa00-af49-11eb-8587-d7eecb397c4c.png)
-
-## Status Codes
-
-The API returns the following status codes in its API:
-
-| Status Code | Description |
-| :--- | :--- |
-| 200 | `OK` |
-| 201 | `CREATED` |
-| 400 | `BAD REQUEST` |
-| 404 | `NOT FOUND` |
-| 500 | `INTERNAL SERVER ERROR` |
 
