@@ -1,4 +1,4 @@
-# Welcome to our Ludo Game!
+# Welcome to Kevin & Calles Ludo Game!
 It's an ASP.NET Core Web App built with Razor pages that is backed up by an API in the same solution! To get a quick overview and sense of what we're trying to do here, we've wrapped up this README-file into a table of contents:
 
 - [Features](#Features)
