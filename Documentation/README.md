@@ -1,5 +1,5 @@
 # Welcome to our Ludo Game!
-It's an ASP.NET Core Web App built with Razor pages that is backed up by an API in the same solution! To get a quick overview and sense of what we're trying to do here, 
+It's an ASP.NET Core Web App built with Razor pages that is backed up by an API in the same solution! To get a quick overview and sense of what we're trying to do here, we've wrapped up this README-file into a table of contents:
 
 - [Features](#Features)
 - [Getting started](#Getting-started)
@@ -8,23 +8,20 @@ It's an ASP.NET Core Web App built with Razor pages that is backed up by an API 
 - [Database](#Database)
 
 ## Features
-The API is created to handle VICs (Very Important Characters) from the Star Wars movies and their space ships at various spaceports around our galaxy (and maybe even further). Of course it's only digital, COVID-friendly and the customer can use the API without any physical support. In the following section we will take you through the API step by step from the UI perspective;
+The essence of the game is to compete against your friends and move all your pieces across the finish line before everyone else. If you end up on the same position as someone else you'll knock their piece back to their base. This is how you play the game:
 
-1. The customer registrates themselves at arriving, then they can add a parking if they pass all following controls;
+1. To be able to play a game you need to click on the the "New game" link in the navbar where you'll start off by entering a name for the game. Then you'll be send straight to the page where you add players (be careful to choose your competitors because it can only be four of you). 
 
-- If the customer is a valid VIC.
-- If it's a valid VIV (Very Important Vehicle).
-- If their space ship fits, sorry Death Star...
-- If there's any available parking spots.
-- If the customer already has an ongoing parking. Since there's a high demand on our spaceports and they tends to be occupied, we have a limit on 1 parking / VIC.
- 
-If everything goes smooth the parking gets registrered in the database and the customer doesn't have do to anything until they leave.
+2. When everybody have entered a nickname (because your true name is boooring) , a color and the gameBoard-ID. Then you're ready to go!
+PSST! If you somehow manage to screw up by starting googling for the closest Domino Pizza you can enter the base-URL followed by the endpoint /players and then you can continue to add players. The form will do following checks to guide you through this process by kindly respond with an error message if anyone if you enter invalid input:
+- If you trying enter an existing nickname.
+- If you're trying to enter an invalid color (only 'red', 'green', 'blue' or 'yellow' allowed).
+- If
+- If
 
-2. When the VIC wants to depart they will add a payment by enter their parking id into the API. The API will subtract the arrival time from the current time and return the cost, which by default is 10 SEK / minute. You as a Developer can change this at any time in the PostPayment-method inside the Paymentscontroller. You can probably make the API work for other types of vehicles, maybe cars on planet Earth. 
+3. Alright, you're ready to go?! You'll be able to launch the game straight away by clicking the at the "Start game" button below the form or you can wait until the night when you're competitors are sleeping and then click at the "Load game" link in the navbar. 
 
-Of course the VIC can see their current parking or payments by enter the parking id, however they can neither delete nor update a parking since we don't want anyone to be able to park for free and there's no need to update a parking due to departing time gets defined when the VIC wants to leave. 
-
-An additional feature is that an admin-user can add new spaceports, however it's only you as a Developer that can add admins (set the property IsAdmin to "True" on the specific user in the database), after all we're most powerful creatures in the galaxy, aight? 
+4. 
 
 ## Getting started 
 To give you a smooth experience and get to know our the structure of our API we thought it would be a good idea to show some print screens and explain them. Since we are using Docker you can run the API through docker compose anywhere you want, but the API is developed in Visual Studio through C# with great support from Entity Framework and Restsharp:
