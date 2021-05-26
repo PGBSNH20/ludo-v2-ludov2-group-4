@@ -13,56 +13,39 @@ namespace LudoRazor.Pages.PlayGame
 {
     public class IndexModel : PageModel
     {
-        private readonly LudoAPI.Data.LudoContext _context;
-
-        public IndexModel(LudoAPI.Data.LudoContext context)
-        {
-            _context = context;
-        }
-
+        
         public GameBoard CurrentGame { get; set; }
         public List<Piece> Pieces { get; set; }
         public List<Player> Players { get; set; }
-        public Die Die { get; set; }
         public string ShowNextPlayer { get; set; } = "";
         
 
 
         public IActionResult OnGet(int id)
         {
-          
+            var client = new RestClient("https://localhost:44370");
+            var request = new RestRequest("api/game/gameboards/" + id, Method.GET);
+            var queryResult = client.Execute<GameBoard>(request).Data;
 
-            CurrentGame = _context.GameBoards.FirstOrDefault(g => g.Id == id);
-            Pieces = _context.Pieces.Where(p => p.GameBoardId == id).ToList();
-            Players = _context.Players.Where(p => p.GameBoardId == CurrentGame.Id).ToList();
+            CurrentGame = queryResult;
+
+            var client2 = new RestClient("https://localhost:44370");
+            var request2 = new RestRequest("api/game/pieces-by/" + id , Method.GET);
+            var queryResult2 = client2.Execute<List<Piece>>(request2).Data;
+
+            Pieces = queryResult2;
+
+            var client3 = new RestClient("https://localhost:44370");
+            var request3 = new RestRequest("api/game/get-gameboard/players/" + CurrentGame.Id , Method.GET);
+            var queryResult3 = client3.Execute<List<Player>>(request3).Data;
+
+            Players = queryResult3;
+
             ShowNextPlayer = $"{Players[CurrentGame.CurrentPlayerIndex].Name}, it's your turn to roll the die!";
 
-          
-
             return Page();
         }
 
-        [BindProperty]
-        public GameBoard GameBoard { get; set; }
-
-        [BindProperty]
-        public Piece Piece { get; set; }
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            var client = new RestClient("http://localhost:5000/api/Game/pieces");
-            client.Timeout = -1;
-            var request = new RestRequest(Method.PUT);
-            request.AddJsonBody(Piece);
-            IRestResponse response = client.Execute(request);
-
-            return Page();
-        }
+        
     }
 }

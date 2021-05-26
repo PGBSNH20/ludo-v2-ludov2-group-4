@@ -177,6 +177,15 @@ namespace LudoAPI.Controllers
             return gameBoard;
         }
 
+        [Route("pieces-by/{gameId}")]
+        [HttpGet]
+        public List<Piece> GetPiecesByGameId(int gameId)
+        {
+            var pieces =  dbcontext.Pieces.Where(p => p.GameBoardId == gameId).ToList();
+            return pieces;
+
+        }
+
         [Route("pieces/{playerId}")]
         [HttpGet]
         public async Task<ActionResult<List<Piece>>> GetPiecesByPlayerId(int playerId)
@@ -189,6 +198,7 @@ namespace LudoAPI.Controllers
         }
 
         [Route("get-piece/{id}")]
+        [HttpGet]
         public async Task<Piece> GetPieceById(int id)
         {
             var result = await _piece.GetPieceById(id);
