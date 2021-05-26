@@ -8,7 +8,7 @@
     ViewData["Title"] = "Choose piece";
 }
 
-<h4>@Model.ValidatePlayer you rolled @Model.die! Choose a piece to move.</h4>
+<h4>@Model.ValidatePlayer you rolled @Model.Die! Choose a piece to move.</h4>
 
 <table class="table">
     <thead>
@@ -41,7 +41,7 @@
                     @Html.DisplayFor(modelItem => piece.Position)
                 </td>
                 <td>
-                    <a asp-page="/Movepiece/index" asp-route-gameId="@Model.CurrentGame.Id" asp-route-pieceId="@piece.Id" asp-route-dieValue="@Model.die" class="btn btn-primary">Move piece</a>
+                    <a asp-page="/Movepiece/index" asp-route-gameId="@Model.CurrentGame.Id" asp-route-pieceId="@piece.Id" asp-route-dieValue="@Model.Die" class="btn btn-primary">Move piece</a>
                 </td>
 
             </tr>

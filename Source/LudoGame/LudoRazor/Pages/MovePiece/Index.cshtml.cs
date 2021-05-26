@@ -91,8 +91,12 @@ namespace LudoRazor.Pages.MovePiece
             //NextPlayer = queryResult5;
             //var next = queryResult5;
 
+            var client6 = new RestClient("https://localhost:44370");
+            var request6 = new RestRequest("api/game/update-piece-position/" + ChoosedPiece.Id, Method.GET);
+            var updatedPiecePosition = client6.Execute<int>(request6).Data;
+
             // Moving the choosed piece by adding the die.
-            ChoosedPiece.Position += dieValue;
+            ChoosedPiece.Position = updatedPiecePosition;
 
 
 

@@ -23,6 +23,7 @@ namespace LudoAPI.Controllers
         private readonly IGameBoard _board;
         public List<Player> PlayersList { get; set; }
         
+        
         public GameController(IPlayer player, IGameBoard board, IPiece piece, LudoContext dbcontext)
         {
             _player = player;
@@ -31,7 +32,38 @@ namespace LudoAPI.Controllers
             this.dbcontext = dbcontext;
         }
 
-        
+
+        [Route("get-die/{gameBoardId}")]
+        [HttpGet]
+        public int PostDieByGameBoardId(int gameBoardId)
+        {
+            var gameBoard = dbcontext.GameBoards.FirstOrDefault(g => g.Id == gameBoardId);
+
+            int die = Die.RollDie();
+            gameBoard.Die = die;
+            
+
+            dbcontext.GameBoards.Update(gameBoard);
+            dbcontext.SaveChanges();
+            return die;
+        }
+
+        [Route("update-piece-position/{pieceId}")]
+        [HttpGet]
+        public int UpdatePiecePosition(int pieceId)
+        {
+           
+            var piece = dbcontext.Pieces.FirstOrDefault(p => p.Id == pieceId);
+            var gameBoard = dbcontext.GameBoards.FirstOrDefault(g => g.Id == piece.GameBoardId);
+            piece.Position += (int)gameBoard.Die;
+
+            dbcontext.Pieces.Update(piece);
+            dbcontext.SaveChanges();
+
+            return piece.Position;
+        }
+
+     
 
         [Route("players")]
         [HttpPost]
@@ -117,14 +149,14 @@ namespace LudoAPI.Controllers
 
             //var currentPlayer = dbcontext.Players.FirstOrDefault(p => p.Id == currentPlayerIndex);
 
-            var gameBoard = await dbcontext.GameBoards.FirstOrDefaultAsync(g => g.Id == CurrentGameBoardId );
-
+            var gameBoard = await dbcontext.GameBoards.Include(g => g.Players).FirstOrDefaultAsync(g => g.Id == CurrentGameBoardId );
+            //var gameborad = _board.GetGameBoardWithPlayers(CurrentGameBoardId)
              
-                ;
+                
 
             /*_board.GetGameBoard(currentPlayer.Id);*/
 
-            if (gameBoard.CurrentPlayerIndex == PlayersList.Count - 1)
+            if (gameBoard.CurrentPlayerIndex == gameBoard.Players.Count - 1)
             {
                 gameBoard.CurrentPlayerIndex = 0;
 

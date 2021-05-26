@@ -21,7 +21,7 @@ namespace LudoRazor.Pages.ChoosePiece
         }
 
         public GameBoard CurrentGame { get;set; }
-        public int die { get; set; }
+        public int Die { get; set; }
         public Player CurrentPlayer { get; set; }
         public List<Player> Players { get; set; }
         public List<Piece> CurrentPlayerPieces { get; set; }
@@ -37,8 +37,14 @@ namespace LudoRazor.Pages.ChoosePiece
             //Pieces = _context.Pieces.Where(p => p.PlayerId == CurrentPlayer.Id ).ToList();
             
 
-            die = Die.RollDie();
+            
 
+
+            var client4 = new RestClient("https://localhost:44370");
+            var request4 = new RestRequest("api/game/get-die/" + gameId, Method.GET);
+            var queryResult4 = client4.Execute<int>(request4).Data;
+
+            Die = queryResult4;
 
             var client = new RestClient("https://localhost:44370");
             var request = new RestRequest("api/game/gameboards/" + gameId, Method.GET);

@@ -8,6 +8,7 @@ using LudoAPI.Data.Interfaces;
 using LudoAPI.Data.Repository;
 using LudoAPI.Interfaces;
 using LudoAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 
@@ -48,7 +49,7 @@ namespace ApiTestProject
 
 
 
-            var playersList = new Player
+            var player = new Player
             {
                 
                 
@@ -76,19 +77,36 @@ namespace ApiTestProject
             };
 
           await  _board.AddNewGame(gameBoard);
-           var result = await _player.AddPlayer(playersList);
+           var result = await _player.AddPlayer(player);
            await _piece.AddPieces(result);
         }
         
+
+
         [Test]
         public void Test1()
         {
-            
+            // Arrange
+            IPlayer fakePlayerRepo = new FakePlayerRepo();
+            IGameBoard fakeGameBoardRepo = new FakeGameBordRepo();
+            IPiece fakePieceRepo = null;
+            var sut = new GameController(fakePlayerRepo, fakeGameBoardRepo, fakePieceRepo, null);
+
+            var playerToPost = new Player()
+            {
+
+            };
+
+            // Act
+            var result = sut.PostPlayer(playerToPost);
+
+            // assert
+            Assert.IsInstanceOf<BadRequestObjectResult>(result);
 
             //var player = _dbContext.Players.FirstOrDefault(p => p.Id == 1);
             var gameBoard = _board.GetGameBoard(1);
 
-            Assert.AreEqual("Calles game", gameBoard.Name);
+            Assert.AreEqual(1, gameBoard.Players.Count() );
             //Assert.AreEqual("Calle", player.Name);
         }
     }
