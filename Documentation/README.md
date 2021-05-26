@@ -13,7 +13,7 @@ The essence of the game is to compete against your friends and move all your pie
 1. To be able to play a game you need to click on the the "New game" link in the navbar where you'll start off by entering a name for the game. Then you'll be send straight to the page where you add players (be careful to choose your competitors because it can only be four of you). 
 
 2. When everybody have entered a nickname (because your true name is boooring) , a color and the gameBoard-ID. Then you're ready to go!
-PSST! If you somehow manage to screw up by starting googling for the closest Domino Pizza you can enter the base-URL followed by the endpoint /players and then you can continue to add players. The form will do following checks to guide you through this process by kindly respond with an error message if anyone if you enter invalid input:
+PSST! If you somehow manage to screw up by starting googling for the closest Domino Pizza you can enter the base-URL followed by the endpoint /players and then you can continue to add players. The form will do following checks to guide you through this process by kindly respond with an error message if anyone if you enter any invalid input:
 - If you trying enter an existing nickname.
 - If you're trying to enter an invalid color (only 'red', 'green', 'blue' or 'yellow' allowed).
 - If
