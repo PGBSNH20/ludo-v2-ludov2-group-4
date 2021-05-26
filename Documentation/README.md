@@ -44,6 +44,8 @@ It consists of a few key folders;
 
 Except these folders we have the standard Program- and Startup classes. At last we've put our Swapi.cs which holds the requests and valid methods related to the external API from swapi.dev. Which makes it possible for us to enjoy our evenings instead of manually validate every single customer.  
 
+## Models
+
 ## Requests
 
 - `POST api/users`: Adds a user to the database. The reason we don't have a GET method on users is because of security. It shouldn't be possible for the VICs to see eachothers user-details.
