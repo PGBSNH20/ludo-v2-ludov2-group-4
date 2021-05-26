@@ -2,7 +2,7 @@
 It's an ASP.NET Core Web App built with Razor pages that is backed up by an API in the same solution! To get a quick overview and sense of what we're trying to do here, 
 
 - [Features](#Features)
-- [Getting started](#Getting started)
+- [Getting started](#Getting-started)
 - [Models](#Models)
 - [Requests](#Requests)
 - [Database](#Database)
