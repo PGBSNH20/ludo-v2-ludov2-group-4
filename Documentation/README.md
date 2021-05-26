@@ -48,7 +48,7 @@ Except these folders we have the standard Program- and Startup classes. At last 
 
 ## Requests
 
-Endpoints | Description | Status Code | Description |
+| Endpoints | Description | Status Code | Description |
 | :--- | :--- |
 | 200 | `OK` |
 | 201 | `CREATED` |
