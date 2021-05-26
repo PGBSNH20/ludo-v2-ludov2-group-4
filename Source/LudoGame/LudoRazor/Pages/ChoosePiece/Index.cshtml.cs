@@ -55,7 +55,7 @@ namespace LudoRazor.Pages.ChoosePiece
 
 
             //Players = queryResult.Players;
-            CurrentPlayer = Players[queryResult.CurrentPlayerId];
+            CurrentPlayer = Players[queryResult.CurrentPlayerIndex];
             ValidatePlayer = $"{CurrentPlayer.Name}";
 
 

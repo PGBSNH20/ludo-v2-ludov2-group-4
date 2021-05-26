@@ -63,9 +63,9 @@ namespace LudoRazor.Pages.MovePiece
             Players = queryResult3;
             
             
-            CurrentPlayer = Players[GameBoard.CurrentPlayerId];
+            CurrentPlayer = Players[GameBoard.CurrentPlayerIndex];
             GameBoard.Players = Players;
-            CurrentPlayerId = GameBoard.CurrentPlayerId;
+            CurrentPlayerId = GameBoard.CurrentPlayerIndex;
             
 
             var client2 = new RestClient("https://localhost:44370");
@@ -84,10 +84,10 @@ namespace LudoRazor.Pages.MovePiece
 
 
             var client5 = new RestClient("https://localhost:44370");
-            var request5 = new RestRequest("api/game/nextplayer/" + CurrentPlayer.Id, Method.GET);
-            var queryResult5 = client5.Execute<Player>(request5).Data;
+            var request5 = new RestRequest("api/game/nextplayer/" + GameBoard.Id, Method.GET);
+            var updatedGameBoard = client5.Execute<GameBoard>(request5).Data;
 
-            NextPlayer = queryResult5;
+            //NextPlayer = updatedGameBoard.Players.FirstOrDefault(p => p.);
             //NextPlayer = queryResult5;
             //var next = queryResult5;
 
@@ -97,23 +97,23 @@ namespace LudoRazor.Pages.MovePiece
 
 
             //Deciding next player.If last player, it's the first player again:
-            if (CurrentPlayerId == Players.Count() - 1)
-            {
-                GameBoard.CurrentPlayerId = 0;
-                NextPlayerId = GameBoard.CurrentPlayerId;
-            }
-            else
-            {
-                GameBoard.CurrentPlayerId++;
-                NextPlayerId = GameBoard.CurrentPlayerId;
+            //if (CurrentPlayerId == Players.Count() - 1)
+            //{
+            //    GameBoard.CurrentPlayerId = 0;
+            //    NextPlayerId = GameBoard.CurrentPlayerId;
+            //}
+            //else
+            //{
+            //    GameBoard.CurrentPlayerId++;
+            //    NextPlayerId = GameBoard.CurrentPlayerId;
 
-            }
+            //}
 
-            NextPlayer = GameBoard.Players.FirstOrDefault(p => p.Id == NextPlayerId);
-            _context.GameBoards.Update(GameBoard);
-            _context.Pieces.Update(ChoosedPiece);
-            _context.SaveChanges();
-            await _context.SaveChangesAsync();
+            //NextPlayer = GameBoard.Players.FirstOrDefault(p => p.Id == NextPlayerId);
+            //_context.GameBoards.Update(GameBoard);
+            //_context.Pieces.Update(ChoosedPiece);
+            ////_context.SaveChanges();
+            //await _context.SaveChangesAsync();
 
 
 

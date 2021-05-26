@@ -35,7 +35,7 @@ namespace LudoRazor.Pages.PlayGame
             CurrentGame = _context.GameBoards.FirstOrDefault(g => g.Id == id);
             Pieces = _context.Pieces.Where(p => p.GameBoardId == id).ToList();
             Players = _context.Players.Where(p => p.GameBoardId == CurrentGame.Id).ToList();
-            ShowNextPlayer = $"{Players[CurrentGame.CurrentPlayerId].Name}, it's your turn to roll the die!";
+            ShowNextPlayer = $"{Players[CurrentGame.CurrentPlayerIndex].Name}, it's your turn to roll the die!";
 
           
 

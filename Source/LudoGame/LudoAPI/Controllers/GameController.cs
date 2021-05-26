@@ -21,6 +21,7 @@ namespace LudoAPI.Controllers
         private readonly LudoContext dbcontext;
         private readonly IPlayer _player;
         private readonly IGameBoard _board;
+        public List<Player> PlayersList { get; set; }
         
         public GameController(IPlayer player, IGameBoard board, IPiece piece, LudoContext dbcontext)
         {
@@ -29,6 +30,8 @@ namespace LudoAPI.Controllers
             _piece = piece;
             this.dbcontext = dbcontext;
         }
+
+        
 
         [Route("players")]
         [HttpPost]
@@ -74,6 +77,7 @@ namespace LudoAPI.Controllers
         public async Task<ActionResult<List<Player>>> GetPlayersByGameBoard(int id)
         {
             var result = _player.GetPlayersByGameBoardId(id);
+            PlayersList = result;
 
             if (result == null) return NotFound();
 
@@ -104,40 +108,41 @@ namespace LudoAPI.Controllers
             return Ok(gameBoard);
         }
 
-        [Route("nextplayer/{id}")]
+        [Route("nextplayer/{CurrentGameBoardId}")]
         [HttpGet]
-        public async Task<Player> GetNextPlayer(int id)
+        public async Task<GameBoard> GetNextPlayer(int CurrentGameBoardId)
         {
 
-            var currentPlayer = dbcontext.Players.FirstOrDefault(p => p.Id == id);
+            
 
-            var gameBoard = await dbcontext.GameBoards.FirstOrDefaultAsync(g => g.Id == currentPlayer.GameBoardId);
-           
-            var playersList = dbcontext.GameBoards
-                .Where(g => g.Id == currentPlayer.GameBoardId)
-                .Select(g => g.Players)
-                .ToList();
+            //var currentPlayer = dbcontext.Players.FirstOrDefault(p => p.Id == currentPlayerIndex);
+
+            var gameBoard = await dbcontext.GameBoards.FirstOrDefaultAsync(g => g.Id == CurrentGameBoardId );
+
+             
+                ;
 
             /*_board.GetGameBoard(currentPlayer.Id);*/
 
-            //if (gameBoard.CurrentPlayerId != playersList.Count) 
-            //{
-            //    gameBoard.CurrentPlayerId = 0;
-                
+            if (gameBoard.CurrentPlayerIndex == PlayersList.Count - 1)
+            {
+                gameBoard.CurrentPlayerIndex = 0;
 
-            //}
-            //else
-            //{
-            //    gameBoard.CurrentPlayerId++;
-                
-            //}
+
+            }
+            else
+            {
+                gameBoard.CurrentPlayerIndex++;
+
+            }
 
             //currentPlayer.Id = gameBoard.CurrentPlayerId;
 
             //currentPlayer = gameBoard.Players.FirstOrDefault(p => p.Id == gameBoard.CurrentPlayerId);
-            //dbcontext.GameBoards.Update(gameBoard);
-            //await dbcontext.SaveChangesAsync();
-            return currentPlayer;
+            dbcontext.GameBoards.Update(gameBoard);
+            await dbcontext.SaveChangesAsync();
+            //var currentPlayerIndex = dbcontext.GameBoards.FirstOrDefault(p => p.Id == gameBoard.CurrentPlayerIndex);
+            return gameBoard;
         }
 
         [Route("pieces/{playerId}")]

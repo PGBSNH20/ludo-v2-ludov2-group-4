@@ -21,7 +21,7 @@ namespace ApiTests
             {
                 Id = 1,
                 Name = "Calles game",
-                CurrentPlayerId = 0,
+                CurrentPlayerIndex = 0,
                 Done = false,
                 Winner = null
 

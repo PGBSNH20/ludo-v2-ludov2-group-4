@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using LudoAPI.Controllers;
 using LudoAPI.Data;
 using LudoAPI.Data.Interfaces;
@@ -25,12 +26,12 @@ namespace ApiTestProject
         private IPiece _piece;
 
         [OneTimeSetUp]
-        public void Setup()
+        public async Task Setup()
         {
             _dbContext = new LudoContext(options);
             _dbContext.Database.EnsureCreated();
 
-            SeedDataBase();
+            await SeedDataBase();
 
             gameController = new GameController(_player, _board, _piece, _dbContext);
         }
@@ -42,20 +43,20 @@ namespace ApiTestProject
         }
 
 
-        private void SeedDataBase()
+        private async Task SeedDataBase()
         {
 
 
 
-            var playersList = new List<Player>
+            var playersList = new Player
             {
-                new()
-                {
+                
+                
                     Id = 1,
                     Name = "Calle",
                     Color = "yellow",
                     GameBoardId = 1
-                }
+                
                
 
 
@@ -70,12 +71,13 @@ namespace ApiTestProject
                 Created = DateTime.Now,
                 Done = false,
                 Winner = null,
-                CurrentPlayerId = 0,
-                Players = playersList
+                CurrentPlayerIndex = 0,
+                Players = null
             };
 
-            _dbContext.GameBoards.Add(gameBoard);
-            /*_dbContext.Players.Add(playersList);*/
+          await  _board.AddNewGame(gameBoard);
+           var result = await _player.AddPlayer(playersList);
+           await _piece.AddPieces(result);
         }
         
         [Test]
@@ -86,7 +88,7 @@ namespace ApiTestProject
             //var player = _dbContext.Players.FirstOrDefault(p => p.Id == 1);
             var gameBoard = _board.GetGameBoard(1);
 
-            Assert.AreEqual(1, gameBoard.Id);
+            Assert.AreEqual("Calles game", gameBoard.Name);
             //Assert.AreEqual("Calle", player.Name);
         }
     }
