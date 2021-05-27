@@ -56,17 +56,7 @@ In addition to these folders there are a couple of other important files:
 
 ## Models
 
-
-## Requests
-
-| Endpoints | Description | Status Code | Message |
-| :--- | :--- | :--- | :--- |
-| Test | Test | 200 | `OK` |
-| Test | Test | 201 | `CREATED` |
-| Test | Test | 400 | `BAD REQUEST` |
-| Test | Test | 404 | `NOT FOUND` |
-| Test | Test | 500 | `INTERNAL SERVER ERROR` |
-
+**Komplettera**
 
 ## Database
 This is a diagram of the Database:
@@ -85,3 +75,13 @@ This is how the Piece table look like in the database with some data:
 
 **Infoga bild**
 
+
+## Requests
+
+| Method| Endpoints | Description | Status Code | Message |
+| :--- | :--- | :--- | :--- | :--- |
+| :--- | Test | Test | 200 | `OK` |
+| :--- | Test | Test | 201 | `CREATED` |
+| :--- | Test | Test | 400 | `BAD REQUEST` |
+| :--- | Test | Test | 404 | `NOT FOUND` |
+| :--- | Test | Test | 500 | `INTERNAL SERVER ERROR` |
