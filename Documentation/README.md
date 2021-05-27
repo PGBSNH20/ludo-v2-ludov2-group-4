@@ -14,10 +14,10 @@ The essence of the game is to compete against your friends and move all your pie
 
 2. When everybody have entered a nickname (because your true name is boooring) , a color and the gameBoard-ID. Then you're ready to go!
 PSST! If you somehow manage to screw up by starting googling for the closest Domino Pizza you can enter the base-URL followed by the endpoint /players and then you can continue to add players. The form will do following checks to guide you through this process by kindly respond with an error message if anyone if you enter any invalid input:
-- If you trying enter an existing nickname.
-- If you're trying to enter an invalid color (only 'red', 'green', 'blue' or 'yellow' allowed).
-- If
-- If
+- If you're trying to add a fifth player, error message: "A ludo game can only include".
+- If you're trying to enter an invalid color (only 'red', 'green', 'blue' or 'yellow' allowed), error message: "Invalid color".
+- If you're choosing an already picked color, error mesage: "Color is occupied".
+- If you're trying to enter a nickname which already exists, error message: "The name already exists".
 
 3. Alright, you're ready to go?! You'll be able to launch the game straight away by clicking the at the "Start game" button below the form or you can wait until the night when you're competitors are sleeping and then click at the "Load game" link in the navbar. 
 
