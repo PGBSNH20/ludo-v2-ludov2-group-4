@@ -10,14 +10,27 @@ namespace ApiTestProject
 {
     public class FakePlayerRepo : IPlayer
     {
-        public Task<Player> AddPlayer(Player player)
+        public async Task<Player> AddPlayer(Player player)
         {
-            return null;
+            
+
+            return player;
         }
 
         public List<Player> GetPlayersByGameBoardId(int gameBoardId)
         {
-            return null;
+            List<Player> player = new List<Player>
+            {
+                new()
+                {
+                    Id = 2,
+                    Name = "Calle",
+                    Color = "red",
+                    GameBoardId = 1
+                }
+            };
+
+            return player;
         }
     }
 }

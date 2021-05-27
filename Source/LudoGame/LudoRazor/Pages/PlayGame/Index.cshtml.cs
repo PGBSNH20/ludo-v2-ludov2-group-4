@@ -34,6 +34,7 @@ namespace LudoRazor.Pages.PlayGame
             var queryResult2 = client2.Execute<List<Piece>>(request2).Data;
 
             Pieces = queryResult2;
+            
 
             var client3 = new RestClient("https://localhost:44370");
             var request3 = new RestRequest("api/game/get-gameboard/players/" + CurrentGame.Id , Method.GET);

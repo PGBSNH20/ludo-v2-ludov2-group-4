@@ -2,6 +2,7 @@
 using LudoAPI.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,26 @@ namespace LudoAPI.Data.Repository
                     PlayerId = player.Id,
                     IsActive = false,
                     IsDone = false
+
                 };
+
+                if (player.Color == "red")
+                {
+                    piece.Position = 1;
+                }
+                else if (player.Color == "green")
+                {
+                    piece.Position = 11;
+                }
+                else if (player.Color == "blue")
+                {
+                    piece.Position = 21;
+                }
+                else
+                {
+                    piece.Position = 31;
+                }
+
 
                 await _dbContext.Pieces.AddAsync(piece);
                 await _dbContext.SaveChangesAsync();

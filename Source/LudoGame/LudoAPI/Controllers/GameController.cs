@@ -55,7 +55,29 @@ namespace LudoAPI.Controllers
            
             var piece = dbcontext.Pieces.FirstOrDefault(p => p.Id == pieceId);
             var gameBoard = dbcontext.GameBoards.FirstOrDefault(g => g.Id == piece.GameBoardId);
-            piece.Position += (int)gameBoard.Die;
+           
+
+           
+            
+            //piece.Position += (int)gameBoard.Die;
+            //piece.Steps += (int)gameBoard.Die;
+
+            for (int i = 0; i < gameBoard.Die; i++)
+            {
+                if (piece.Position == 40)
+                {
+                    piece.Position = 0;
+                }
+                else if (piece.Steps == 41)
+                {
+                    piece.IsDone = true;
+                    
+                }
+                piece.Position++;
+                piece.Steps++;
+                
+            }
+           
 
             dbcontext.Pieces.Update(piece);
             dbcontext.SaveChanges();
@@ -87,7 +109,7 @@ namespace LudoAPI.Controllers
             var result = await _player.AddPlayer(player);
             await _piece.AddPieces(result);
 
-            if (result == null) return BadRequest();
+            if (result == null) return BadRequest("You must enter a gameboard id");
 
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
         }
@@ -95,13 +117,11 @@ namespace LudoAPI.Controllers
 
         [Route("get-gameboards")]
         [HttpGet]
-        public async Task<ActionResult<List<GameBoard>>> GetGameBoards()
-        {
-            var result = _board.GetGameBoards();
+        public async Task<List<GameBoard>> GetGameBoards()
+        { 
+            var result =  _board.GetGameBoards();
 
-            if (result == null) return NotFound("That player id doesn't exist");
-
-            return Ok(result);
+            return result;
         }
 
         [Route("get-gameboard/players/{id}")]
@@ -120,10 +140,11 @@ namespace LudoAPI.Controllers
 
         [Route("gameboards")]
         [HttpPost]
-        public async Task<IActionResult> PostGameBoard([FromBody] GameBoard gameBoard)
+        public async Task<ActionResult> PostGameBoard([FromBody] GameBoard gameBoard)
         {
             var result = await _board.AddNewGame(gameBoard);
-
+            
+            
             if (result == null) return NotFound();
 
             return StatusCode(StatusCodes.Status201Created, "You have created a gameboard");
@@ -131,13 +152,13 @@ namespace LudoAPI.Controllers
 
         [Route("gameboards/{id}")]
         [HttpGet]
-        public async Task<IActionResult> GetGameBoardById(int id)
+        public ActionResult<GameBoard> GetGameBoardById(int id)
         {
             var gameBoard = _board.GetGameBoard(id);
 
             if (gameBoard == null) return NotFound("That gameboard id doesn't exist");
 
-            return Ok(gameBoard);
+            return gameBoard;
         }
 
         [Route("nextplayer/{CurrentGameBoardId}")]
@@ -182,6 +203,20 @@ namespace LudoAPI.Controllers
         public List<Piece> GetPiecesByGameId(int gameId)
         {
             var pieces =  dbcontext.Pieces.Where(p => p.GameBoardId == gameId).ToList();
+            
+
+            
+                foreach (var piece in pieces)
+                {
+                    if (piece.IsDone)
+                    {
+                        pieces.Remove(piece);
+                        dbcontext.Pieces.Remove(piece);
+                        dbcontext.SaveChanges();
+                    }
+                }
+            
+
             return pieces;
 
         }

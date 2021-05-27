@@ -10,19 +10,37 @@ namespace ApiTestProject
 {
     public class FakeGameBordRepo : IGameBoard
     {
-        public Task<GameBoard> AddNewGame(GameBoard gameBoard)
+        public async Task<GameBoard> AddNewGame(GameBoard gameBoard)
         {
-            throw new NotImplementedException();
+            return gameBoard;
         }
 
         public GameBoard GetGameBoard(int id)
         {
-            return null;
+            GameBoard g = new GameBoard
+            {
+                Id = 1,
+                Name = "Signes Game"
+            };
+            return g;
         }
 
         public List<GameBoard> GetGameBoards()
         {
-            throw new NotImplementedException();
+            var gameBoards = new List<GameBoard>
+            {
+                new()
+                {
+                    Id = 1,
+                    Name = "Kevins game",
+                    Colors = null,
+                    Created = DateTime.Now,
+                    CurrentPlayerIndex = 1,
+                    
+                }
+            };
+
+            return gameBoards;
         }
     }
 }
