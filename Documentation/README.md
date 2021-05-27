@@ -39,7 +39,7 @@ The API is the brain which hides and takes care of the logic and connection to t
 
 - `Dependencies`: contains the ASP.NET Core and .NET Core frameworks, and some extra packages like Restsharp.
 - `Controllers`: includes a GameController which holds all the methods that responds on the requests from Razor pages to the endpoints. 
-- `Data`: consists of two folders (Interfaces and Repository) and a LudoContext class. Interfaces takes care of the contracts for each model and Repositories **Komplettera**
+- `Data`: consists of two folders (Interfaces and Repository) and a LudoContext class. Interfaces takes care of the contracts for each model and Repositories for the data access.
 - `Migrations`: keeps the updates of the database. 
 - `Models`: defines our objects GameBoard, Piece and Player.
 - `Docker`: contains our Dockerfile and Docker compose which transforms the API into a container and makes it magically run anywhere but watch out, it's heavy stuff.
