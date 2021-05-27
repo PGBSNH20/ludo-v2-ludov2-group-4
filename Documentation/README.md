@@ -21,27 +21,41 @@ PSST! If you somehow manage to screw up by starting googling for the closest Dom
 
 3. Alright, you're ready to go?! You'll be able to launch the game straight away by clicking the at the "Start game" button below the form or you can wait until the night when you're competitors are sleeping and then click at the "Load game" link in the navbar. 
 
-4. 
+4. When you're entering the game it will show who's turn it is to roll the die, which is located as a button below the tables. The tables represents the players and their pieces (including their positions).
+
+5. Next page that pops up shows the result of the die and the current player's pieces. The player chooses a piece by clicking the button beside each button, which tells the program which piece to move. 
+
+6. The last page in the game loop confirms that everything went as expected and means that the piece and turn order is updated. When the player has clicked on the button "Continue" the loop is done and the game will go straight back to the step "4.", as long as you don't quit the program.
 
 ## Getting started 
-To give you a smooth experience and get to know our the structure of our API we thought it would be a good idea to show some print screens and explain them. Since we are using Docker you can run the API through docker compose anywhere you want, but the API is developed in Visual Studio through C# with great support from Entity Framework and Restsharp:
+Since we are using Docker you can run the API through docker compose anywhere you want, but the API is developed in Visual Studio through C# with great support from Entity Framework and Restsharp:
 
-[filestructure](https://user-images.githubusercontent.com/43240053/117458224-585f1880-af4a-11eb-9817-db0b80f04726.png)
+**Infoga screen shot på filstrukturen**
 
-As you can see we have two main projects in the solution; NUnitTestProject and SpaceParkAPI. UnitTest1.cs contains all our tests, we have focused on testing all the endpoints in the controllers. 
-Even though our tests hopfeully got you excited we think it's inside the SpaceParkAPI the action takes place.
-It consists of a few key folders;
+The solution includes an API and Razor pages project. UnitTest1.cs contains all our tests, we have focused on testing all the endpoints in the controllers. 
+The API is the brain which hides and takes care of the logic and connection to the database. Razor pages handles the frontend and requests to the API. 
+
+**The API contains following folders;**
 
 - `Dependencies`: contains the ASP.NET Core and .NET Core frameworks, and some extra packages like Restsharp.
-- `Controllers`: includes a controller class for each model. That's where our business logic with all the 
-   endpoints sits. 
-- `Data`: is the home of our beloved DbContext. Doesn't seem to be much code for the world but without we    would literally loose our connections.
-- `Models`: defines our objects Park, Pay, SpacePort, SpaceShip and User.
-- `Docker`: contains our Dockerfile and Docker compose which transforms the API into a container and makes it magically run anywhere but watch it, it's heavy stuff.
+- `Controllers`: includes a GameController which holds all the methods that responds on the requests from Razor pages to the endpoints. 
+- `Data`: consists of two folders (Interfaces and Repository) and a LudoContext class. Interfaces takes care of the contracts for each model and Repositories **Komplettera**
+- `Migrations`: keeps the updates of the database. 
+- `Models`: defines our objects GameBoard, Piece and Player.
+- `Docker`: contains our Dockerfile and Docker compose which transforms the API into a container and makes it magically run anywhere but watch out, it's heavy stuff.
 
-Except these folders we have the standard Program- and Startup classes. At last we've put our Swapi.cs which holds the requests and valid methods related to the external API from swapi.dev. Which makes it possible for us to enjoy our evenings instead of manually validate every single customer.  
+In addition to these folders there are a couple of other important files:
+
+- `Program.cs`:
+- `Startup.cs`:
+
+**Razor pages contains following folders;**
+- `Dependencies`:
+- `wwwroot`:
+- `Pages`:
 
 ## Models
+
 
 ## Requests
 
@@ -56,9 +70,18 @@ Except these folders we have the standard Program- and Startup classes. At last 
 
 ## Database
 This is a diagram of the Database:
-[dbdiagram](https://user-images.githubusercontent.com/43240053/117457965-103ff600-af4a-11eb-94c4-2aeacb44dfc5.png)
 
-This is how the Users table look like in the database with some data:
+**Infoga databasdiagram**
 
-![users](https://user-images.githubusercontent.com/43240053/117458434-978d6980-af4a-11eb-829b-56178d98a481.png)
+This is how the GameBoard table look like in the database with some data:
+
+**Infoga bild**
+
+This is how the Player table look like in the database with some data:
+
+**Infoga bild**
+
+This is how the Piece table look like in the database with some data:
+
+**Infoga bild**
 
