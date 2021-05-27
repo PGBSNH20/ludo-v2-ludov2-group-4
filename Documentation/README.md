@@ -3,7 +3,6 @@ It's an ASP.NET Core Web App built with Razor pages that is backed up by an API 
 
 - [Features](#Features)
 - [Getting started](#Getting-started)
-- [Models](#Models)
 - [Requests](#Requests)
 - [Database](#Database)
 
@@ -53,10 +52,6 @@ In addition to these folders there are a couple of other important files:
 - `Dependencies`:
 - `wwwroot`:
 - `Pages`:
-
-## Models
-
-**Komplettera**
 
 ## Database
 This is a diagram of the Database:
