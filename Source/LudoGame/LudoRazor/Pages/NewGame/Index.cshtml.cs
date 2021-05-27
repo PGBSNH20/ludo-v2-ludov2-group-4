@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using LudoAPI.Data;
 using LudoAPI.Models;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace LudoRazor.Pages.NewGame
@@ -36,6 +37,8 @@ namespace LudoRazor.Pages.NewGame
             var request = new RestRequest(Method.POST);
             request.AddJsonBody(GameBoard);
             IRestResponse response = client.Execute(request);
+
+            
 
 
             GameBoardMessage = response.Content;

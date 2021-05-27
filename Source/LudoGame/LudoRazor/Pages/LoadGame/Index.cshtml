@@ -45,8 +45,13 @@
                 @Html.DisplayFor(modelItem => gameBoard.Winner)
             </td>
             <td>
+                @if (gameBoard.Winner == null)
+                {
+                    <a asp-page="/PlayGame/Index" asp-route-id="@gameBoard.Id" class="btn btn-primary">Load Game</a>
+                }
                 
-                <a asp-page="/PlayGame/Index" asp-route-id="@gameBoard.Id" class="btn btn-primary">Load Game</a>
+                
+
 
             </td>
         </tr>

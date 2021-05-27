@@ -35,7 +35,6 @@ namespace LudoRazor.Pages.PlayGame
 
             Pieces = queryResult2;
             
-
             var client3 = new RestClient("https://localhost:44370");
             var request3 = new RestRequest("api/game/get-gameboard/players/" + CurrentGame.Id , Method.GET);
             var queryResult3 = client3.Execute<List<Player>>(request3).Data;
@@ -43,6 +42,11 @@ namespace LudoRazor.Pages.PlayGame
             Players = queryResult3;
 
             ShowNextPlayer = $"{Players[CurrentGame.CurrentPlayerIndex].Name}, it's your turn to roll the die!";
+
+            //if (CurrentGame.Winner != null)
+            //{
+            //    return RedirectToPage($"/Winner/Index/{CurrentGame.Id}");
+            //}
 
             return Page();
         }

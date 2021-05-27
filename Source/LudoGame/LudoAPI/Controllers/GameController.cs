@@ -33,6 +33,8 @@ namespace LudoAPI.Controllers
         }
 
 
+       
+
         [Route("get-die/{gameBoardId}")]
         [HttpGet]
         public int PostDieByGameBoardId(int gameBoardId)
@@ -55,30 +57,63 @@ namespace LudoAPI.Controllers
            
             var piece = dbcontext.Pieces.FirstOrDefault(p => p.Id == pieceId);
             var gameBoard = dbcontext.GameBoards.FirstOrDefault(g => g.Id == piece.GameBoardId);
-           
+            var currentPlayer = dbcontext.Players.FirstOrDefault(p => p.Id == piece.PlayerId);
+            var playerPieces = dbcontext.Pieces.Where(p => p.PlayerId == currentPlayer.Id).ToList();
+            var donePieces = playerPieces.Where(p => p.IsDone);
 
-           
-            
+
+
+
             //piece.Position += (int)gameBoard.Die;
             //piece.Steps += (int)gameBoard.Die;
 
+            //for (int i = 0; i < gameBoard.Die; i++)
+            //{
+            //    if (piece.Position == 40)
+            //    {
+            //        piece.Position = 0;
+            //    }
+            //    else if (piece.Steps >= 41)
+            //    {
+
+            //        piece.IsDone = true;
+            //        if (donePieces.Count() == 3)
+            //        {
+            //            gameBoard.Winner = currentPlayer.Name;
+            //        }
+            //    }
+            //    piece.Position++;
+            //    piece.Steps++;
+
+            //}
+
+
+
             for (int i = 0; i < gameBoard.Die; i++)
             {
-                if (piece.Position == 40)
+               
+                if (piece.Steps >= 11)
+                {
+
+                    piece.IsDone = true;
+                    if (donePieces.Count() == 3)
+                    {
+                        gameBoard.Winner = currentPlayer.Name;
+                    }
+
+                   
+                }
+                if (piece.Position == 10)
                 {
                     piece.Position = 0;
                 }
-                else if (piece.Steps == 41)
-                {
-                    piece.IsDone = true;
-                    
-                }
                 piece.Position++;
                 piece.Steps++;
-                
-            }
-           
 
+            }
+
+
+            dbcontext.GameBoards.Update(gameBoard);
             dbcontext.Pieces.Update(piece);
             dbcontext.SaveChanges();
 
@@ -140,14 +175,15 @@ namespace LudoAPI.Controllers
 
         [Route("gameboards")]
         [HttpPost]
-        public async Task<ActionResult> PostGameBoard([FromBody] GameBoard gameBoard)
+        public async Task<ActionResult<GameBoard>> PostGameBoard([FromBody] GameBoard gameBoard)
         {
             var result = await _board.AddNewGame(gameBoard);
             
             
             if (result == null) return NotFound();
 
-            return StatusCode(StatusCodes.Status201Created, "You have created a gameboard");
+            return gameBoard;
+            /*StatusCode(StatusCodes.Status201Created, "You have created a gameboard");*/
         }
 
         [Route("gameboards/{id}")]
@@ -203,19 +239,6 @@ namespace LudoAPI.Controllers
         public List<Piece> GetPiecesByGameId(int gameId)
         {
             var pieces =  dbcontext.Pieces.Where(p => p.GameBoardId == gameId).ToList();
-            
-
-            
-                foreach (var piece in pieces)
-                {
-                    if (piece.IsDone)
-                    {
-                        pieces.Remove(piece);
-                        dbcontext.Pieces.Remove(piece);
-                        dbcontext.SaveChanges();
-                    }
-                }
-            
 
             return pieces;
 
@@ -238,7 +261,6 @@ namespace LudoAPI.Controllers
         {
             var result = await _piece.GetPieceById(id);
 
-            
             return result;
         }
 

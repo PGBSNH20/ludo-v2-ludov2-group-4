@@ -17,13 +17,14 @@
                 <span asp-validation-for="GameBoard.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
         </form>
     </div>
 </div>
 
-<h4>@Model.GameBoardMessage</h4>
+@*<a asp-page="/Players/Index" asp-route-id="@Model.GameBoard.Id" class="btn btn-primary">Add Players</a>*@
+
 
 
 @section Scripts {

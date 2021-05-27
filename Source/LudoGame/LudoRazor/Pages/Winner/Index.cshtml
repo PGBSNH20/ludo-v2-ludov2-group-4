@@ -1,0 +1,18 @@
+﻿@page "{id}"
+@model LudoRazor.Pages.Winner.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Game Over</h1>
+
+<h3>Winner is: @Model.CurrentGame.Winner</h3>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

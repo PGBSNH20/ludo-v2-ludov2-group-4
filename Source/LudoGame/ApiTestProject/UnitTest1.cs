@@ -303,10 +303,52 @@ namespace ApiTestProject
 
 
             //Assert.IsInstanceOf<ObjectResult>(result);
-            Assert.AreEqual("Signes Game", result.Value.Name);
+            Assert.AreEqual(1, result.Value.Id);
 
 
         }
+
+        [Test]
+        public void GetPieceById_ExpectPieceId1()
+        {
+            // Arrange
+            IPlayer fakePlayerRepo = new FakePlayerRepo();
+            IGameBoard fakeGameBoardRepo = new FakeGameBordRepo();
+            IPiece fakePieceRepo = new FakePieceRepository();
+            var sut = new GameController(fakePlayerRepo, fakeGameBoardRepo, fakePieceRepo, null);
+
+            // Act
+            var result = sut.GetPieceById(1);
+
+
+
+            //Assert.IsInstanceOf<ObjectResult>(result);
+            Assert.AreEqual(1, result.Result.Id);
+
+
+        }
+
+        [Test]
+        public async Task GetPieceById_PieceDoNotExists_Expect()
+        {
+            // Arrange
+            IPlayer fakePlayerRepo = new FakePlayerRepo();
+            IGameBoard fakeGameBoardRepo = new FakeGameBordRepo();
+            IPiece fakePieceRepo = new FakePieceRepository();
+            var sut = new GameController(fakePlayerRepo, fakeGameBoardRepo, fakePieceRepo, null);
+
+            // Act
+            var result = await sut.GetPieceById(1);
+
+
+
+            //Assert.IsInstanceOf<ObjectResult>(result);
+            //Assert.IsInstanceOf<ObjectResult>(result);
+            //Assert.AreEqual("Invalid Color", ((ObjectResult)result.).Value.ToString());
+
+
+        }
+
 
 
 

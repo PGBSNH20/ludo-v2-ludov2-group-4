@@ -26,6 +26,7 @@ namespace LudoRazor.Pages.ChoosePiece
         public List<Player> Players { get; set; }
         public List<Piece> CurrentPlayerPieces { get; set; }
         public string ValidatePlayer { get; set; } = "";
+       
 
 
         public async Task OnGetAsync(int gameId)

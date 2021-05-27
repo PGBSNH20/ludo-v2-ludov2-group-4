@@ -25,9 +25,16 @@ namespace ApiTestProject
             throw new NotImplementedException();
         }
 
-        public Task<Piece> GetPieceById(int id)
+        public async Task<Piece> GetPieceById(int id)
         {
-            throw new NotImplementedException();
+            Piece piece = new Piece
+            {
+                Id = 1,
+                Color = "red",
+                GameBoardId = 1,
+                PlayerId = 1,
+            };
+            return piece;
         }
     }
 }

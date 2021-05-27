@@ -30,20 +30,31 @@
         @foreach (var piece in Model.CurrentPlayerPieces)
          {
             <tr>
-
-                <td>
-                    @Html.DisplayFor(modelItem => piece.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => piece.Color)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => piece.Position)
-                </td>
-                <td>
-                    <a asp-page="/Movepiece/index" asp-route-gameId="@Model.CurrentGame.Id" asp-route-pieceId="@piece.Id" asp-route-dieValue="@Model.Die" class="btn btn-primary">Move piece</a>
-                </td>
-
+               
+                    <td>
+                        @Html.DisplayFor(modelItem => piece.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => piece.Color)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => piece.Position)
+                    </td>
+                @if (!piece.IsDone)
+                {
+                    <td>
+                        <a asp-page="/Movepiece/index" asp-route-gameId="@Model.CurrentGame.Id" asp-route-pieceId="@piece.Id" asp-route-dieValue="@Model.Die" class="btn btn-primary">Move piece</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <p>Piece is done!</p>
+                    </td>
+                }
+                
+                
+                
             </tr>
          }
     </tbody>
