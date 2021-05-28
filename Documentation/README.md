@@ -55,12 +55,13 @@ In addition to these folders there are a couple of other important files:
 
 ## Database
 This is a diagram of the Database:
-![MicrosoftTeams-image (1)](https://user-images.githubusercontent.com/43240053/119951747-988b4700-bf9c-11eb-88ef-0fdcec9ed468.png)
 
 
 **Infoga databasdiagram**
 
 This is how the GameBoard table look like in the database with some data:
+![MicrosoftTeams-image](https://user-images.githubusercontent.com/43240053/119952414-45fe5a80-bf9d-11eb-96ff-a9778379e137.png)
+
 
 **Infoga bild**
 
