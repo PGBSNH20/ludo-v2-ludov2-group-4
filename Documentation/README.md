@@ -54,6 +54,16 @@ In addition to these folders there are a couple of other important files:
 - `Pages`: holds all our pages;
   - ChoosePiece:
   - LoadGame:
+  - MovePiece:
+  - NewGame:
+  - Players:
+  - PlayGame:
+  - Shared:
+  - Winner: 
+
+Pages also contains standard cshtml-files; _ViewImports, _ViewStart and Index.cshtml.
+
+In addition to these folders there are a couple of other important files:
 
 ## Database
 This is a diagram of the Database:
