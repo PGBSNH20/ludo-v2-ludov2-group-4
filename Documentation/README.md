@@ -88,12 +88,12 @@ This is how the Piece table look like in the database with some data:
 
 ## Requests
 
-| Method| Endpoints | Description | Status Code | Message |
-| :--- | :--- | :--- | :--- | :--- |
-| :--- | Test | Test | 200 | `OK` |
-| :--- | Test | Test | 201 | `CREATED` |
-| :--- | Test | Test | 400 | `BAD REQUEST` |
-| :--- | Test | Test | 404 | `NOT FOUND` |
-| :--- | Test | Test | 500 | `INTERNAL SERVER ERROR` |
+| Verb| URI | Description | Success | Failure |
+| POST | api/Game/gameboards | :--- | :--- | :--- |
+| POST | api/Game/players | Test | 200 | `OK` |
+| :--- | api/Game/ | Test | 201 | `CREATED` |
+| GET | api/Game/get-die/{gameBoardId} | Test | 400 | `BAD REQUEST` |
+| :--- | api/Game/ | Test | 404 | `NOT FOUND` |
+| :--- | api/Game/ | Test | 500 | `INTERNAL SERVER ERROR` |
 
 [Back to start](#Table-of-contents)
