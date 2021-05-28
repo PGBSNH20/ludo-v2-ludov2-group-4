@@ -31,7 +31,7 @@ PSST! If you somehow manage to screw up by starting googling for the closest Dom
 ## Getting started 
 Since we are using Docker you can run the API through docker compose anywhere you want, but the API is developed in Visual Studio through C# with great support from Entity Framework and Restsharp:
 
-**Infoga screen shot på filstrukturen**
+![MicrosoftTeams-image (1)](https://user-images.githubusercontent.com/43240053/119977290-8919f700-bfb8-11eb-832f-938a43b06e0c.png)
 
 The solution includes an API and Razor pages project. UnitTest1.cs contains all our tests, we have focused on testing all the endpoints in the controllers. 
 The API is the brain which hides and takes care of the logic and connection to the database. Razor pages handles the frontend including the requests to the API. 
