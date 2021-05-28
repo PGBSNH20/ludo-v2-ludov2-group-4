@@ -98,7 +98,6 @@ This is how the Piece table look like in the database with some data:
 | GET | api/Game/pieces-by/{gameId} | GetPiecesByGameId | List Piece | Failure |
 | GET | api/Game/pieces/{playerId} | GetPiecesByPlayerId | List Piece | Failure |
 | GET | api/Game/get-piece/{id} | GetPieceById | return Piece | Failure |
-| PUT | api/Game/pieces | PutPiece| Succes | Failure |
 | GET | api/Game/update-piece-position/{pieceId} | UpdatePiecePosition | return piece.Position | Failure |
 | GET | api/Game/get-die/{gameBoardId} | PostDieByGameBoardId| return int | Failure |
 | GET | api/Game/nextplayer/{CurrentGameBoardId} | GetNextPlayer | return GameBoard | Failure |
