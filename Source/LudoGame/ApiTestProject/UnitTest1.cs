@@ -110,7 +110,7 @@ namespace ApiTestProject
             var playerToPost = new Player()
             {
                 Id = 1,
-                Name = "Calle",
+                Name = "Signe",
                 Color = "blue",
                 GameBoardId = 1,
             };
@@ -260,12 +260,14 @@ namespace ApiTestProject
 
             // Act
             var result = await sut.PostGameBoard(gameBoardToPost);
-            var actionResult = result as ObjectResult;
+            
+           
+           
 
 
             // assert
-            Assert.IsInstanceOf<ObjectResult>(actionResult);
-            Assert.AreEqual("You have created a gameboard", ((ObjectResult)result).Value.ToString());
+            Assert.IsInstanceOf<ActionResult<LudoAPI.Models.GameBoard>>(result);
+            Assert.AreEqual("You have created a gameboard", ((ObjectResult)result.Result).Value.ToString());
             
         }
 
@@ -323,13 +325,13 @@ namespace ApiTestProject
 
 
             //Assert.IsInstanceOf<ObjectResult>(result);
-            Assert.AreEqual(1, result.Result.Id);
+            Assert.AreEqual(1, result.Result.Value.Id);
 
 
         }
 
         [Test]
-        public async Task GetPieceById_PieceDoNotExists_Expect()
+        public async Task GetPieceById_PieceDoNotExists_ExpectNotFound()
         {
             // Arrange
             IPlayer fakePlayerRepo = new FakePlayerRepo();
@@ -338,13 +340,18 @@ namespace ApiTestProject
             var sut = new GameController(fakePlayerRepo, fakeGameBoardRepo, fakePieceRepo, null);
 
             // Act
-            var result = await sut.GetPieceById(1);
+            var result = await sut.GetPieceById(5);
+
 
 
 
             //Assert.IsInstanceOf<ObjectResult>(result);
             //Assert.IsInstanceOf<ObjectResult>(result);
-            //Assert.AreEqual("Invalid Color", ((ObjectResult)result.).Value.ToString());
+            Assert.IsInstanceOf<ActionResult<LudoAPI.Models.Piece>>(result);
+            Assert.AreEqual("A piece with that Id doesn't exist", ((ObjectResult)result.Result).Value.ToString());
+
+            //Assert.AreEqual(1, result.Value.Id);
+
 
 
         }

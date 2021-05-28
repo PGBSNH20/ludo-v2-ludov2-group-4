@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LudoAPI.Data;
@@ -89,7 +90,7 @@ namespace LudoAPI.Controllers
 
 
 
-            for (int i = 0; i < gameBoard.Die; i++)
+            for (int i = 0; i <= gameBoard.Die; i++)
             {
                
                 if (piece.Steps >= 11)
@@ -182,8 +183,8 @@ namespace LudoAPI.Controllers
             
             if (result == null) return NotFound();
 
-            return gameBoard;
-            /*StatusCode(StatusCodes.Status201Created, "You have created a gameboard");*/
+
+           return StatusCode(StatusCodes.Status201Created, "You have created a gameboard");
         }
 
         [Route("gameboards/{id}")]
@@ -257,9 +258,14 @@ namespace LudoAPI.Controllers
 
         [Route("get-piece/{id}")]
         [HttpGet]
-        public async Task<Piece> GetPieceById(int id)
+        public async Task<ActionResult<Piece>> GetPieceById(int id)
         {
             var result = await _piece.GetPieceById(id);
+
+            if (result == null) 
+            {
+                return NotFound("A piece with that Id doesn't exist");
+            }
 
             return result;
         }
