@@ -66,26 +66,22 @@ Pages also contains standard cshtml-files; `_ViewImports` (holds the connection 
 In addition to these folders we have the same standard files as the API; appsettings, Dockerfile, Program and Startup. 
 
 
-
 ## Database
 This is a diagram of the Database:
 
-
-**Infoga databasdiagram**
+![DbDiagram](https://user-images.githubusercontent.com/43240053/119961156-07b96900-bfa6-11eb-9146-583bc5cc43f9.png)
 
 This is how the GameBoard table look like in the database with some data:
-![MicrosoftTeams-image](https://user-images.githubusercontent.com/43240053/119952414-45fe5a80-bf9d-11eb-96ff-a9778379e137.png)
 
-
-**Infoga bild**
+![DbGameBoard](https://user-images.githubusercontent.com/43240053/119961187-1011a400-bfa6-11eb-8ca2-ea4424bb9d69.png)
 
 This is how the Player table look like in the database with some data:
 
-**Infoga bild**
+![DbPlayer](https://user-images.githubusercontent.com/43240053/119961220-19027580-bfa6-11eb-980e-4a5347229b77.png)
 
 This is how the Piece table look like in the database with some data:
 
-**Infoga bild**
+![DbPieces](https://user-images.githubusercontent.com/43240053/119961249-1e5fc000-bfa6-11eb-9d3f-47e39fca0558.png)
 
 
 ## Requests
