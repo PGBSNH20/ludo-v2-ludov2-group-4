@@ -101,5 +101,6 @@ This is how the Piece table look like in the database with some data:
 | PUT | api/Game/pieces | PutPiece| Succes | Failure |
 | GET | api/Game/update-piece-position/{pieceId} | UpdatePiecePosition | Succes | Failure |
 | GET | api/Game/get-die/{gameBoardId} | PostDieByGameBoardId| Succes | Failure |
+| GET | api/Game/nextplayer/{CurrentGameBoardId} | GetNextPlayer | Succes | Failure |
 
 [Back to start](#Table-of-contents)
