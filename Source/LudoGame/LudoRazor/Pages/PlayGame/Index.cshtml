@@ -13,14 +13,19 @@
 
 @if (Model.CurrentGame.Winner == null)
 {
-    <a asp-page="/ChoosePiece/Index" asp-route-gameId="@Model.CurrentGame.Id" class="btn btn-primary">Roll the die</a>
-    <br/>
+
+
     <h4>@Model.ShowNextPlayer</h4>
+    <br />
+    <a asp-page="/ChoosePiece/Index" asp-route-gameId="@Model.CurrentGame.Id" class="btn btn-primary">Roll the die</a>
+    <br />
 }
 
 else
 {
+    
     <h3>@Model.WinnerMessage won the game!</h3>
+    <br />
 }
 
 

@@ -178,9 +178,9 @@ namespace LudoAPI.Controllers
                     if (donePieces.Count() == 4)
                     {
                         gameBoard.Winner = currentPlayer.Name;
-                        dbcontext.GameBoards.Update(gameBoard);
-                        dbcontext.Pieces.Update(piece);
-                        dbcontext.SaveChanges();
+                        //dbcontext.GameBoards.Update(gameBoard);
+                        //dbcontext.Pieces.Update(piece);
+                        //dbcontext.SaveChanges();
 
                     }
                 }
