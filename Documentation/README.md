@@ -90,17 +90,17 @@ This is how the Piece table look like in the database with some data:
 
 | Verb| URI | MethodName | Success | Failure |
 | :--- | :--- | :--- | :--- | :--- |
-| POST | api/Game/gameboards | PostGameBoard | Succes | Failure |
-| GET | api/Game/get-gameboards/{gameBoardId} | GetGameBoardById | Succes | Failure |
-| POST | api/Game/players | PostPlayer | Succes | Failure |
-| GET | api/Game/get-gameboard/players/{id} | GetPlayersByGameBoard | Succes | Failure |
-| GET | api/Game/get-gameboards | GetGameBoards | Succes | Failure |
-| GET | api/Game/pieces-by/{gameId} | GetPiecesByGameId | Succes | Failure |
-| GET | api/Game/pieces/{playerId} | GetPiecesByPlayerId | Succes | Failure |
-| GET | api/Game/get-piece/{id} | GetPieceById | Succes | Failure |
+| POST | api/Game/gameboards | PostGameBoard | ActionResult<GameBoard> | Failure |
+| GET | api/Game/get-gameboards/{gameBoardId} | GetGameBoardById | ActionResult<GameBoard> | Failure |
+| POST | api/Game/players | PostPlayer | 201 | BadRequest |
+| GET | api/Game/get-gameboard/players/{id} | GetPlayersByGameBoard | 200 OK(List<Player>) | Failure |
+| GET | api/Game/get-gameboards | GetGameBoards | Return List<GameBoard> | Failure |
+| GET | api/Game/pieces-by/{gameId} | GetPiecesByGameId | List<Piece> | Failure |
+| GET | api/Game/pieces/{playerId} | GetPiecesByPlayerId | ActionResult<List<Piece> | Failure |
+| GET | api/Game/get-piece/{id} | GetPieceById | Return Piece | Failure |
 | PUT | api/Game/pieces | PutPiece| Succes | Failure |
-| GET | api/Game/update-piece-position/{pieceId} | UpdatePiecePosition | Succes | Failure |
-| GET | api/Game/get-die/{gameBoardId} | PostDieByGameBoardId| Succes | Failure |
-| GET | api/Game/nextplayer/{CurrentGameBoardId} | GetNextPlayer | Succes | Failure |
+| GET | api/Game/update-piece-position/{pieceId} | UpdatePiecePosition | return piece.Position | Failure |
+| GET | api/Game/get-die/{gameBoardId} | PostDieByGameBoardId| Return int | Failure |
+| GET | api/Game/nextplayer/{CurrentGameBoardId} | GetNextPlayer | Return GameBoard | Failure |
 
 [Back to start](#Table-of-contents)
