@@ -51,7 +51,7 @@ In addition to these folders there are a couple of other important files:
 **Razor pages contains following folders;**
 - `Dependencies`: includes ASP.NET Core and Entity Frameworks. But also Newtonsofts JSON-package and Restsharp.
 - `wwwroot`: contains our css and Javascript-files, and a library folder including bootstrap and jquery. 
-- `Pages`: holds all our pages;
+- `Pages`: holds all the Pages;
   - **ChoosePiece:** This page shows where the player ends up after the "Roll the die"- button is clicked in PlayGame (step 4.). The page also prints the player's pieces and the player decides which one to choose.
   - **LoadGame:** Displays all the games including properties such as "Created" and "Winner" when user click "Load Game" in the navbar. 
   - **MovePiece:** OnGet this page is processing the move of the piece that the player choosed and the turnorder. It only gives the player one option, to click the button "Continue" which will send the player back to PlayGame.
@@ -59,11 +59,13 @@ In addition to these folders there are a couple of other important files:
   - **Players:** The form where the user can add players to a game. 
   - **PlayGame:** Main page for the game-loop itself. Displays which player's up next, all players and their pieces. 
   - **Shared:** Contains the HTML that is the same for all pages, such as header and footer.
-  - **Winner:** 
+  - **Winner:** Prints out the winner as soon as the game is over. 
 
-Pages also contains standard cshtml-files; `_ViewImports`, `_ViewStart` and `Index.cshtml.`
+Pages also contains standard cshtml-files; `_ViewImports` (holds the connection to Razor pages and taghelper), `_ViewStart` and `Index.cshtml.` (homepage).
 
-In addition to these folders there are a couple of other important files:
+In addition to these folders we have the same standard files as the API; appsettings, Dockerfile, Program and Startup. 
+
+
 
 ## Database
 This is a diagram of the Database:
