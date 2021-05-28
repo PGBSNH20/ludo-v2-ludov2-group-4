@@ -32,6 +32,7 @@ namespace LudoRazor.Pages.MovePiece
         public int Die { get; set; }
         public int NextPlayerId { get; private set; }
         public Player NextPlayer { get; private set; }
+        public string Winner { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? gameId, int dieValue, int pieceId)
         {
@@ -74,11 +75,9 @@ namespace LudoRazor.Pages.MovePiece
 
             Pieces = queryResult4;
 
-
-
             var client5 = new RestClient("https://localhost:44370");
             var request5 = new RestRequest("api/game/nextplayer/" + GameBoard.Id, Method.GET);
-            var updatedGameBoard = client5.Execute<GameBoard>(request5).Data;
+            var nextPlayer = client5.Execute<GameBoard>(request5).Data;
             
 
             var client6 = new RestClient("https://localhost:44370");
@@ -87,6 +86,11 @@ namespace LudoRazor.Pages.MovePiece
 
             // Moving the choosed piece by adding the die.
             ChoosedPiece.Position = updatedPiecePosition;
+
+            if (GameBoard.Winner != null)
+            {
+                Winner = GameBoard.Winner;
+            }
 
             return Page();
         }

@@ -18,8 +18,8 @@ namespace LudoRazor.Pages.PlayGame
         public List<Piece> Pieces { get; set; }
         public List<Player> Players { get; set; }
         public string ShowNextPlayer { get; set; } = "";
-        
-
+        public string WinnerMessage  { get; set; } = "";
+ 
 
         public IActionResult OnGet(int id)
         {
@@ -43,6 +43,7 @@ namespace LudoRazor.Pages.PlayGame
 
             ShowNextPlayer = $"{Players[CurrentGame.CurrentPlayerIndex].Name}, it's your turn to roll the die!";
 
+            WinnerMessage = CurrentGame.Winner;
 
             return Page();
         }

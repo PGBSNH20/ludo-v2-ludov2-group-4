@@ -9,9 +9,20 @@
 
 <h1>@Model.CurrentGame.Name</h1>
 
-<br/>
+<br />
 
-<h4>@Model.ShowNextPlayer</h4>
+@if (Model.CurrentGame.Winner == null)
+{
+    <a asp-page="/ChoosePiece/Index" asp-route-gameId="@Model.CurrentGame.Id" class="btn btn-primary">Roll the die</a>
+    <h4>@Model.ShowNextPlayer</h4>
+}
+
+else
+{
+    <h3>@Model.WinnerMessage won the game!</h3>
+}
+
+
 <hr />
 
 <table class="table">
@@ -23,7 +34,7 @@
             <th>
                 @Html.DisplayNameFor(model => newPlayer.Name)
             </th>
-            
+
             <th>
                 @Html.DisplayNameFor(model => newPlayer.Color)
             </th>
@@ -36,23 +47,23 @@
     <tbody>
         @foreach (var player in Model.Players)
         {
-        <tr>
+            <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => player.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => player.Name)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => player.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => player.Name)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => player.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => player.GameBoardId)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => player.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => player.GameBoardId)
+                </td>
 
-        </tr>
+            </tr>
         }
     </tbody>
 </table>
@@ -75,7 +86,7 @@
             <th></th>
         </tr>
     </thead>
-    
+
     <tbody>
         @foreach (var piece in Model.Pieces)
         {
@@ -92,13 +103,11 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => piece.Position)
-                </td>               
+                </td>
             </tr>
-         }
+        }
     </tbody>
 </table>
-
-<a asp-page="/ChoosePiece/Index" asp-route-gameId="@Model.CurrentGame.Id" class="btn btn-primary">Roll the die</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

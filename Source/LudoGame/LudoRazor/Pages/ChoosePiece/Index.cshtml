@@ -12,18 +12,22 @@
 
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayName("Piece Id")
-        </th>
-        <th>
-            @Html.DisplayName("Color")
-        </th>
-        <th>
-            @Html.DisplayName("Position")
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayName("Piece Id")
+            </th>
+            <th>
+                @Html.DisplayName("Color")
+            </th>
+            <th>
+                @Html.DisplayName("Position")
+            </th>
+
+            <th>
+                @Html.DisplayName("Steps")
+            </th>
+            <th></th>
+        </tr>
     </thead>
     
     <tbody>
@@ -37,9 +41,13 @@
                     <td>
                         @Html.DisplayFor(modelItem => piece.Color)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => piece.Position)
-                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => piece.Position)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => piece.Steps)
+                </td>
                 @if (!piece.IsDone)
                 {
                     <td>
