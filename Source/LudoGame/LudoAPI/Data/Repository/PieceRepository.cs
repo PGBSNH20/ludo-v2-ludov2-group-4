@@ -27,7 +27,6 @@ namespace LudoAPI.Data.Repository
                     Color = player.Color,
                     GameBoardId = player.GameBoardId,
                     PlayerId = player.Id,
-                    IsActive = false,
                     IsDone = false
 
                 };

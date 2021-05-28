@@ -27,7 +27,44 @@ namespace ApiTestProject
                     Name = "Calle",
                     Color = "red",
                     GameBoardId = 1
-                }
+
+                },
+
+                new()
+                {
+                    Id = 3,
+                    Name = "Signe",
+                    Color = "red",
+                    GameBoardId = 2
+
+                },
+
+                new()
+                {
+                    Id = 4,
+                    Name = "Sully",
+                    Color = "blue",
+                    GameBoardId = 2
+
+                },
+
+                new()
+                {
+                    Id = 5,
+                    Name = "Jossan",
+                    Color = "green",
+                    GameBoardId = 2
+
+                },
+
+                new()
+                {
+                    Id = 6,
+                    Name = "Frida",
+                    Color = "yellow",
+                    GameBoardId = 2
+
+                },
             };
 
             return player;

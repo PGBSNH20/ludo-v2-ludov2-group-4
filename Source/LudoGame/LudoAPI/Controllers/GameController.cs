@@ -134,7 +134,7 @@ namespace LudoAPI.Controllers
             var nameNotAvailable = opponents.Any(o => o.Name.ToLower() == player.Name.ToLower());
             var amountOfPlayer = _player.GetPlayersByGameBoardId(player.GameBoardId).Count();           
 
-            if (amountOfPlayer == 4) return BadRequest("A ludo game can only include 2-4 players");
+            if (amountOfPlayer >= 4) return BadRequest("A ludo game can only include 2-4 players");
             
             if (!trueColor) return BadRequest("Invalid Color");
 

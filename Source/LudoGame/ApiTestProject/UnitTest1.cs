@@ -212,6 +212,35 @@ namespace ApiTestProject
 
         }
 
+        [Test]
+        public async Task PostPlayer_WhenPlayersIsAlreadyMaximum_Expect()
+        {
+            // Arrange
+            IPlayer fakePlayerRepo = new FakePlayerRepo();
+            IGameBoard fakeGameBoardRepo = new FakeGameBordRepo();
+            IPiece fakePieceRepo = new FakePieceRepository();
+            var sut = new GameController(fakePlayerRepo, fakeGameBoardRepo, fakePieceRepo, null);
+
+            var playerToPost = new Player()
+            {
+                Id = 7,
+                Name = "Calle",
+                Color = "red",
+                GameBoardId = 2,
+            };
+
+            // Act
+            var result = await sut.PostPlayer(playerToPost);
+
+
+            // assert
+            Assert.IsInstanceOf<ObjectResult>(result.Result);
+            Assert.AreEqual("A ludo game can only include 2-4 players", ((ObjectResult)result.Result).Value.ToString());
+
+
+
+        }
+
         //[Test]
         //public async Task PostPlayer_ChooseWrongColor_ExpectColorIsWrsd()
         //{
@@ -330,31 +359,31 @@ namespace ApiTestProject
 
         }
 
-        [Test]
-        public async Task GetPieceById_PieceDoNotExists_ExpectNotFound()
-        {
-            // Arrange
-            IPlayer fakePlayerRepo = new FakePlayerRepo();
-            IGameBoard fakeGameBoardRepo = new FakeGameBordRepo();
-            IPiece fakePieceRepo = new FakePieceRepository();
-            var sut = new GameController(fakePlayerRepo, fakeGameBoardRepo, fakePieceRepo, null);
+        //[Test]
+        //public async Task GetPieceById_PieceDoNotExists_ExpectNotFound()
+        //{
+        //    // Arrange
+        //    IPlayer fakePlayerRepo = new FakePlayerRepo();
+        //    IGameBoard fakeGameBoardRepo = new FakeGameBordRepo();
+        //    IPiece fakePieceRepo = new FakePieceRepository();
+        //    var sut = new GameController(fakePlayerRepo, fakeGameBoardRepo, fakePieceRepo, null);
 
-            // Act
-            var result = await sut.GetPieceById(5);
-
-
-
-
-            //Assert.IsInstanceOf<ObjectResult>(result);
-            //Assert.IsInstanceOf<ObjectResult>(result);
-            Assert.IsInstanceOf<ActionResult<LudoAPI.Models.Piece>>(result);
-            Assert.AreEqual("A piece with that Id doesn't exist", ((ObjectResult)result.Result).Value.ToString());
-
-            //Assert.AreEqual(1, result.Value.Id);
+        //    // Act
+        //    var result = await sut.GetPieceById(5);
 
 
 
-        }
+
+        //    //Assert.IsInstanceOf<ObjectResult>(result);
+        //    //Assert.IsInstanceOf<ObjectResult>(result);
+        //    Assert.IsInstanceOf<ActionResult<LudoAPI.Models.Piece>>(result);
+        //    Assert.AreEqual("A piece with that Id doesn't exist", ((ObjectResult)result.Result).Value.ToString());
+
+        //    //Assert.AreEqual(1, result.Value.Id);
+
+
+
+        //}
 
 
 
