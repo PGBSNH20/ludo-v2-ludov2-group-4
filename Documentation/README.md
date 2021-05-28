@@ -90,14 +90,16 @@ This is how the Piece table look like in the database with some data:
 
 | Verb| URI | MethodName | Success | Failure |
 | :--- | :--- | :--- | :--- | :--- |
-| POST | api/Game/gameboards | PostGameBoard | 200 | `OK` |
-| POST | api/Game/players | PostPlayer | 201 | `CREATED` |
-| GET | api/Game/get-gameboards | GetGameBoards | 400 | `BAD REQUEST` |
-| GET | api/Game/get-gameboards/{gameBoardId} | GetGameBoardById | Returns gameboard by Id | 404 | `NOT FOUND` |
-| :--- | api/Game/ | MethodName | Succes | Failure |
-| :--- | api/Game/ | MethodName | Succes | Failure |
-| :--- | api/Game/ | MethodName | Succes | Failure |
-| :--- | api/Game/ | MethodName | Succes | Failure |
-| :--- | api/Game/ | MethodName | Succes | Failure |
+| POST | api/Game/gameboards | PostGameBoard | Succes | Failure |
+| GET | api/Game/get-gameboards/{gameBoardId} | GetGameBoardById | Returns gameboard by Id | Succes | Failure |
+| POST | api/Game/players | PostPlayer | Succes | Failure |
+| GET | api/Game/get-gameboard/players/{id} | GetPlayersByGameBoard | Succes | Failure |
+| GET | api/Game/get-gameboards | GetGameBoards | Succes | Failure |
+| GET | api/Game/pieces-by/{gameId} | GetPiecesByGameId | Succes | Failure |
+| GET | api/Game/pieces/{playerId} | GetPiecesByPlayerId | Succes | Failure |
+| GET | api/Game/get-piece/{id} | GetPieceById | Succes | Failure |
+| PUT | api/Game/pieces | PutPiece| Succes | Failure |
+| GET | api/Game/update-piece-position/{pieceId} | UpdatePiecePosition | Succes | Failure |
+| GET | api/Game/get-die/{gameBoardId} | PostDieByGameBoardId| Succes | Failure |
 
 [Back to start](#Table-of-contents)
