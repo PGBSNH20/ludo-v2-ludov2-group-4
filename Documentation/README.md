@@ -91,15 +91,15 @@ This is how the Piece table look like in the database with some data:
 | Verb| URI | MethodName | Success | Failure |
 | :--- | :--- | :--- | :--- | :--- |
 | POST | api/Game/gameboards | PostGameBoard | return GameBoard | Failure |
-| GET | api/Game/get-gameboards/{gameBoardId} | GetGameBoardById | return GameBoard | 404 NotFound |
+| GET | api/Game/get-gameboards/{gameBoardId} | GetGameBoardById | 200 return GameBoard | 404 NotFound |
 | POST | api/Game/players | PostPlayer | 201, Message | 400, Message |
 | GET | api/Game/get-gameboard/players/{id} | GetPlayersByGameBoard | 200 List Player  | Failure |
-| GET | api/Game/get-gameboards | GetGameBoards | List GameBoard | Failure |
-| GET | api/Game/pieces-by/{gameId} | GetPiecesByGameId | List Piece | Failure |
-| GET | api/Game/pieces/{playerId} | GetPiecesByPlayerId | List Piece | Failure |
-| GET | api/Game/get-piece/{id} | GetPieceById | return Piece | Failure |
-| GET | api/Game/update-piece-position/{pieceId} | UpdatePiecePosition | return piece.Position | Failure |
-| GET | api/Game/get-die/{gameBoardId} | PostDieByGameBoardId| return int | Failure |
-| GET | api/Game/nextplayer/{CurrentGameBoardId} | GetNextPlayer | return GameBoard | Failure |
+| GET | api/Game/get-gameboards | GetGameBoards | 200 List GameBoard | Failure |
+| GET | api/Game/pieces-by/{gameId} | GetPiecesByGameId | 200 List Piece | Failure |
+| GET | api/Game/pieces/{playerId} | GetPiecesByPlayerId | 200 List Piece | Failure |
+| GET | api/Game/get-piece/{id} | GetPieceById | 200 return Piece | Failure |
+| GET | api/Game/update-piece-position/{pieceId} | UpdatePiecePosition | 200 return piece.Position | Failure |
+| GET | api/Game/get-die/{gameBoardId} | PostDieByGameBoardId| 200 return int | Failure |
+| GET | api/Game/nextplayer/{CurrentGameBoardId} | GetNextPlayer | 200 return GameBoard | Failure |
 
 [Back to start](#Table-of-contents)
