@@ -91,7 +91,7 @@ This is how the Piece table look like in the database with some data:
 | Verb| URI | MethodName | Success | Failure |
 | :--- | :--- | :--- | :--- | :--- |
 | POST | api/Game/gameboards | PostGameBoard | Succes | Failure |
-| GET | api/Game/get-gameboards/{gameBoardId} | GetGameBoardById | Returns gameboard by Id | Succes | Failure |
+| GET | api/Game/get-gameboards/{gameBoardId} | GetGameBoardById | Succes | Failure |
 | POST | api/Game/players | PostPlayer | Succes | Failure |
 | GET | api/Game/get-gameboard/players/{id} | GetPlayersByGameBoard | Succes | Failure |
 | GET | api/Game/get-gameboards | GetGameBoards | Succes | Failure |
