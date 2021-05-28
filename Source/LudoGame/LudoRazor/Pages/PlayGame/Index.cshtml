@@ -14,6 +14,7 @@
 @if (Model.CurrentGame.Winner == null)
 {
     <a asp-page="/ChoosePiece/Index" asp-route-gameId="@Model.CurrentGame.Id" class="btn btn-primary">Roll the die</a>
+    <br/>
     <h4>@Model.ShowNextPlayer</h4>
 }
 
@@ -78,10 +79,10 @@ else
                 @Html.DisplayName("Color")
             </th>
             <th>
-                @Html.DisplayName("Steps")
+                @Html.DisplayName("Position")
             </th>
             <th>
-                @Html.DisplayName("Position")
+                @Html.DisplayName("Steps")
             </th>
             <th></th>
         </tr>
@@ -99,10 +100,10 @@ else
                     @Html.DisplayFor(modelItem => piece.Color)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => piece.Steps)
+                    @Html.DisplayFor(modelItem => piece.Position)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => piece.Position)
+                    @Html.DisplayFor(modelItem => piece.Steps)
                 </td>
             </tr>
         }
