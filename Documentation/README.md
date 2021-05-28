@@ -90,7 +90,7 @@ This is how the Piece table look like in the database with some data:
 
 | Verb| URI | MethodName | Success | Failure |
 | :--- | :--- | :--- | :--- | :--- |
-| POST | api/Game/gameboard | PostGameBoard | return GameBoard | Failure |
+| POST | api/Game/gameboards | PostGameBoard | return GameBoard | Failure |
 | GET | api/Game/get-gameboards/{gameBoardId} | GetGameBoardById | 200 return GameBoard | 404 NotFound |
 | POST | api/Game/players | PostPlayer | 201, Message | 400, Message |
 | GET | api/Game/get-gameboard/players/{id} | GetPlayersByGameBoard | 200 List Player  | Failure |
