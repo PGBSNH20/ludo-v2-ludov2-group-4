@@ -15,8 +15,8 @@ namespace LudoAPI.Models
         [Required]
         public string Color { get; set; }
 
-        //[ForeignKey("GameBoard")]
+        
         public int GameBoardId { get; set; }
-        //public GameBoard GameBoard { get; set; }
+        
     }
 }

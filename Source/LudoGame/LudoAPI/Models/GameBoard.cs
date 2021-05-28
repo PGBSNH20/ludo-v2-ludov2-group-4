@@ -19,8 +19,6 @@ namespace LudoAPI.Models
         public int CurrentPlayerIndex { get; set; } = 0;
         public int? Die { get; set; }
 
-        [NotMapped]
-        public List<Square> Squares { get; set; }
         
         public List<Player> Players { get; set; }
 

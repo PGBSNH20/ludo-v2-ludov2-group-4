@@ -43,10 +43,6 @@ namespace LudoRazor.Pages.PlayGame
 
             ShowNextPlayer = $"{Players[CurrentGame.CurrentPlayerIndex].Name}, it's your turn to roll the die!";
 
-            //if (CurrentGame.Winner != null)
-            //{
-            //    return RedirectToPage($"/Winner/Index/{CurrentGame.Id}");
-            //}
 
             return Page();
         }

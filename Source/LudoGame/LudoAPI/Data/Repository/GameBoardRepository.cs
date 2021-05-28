@@ -20,18 +20,6 @@ namespace LudoAPI.Data.Repository
             
         public async Task<GameBoard> AddNewGame(GameBoard gameBoard)
         {
-            List<Square> squares = new List<Square>();
-
-            for (int i = 0; i < 60; i++)
-            {
-                Square square = new Square
-                {
-                    Id = i
-                };
-                squares.Add(square);
-                
-            }
-
             await _dbContext.GameBoards.AddAsync(gameBoard);
             await _dbContext.SaveChangesAsync();
 

@@ -22,12 +22,8 @@ namespace LudoRazor.Pages.Players
 
         public IActionResult OnGet()
         {
-            
-
             return Page();
         }
-
-        
 
         [BindProperty]
         public Player Player { get; set; }

@@ -38,9 +38,6 @@ namespace LudoRazor.Pages.NewGame
             request.AddJsonBody(GameBoard);
             IRestResponse response = client.Execute(request);
 
-            
-
-
             GameBoardMessage = response.Content;
 
             return RedirectToPage("/Players/Index");

@@ -19,8 +19,11 @@ namespace ApiTestProject
 
         public List<Player> GetPlayersByGameBoardId(int gameBoardId)
         {
+            
+
             List<Player> player = new List<Player>
             {
+                
                 new()
                 {
                     Id = 2,
@@ -30,6 +33,11 @@ namespace ApiTestProject
 
                 },
 
+              
+            };
+
+            List<Player> players = new List<Player>
+            {
                 new()
                 {
                     Id = 3,
@@ -67,7 +75,15 @@ namespace ApiTestProject
                 },
             };
 
-            return player;
+            if (gameBoardId == 1)
+            {
+                return player;
+            }
+
+            else
+            {
+                return players;
+            }
         }
     }
 }

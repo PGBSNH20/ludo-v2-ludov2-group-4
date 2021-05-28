@@ -28,20 +28,13 @@ namespace LudoRazor.Pages.LoadGame
 
         public async Task OnGetAsync()
         {
-            //var client = new RestClient("https://localhost:44370/api/Game/get-gameboards");
-            //var request = new RestRequest(Method.GET);
-            
-            //var response = client.Execute<List<GameBoard>>(request);
             var client = new RestClient("https://localhost:44370");
             var request = new RestRequest("api/game/get-gameboards/", Method.GET);
             var queryResult = client.Execute<IList<GameBoard>>(request).Data;
 
             GameBoard = queryResult;
             
-            //GameBoard = response.Data;
-
-            //Following code works, GETs GameBoards straight from Db:
-            /*GameBoard = _dbContext.GameBoards.ToList();*/
+            
 
             
 

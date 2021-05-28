@@ -34,8 +34,6 @@ namespace LudoAPI.Controllers
         }
 
 
-       
-
         [Route("get-die/{gameBoardId}")]
         [HttpGet]
         public int PostDieByGameBoardId(int gameBoardId)
@@ -202,18 +200,8 @@ namespace LudoAPI.Controllers
         [HttpGet]
         public async Task<GameBoard> GetNextPlayer(int CurrentGameBoardId)
         {
-
-            
-
-            //var currentPlayer = dbcontext.Players.FirstOrDefault(p => p.Id == currentPlayerIndex);
-
             var gameBoard = await dbcontext.GameBoards.Include(g => g.Players).FirstOrDefaultAsync(g => g.Id == CurrentGameBoardId );
-            //var gameborad = _board.GetGameBoardWithPlayers(CurrentGameBoardId)
-             
-                
-
-            /*_board.GetGameBoard(currentPlayer.Id);*/
-
+            
             if (gameBoard.CurrentPlayerIndex == gameBoard.Players.Count - 1)
             {
                 gameBoard.CurrentPlayerIndex = 0;
@@ -226,12 +214,10 @@ namespace LudoAPI.Controllers
 
             }
 
-            //currentPlayer.Id = gameBoard.CurrentPlayerId;
-
-            //currentPlayer = gameBoard.Players.FirstOrDefault(p => p.Id == gameBoard.CurrentPlayerId);
+            
             dbcontext.GameBoards.Update(gameBoard);
             await dbcontext.SaveChangesAsync();
-            //var currentPlayerIndex = dbcontext.GameBoards.FirstOrDefault(p => p.Id == gameBoard.CurrentPlayerIndex);
+            
             return gameBoard;
         }
 

@@ -31,16 +31,6 @@ namespace LudoRazor.Pages.ChoosePiece
 
         public async Task OnGetAsync(int gameId)
         {
-            //CurrentGame = _context.GameBoards.FirstOrDefault(g => g.Id == id);
-
-            /*_context.Players.Where(p => p.GameBoardId == CurrentGame.Id).ToList();*/
-            
-            //Pieces = _context.Pieces.Where(p => p.PlayerId == CurrentPlayer.Id ).ToList();
-            
-
-            
-
-
             var client4 = new RestClient("https://localhost:44370");
             var request4 = new RestRequest("api/game/get-die/" + gameId, Method.GET);
             var queryResult4 = client4.Execute<int>(request4).Data;
@@ -59,12 +49,8 @@ namespace LudoRazor.Pages.ChoosePiece
 
             Players = queryResult3;
 
-
-
-            //Players = queryResult.Players;
             CurrentPlayer = Players[queryResult.CurrentPlayerIndex];
             ValidatePlayer = $"{CurrentPlayer.Name}";
-
 
             var client2 = new RestClient("https://localhost:44370");
             var request2 = new RestRequest("api/game/pieces/" + CurrentPlayer.Id, Method.GET);
