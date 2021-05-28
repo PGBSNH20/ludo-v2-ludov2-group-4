@@ -36,7 +36,7 @@ The API is the brain which hides and takes care of the logic and connection to t
 
 **The API contains following folders;**
 
-- `Dependencies`: contains the ASP.NET Core and .NET Core frameworks, and some extra packages like Restsharp.
+- `Dependencies`: contains the ASP.NET Core and .NET Core frameworks, and some extra packages like Swashbuckle. 
 - `Controllers`: includes a GameController which holds all the methods that responds on the requests from Razor pages to the endpoints. 
 - `Data`: consists of two folders (Interfaces and Repository) and a LudoContext class. Interfaces takes care of the contracts for each model and Repositories for the data access.
 - `Migrations`: keeps the updates of the database. 
@@ -49,9 +49,11 @@ In addition to these folders there are a couple of other important files:
 - `Startup.cs`: Contains our Configure-method and ConfigureServices. The ConfigureServices we've added is a DbContext, AddTransient for our repositories and AddCors to make our requests to the API function properly. 
 
 **Razor pages contains following folders;**
-- `Dependencies`:
-- `wwwroot`:
-- `Pages`:
+- `Dependencies`: includes ASP.NET Core and Entity Frameworks. But also Newtonsofts JSON-package and Restsharp.
+- `wwwroot`: contains our css and Javascript-files, and a library folder including bootstrap and jquery. 
+- `Pages`: holds all our pages;
+  - ChoosePiece:
+  - LoadGame:
 
 ## Database
 This is a diagram of the Database:
