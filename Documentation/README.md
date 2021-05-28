@@ -18,7 +18,7 @@ PSST! If you somehow manage to screw up by starting googling for the closest Dom
 - If you're choosing an already picked color, error mesage: "Color is occupied".
 - If you're trying to enter a nickname which already exists, error message: "The name already exists".
 
-3. Alright, you're ready to go?! You'll be able to launch the game straight away by clicking the at the "Start game" button below the form or you can wait until the night when you're competitors are sleeping and then click at the "Load game" link in the navbar. 
+3. Alright, you're ready to go?! You'll be able to launch the game by clicking at the "Load game" link in the navbar. 
 
 4. When you're entering the game it will show who's turn it is to roll the die, which is located as a button below the tables. The tables represents the players and their pieces (including their positions).
 
@@ -32,7 +32,7 @@ Since we are using Docker you can run the API through docker compose anywhere yo
 **Infoga screen shot på filstrukturen**
 
 The solution includes an API and Razor pages project. UnitTest1.cs contains all our tests, we have focused on testing all the endpoints in the controllers. 
-The API is the brain which hides and takes care of the logic and connection to the database. Razor pages handles the frontend and requests to the API. 
+The API is the brain which hides and takes care of the logic and connection to the database. Razor pages handles the frontend including the requests to the API. 
 
 **The API contains following folders;**
 
@@ -45,8 +45,8 @@ The API is the brain which hides and takes care of the logic and connection to t
 
 In addition to these folders there are a couple of other important files:
 
-- `Program.cs`:
-- `Startup.cs`:
+- `Program.cs`: Is basically just holding the CreateHostBuilder-method and calls it when the program starts.
+- `Startup.cs`: Contains our Configure-method and ConfigureServices. The ConfigureServices we've added is a DbContext, AddTransient for our repositories and AddCors to make our requests to the API function properly. 
 
 **Razor pages contains following folders;**
 - `Dependencies`:
