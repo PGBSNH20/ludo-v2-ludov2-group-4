@@ -103,4 +103,4 @@ This is how the Piece table look like in the database with some data:
 | GET | api/Game/get-die/{gameBoardId} | PostDieByGameBoardId| Succes | Failure |
 | GET | api/Game/nextplayer/{CurrentGameBoardId} | GetNextPlayer | Succes | Failure |
 
-[Back to start](#Table-of-contents)
+[Back to start](#Welcome-to-Kevin-&-Calles-Ludo-Game!)
