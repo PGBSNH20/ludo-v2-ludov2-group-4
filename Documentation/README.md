@@ -94,4 +94,4 @@ This is how the Piece table look like in the database with some data:
 | :--- | Test | Test | 404 | `NOT FOUND` |
 | :--- | Test | Test | 500 | `INTERNAL SERVER ERROR` |
 
-[Back to top](#Welcome to Kevin & Calles Ludo Game!)
+[#Welcome to Kevin & Calles Ludo Game!](#Back to start)
