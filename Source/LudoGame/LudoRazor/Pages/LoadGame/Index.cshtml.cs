@@ -33,11 +33,6 @@ namespace LudoRazor.Pages.LoadGame
             var queryResult = client.Execute<IList<GameBoard>>(request).Data;
 
             GameBoard = queryResult;
-            
-            
-
-            
-
 
         }
     }

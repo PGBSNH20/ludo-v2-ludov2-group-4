@@ -16,11 +16,6 @@ namespace LudoRazor.Pages.NewGame
     {
         public string GameBoardMessage { get; set; }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
-
         [BindProperty]
         public GameBoard GameBoard { get; set; }
 

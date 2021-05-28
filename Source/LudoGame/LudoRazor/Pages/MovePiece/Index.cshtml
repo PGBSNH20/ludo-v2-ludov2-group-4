@@ -5,9 +5,9 @@
     ViewData["Title"] = "Index";
 }
 <br />
-
 <h4>Good job @Model.CurrentPlayer.Name! Press the button to let next player roll the die. </h4>
 @*<h2>@Model.NextPlayer.Name</h2>*@
+<br />
 
 @if (Model.Winner != null)
 {
@@ -18,8 +18,6 @@ else
 {
      <a asp-page="/PlayGame/Index" asp-route-id="@Model.GameBoard.Id" class="btn btn-primary">Continue</a>
 }
-
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -43,7 +43,6 @@ namespace LudoRazor.Pages.MovePiece
                 return NotFound();
             }
 
-
             var client = new RestClient("https://localhost:44370");
             var request = new RestRequest("api/game/gameboards/" + gameId, Method.GET);
             var queryResult = client.Execute<GameBoard>(request).Data;

@@ -49,7 +49,6 @@ namespace ApiTestProject
             // Act
             var result = await sut.PostPlayer(playerToPost);
 
-
             // assert
             Assert.IsInstanceOf<ObjectResult>(result.Result);
             Assert.AreEqual("You have created a user", ((ObjectResult)result.Result).Value.ToString());
@@ -76,11 +75,9 @@ namespace ApiTestProject
             // Act
             var result = await sut.PostPlayer(playerToPost);
 
-
             // assert
             Assert.IsInstanceOf<ObjectResult>(result.Result);
             Assert.AreEqual("Color is occupied", ((ObjectResult)result.Result).Value.ToString());
-
         }
 
         [Test]
@@ -107,8 +104,6 @@ namespace ApiTestProject
             // assert
             Assert.IsInstanceOf<ObjectResult>(result.Result);
             Assert.AreEqual("The name already exists", ((ObjectResult)result.Result).Value.ToString());
-
-
         }
 
         [Test]
@@ -165,7 +160,6 @@ namespace ApiTestProject
 
         }
 
-
         [Test]
         public async Task PostGameBoard_AddNewGameBoard_ExpectGameBoardCreated()
         {
@@ -187,8 +181,7 @@ namespace ApiTestProject
             
             // assert
             Assert.IsInstanceOf<ActionResult<LudoAPI.Models.GameBoard>>(result);
-            Assert.AreEqual("You have created a gameboard", ((ObjectResult)result.Result).Value.ToString());
-            
+            Assert.AreEqual("You have created a gameboard", ((ObjectResult)result.Result).Value.ToString());       
         }
 
         [Test]
@@ -204,7 +197,6 @@ namespace ApiTestProject
             var result = sut.GetGameBoards();
             
             Assert.AreEqual(1, result.Result.Count);
-
         }
 
 
@@ -222,7 +214,6 @@ namespace ApiTestProject
 
             //Assert.IsInstanceOf<ObjectResult>(result);
             Assert.AreEqual(1, result.Value.Id);
-
         }
 
         [Test]
@@ -238,9 +229,6 @@ namespace ApiTestProject
             var result = sut.GetPieceById(1);
 
             Assert.AreEqual(1, result.Result.Value.Id);
-
         }
-
-
     }
 }

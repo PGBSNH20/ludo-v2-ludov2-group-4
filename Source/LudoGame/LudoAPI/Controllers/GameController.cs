@@ -33,7 +33,6 @@ namespace LudoAPI.Controllers
             this.dbcontext = dbcontext;
         }
 
-
         [Route("gameboards")]
         [HttpPost]
         public async Task<ActionResult<GameBoard>> PostGameBoard([FromBody] GameBoard gameBoard)
@@ -56,7 +55,6 @@ namespace LudoAPI.Controllers
             return result;
         }
 
-
         [Route("gameboards/{id}")]
         [HttpGet]
         public ActionResult<GameBoard> GetGameBoardById(int id)
@@ -67,8 +65,6 @@ namespace LudoAPI.Controllers
 
             return gameBoard;
         }
-
-
 
         [Route("players")]
         [HttpPost]
@@ -97,7 +93,6 @@ namespace LudoAPI.Controllers
             return StatusCode(StatusCodes.Status201Created, "You have created a user");
         }
 
-
         [Route("get-gameboard/players/{id}")]
         [HttpGet]
         public async Task<ActionResult<List<Player>>> GetPlayersByGameBoard(int id)
@@ -110,7 +105,6 @@ namespace LudoAPI.Controllers
             return Ok(result);
         }
 
-
         [Route("pieces-by/{gameId}")]
         [HttpGet]
         public List<Piece> GetPiecesByGameId(int gameId)
@@ -120,7 +114,6 @@ namespace LudoAPI.Controllers
             return pieces;
 
         }
-
 
         [Route("pieces/{playerId}")]
         [HttpGet]
@@ -132,7 +125,6 @@ namespace LudoAPI.Controllers
 
             return Ok(result);
         }
-
 
         [Route("get-piece/{id}")]
         [HttpGet]
@@ -147,11 +139,7 @@ namespace LudoAPI.Controllers
 
             return result;
         }
-
-
-
       
-
         [Route("update-piece-position/{pieceId}")]
         [HttpGet]
         public int UpdatePiecePosition(int pieceId)
@@ -166,14 +154,13 @@ namespace LudoAPI.Controllers
 
             for (int i = 0; i < gameBoard.Die; i++)
             {
-                if (piece.Position == 10)
+                if (piece.Position == 40)
                 {
                     piece.Position = 0;
                     piece.Steps++;
                 }
-                else if (piece.Steps > 9)
+                else if (piece.Steps > 39)
                 {
-
                     piece.IsDone = true;
                     if (donePieces.Count() == 4)
                     {
@@ -186,36 +173,8 @@ namespace LudoAPI.Controllers
                     piece.Position++;
                     piece.Steps++;
                 }
-                
-                
-
+              
             }
-
-
-
-            //for (int i = 0; i <= gameBoard.Die; i++)
-            //{
-
-            //    if (piece.Steps >= 11)
-            //    {
-
-            //        piece.IsDone = true;
-            //        if (donePieces.Count() == 3)
-            //        {
-            //            gameBoard.Winner = currentPlayer.Name;
-            //        }
-
-
-            //    }
-            //    if (piece.Position == 10)
-            //    {
-            //        piece.Position = 0;
-            //    }
-            //    piece.Position++;
-            //    piece.Steps++;
-
-            //}
-
 
             dbcontext.GameBoards.Update(gameBoard);
             dbcontext.Pieces.Update(piece);
@@ -223,8 +182,6 @@ namespace LudoAPI.Controllers
 
             return piece.Position;
         }
-
-
 
         [Route("get-die/{gameBoardId}")]
         [HttpGet]
@@ -240,7 +197,6 @@ namespace LudoAPI.Controllers
             dbcontext.SaveChanges();
             return die;
         }
-
 
         [Route("nextplayer/{CurrentGameBoardId}")]
         [HttpGet]
@@ -265,8 +221,6 @@ namespace LudoAPI.Controllers
             await dbcontext.SaveChangesAsync();
             
             return gameBoard;
-        }
-
-        
+        }    
     }
 }

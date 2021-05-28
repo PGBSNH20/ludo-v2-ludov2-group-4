@@ -9,57 +9,55 @@
 
 <h1>Load game</h1>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.GameBoard[0].Created)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameBoard[0].Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameBoard[0].Done)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameBoard[0].Winner)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    
-    <tbody>
-    @foreach (var gameBoard in Model.GameBoard)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => gameBoard.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => gameBoard.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => gameBoard.Done)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => gameBoard.Winner)
-            </td>
-            <td>
-                @if (gameBoard.Winner == null)
-                {
-                    <a asp-page="/PlayGame/Index" asp-route-id="@gameBoard.Id" class="btn btn-primary">Load Game</a>
-                }
-                
-                
+@if (@Model.GameBoard != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.GameBoard[0].Created)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GameBoard[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GameBoard[0].Winner)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var gameBoard in Model.GameBoard)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => gameBoard.Created)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gameBoard.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => gameBoard.Winner)
+                    </td>
+                    <td>
+                        @if (gameBoard.Winner == null)
+                        {
+                            <a asp-page="/PlayGame/Index" asp-route-id="@gameBoard.Id" class="btn btn-primary">Load Game</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+else 
+{
+    <h4>There's no connection to the database..</h4>
+}
 
 
-            </td>
-        </tr>
-    }
-    </tbody>
-    
-   
-</table>
 
 
 
