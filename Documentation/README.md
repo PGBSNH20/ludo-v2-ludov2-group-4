@@ -52,13 +52,13 @@ In addition to these folders there are a couple of other important files:
 - `Dependencies`: includes ASP.NET Core and Entity Frameworks. But also Newtonsofts JSON-package and Restsharp.
 - `wwwroot`: contains our css and Javascript-files, and a library folder including bootstrap and jquery. 
 - `Pages`: holds all our pages;
-  - ChoosePiece:
-  - LoadGame:
-  - MovePiece:
-  - NewGame:
-  - Players:
-  - PlayGame:
-  - Shared:
+  - ChoosePiece: This page shows where the player ends up after the "Roll the die"- button is clicked in PlayGame (step 4.). The page also prints the player's pieces and the player decides which one to choose.
+  - LoadGame: Displays all the games including properties such as "Created" and "Winner" when user click "Load Game" in the navbar. 
+  - MovePiece: OnGet this page is processing the move of the piece that the player choosed and the turnorder. It only gives the player one option, to click the button "Continue" which will send the player back to PlayGame.
+  - NewGame: A simple form where the player creates a new game by writing a name for the game. When he player submits the page will redirect straight to Players-page.
+  - Players: The form where the user can add players to a game. 
+  - PlayGame: Main page for the game-loop itself. Displays which player's up next, all players and their pieces. 
+  - Shared: Contains the HTML that is the same for all pages, such as header and footer.
   - Winner: 
 
 Pages also contains standard cshtml-files; _ViewImports, _ViewStart and Index.cshtml.
