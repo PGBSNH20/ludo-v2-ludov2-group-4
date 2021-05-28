@@ -88,12 +88,16 @@ This is how the Piece table look like in the database with some data:
 
 ## Requests
 
-| Verb| URI | Description | Success | Failure |
-| :--- | :--- | :--- | :--- | :--- |
-| POST | api/Game/gameboards | Test | 200 | `OK` |
-| POST | api/Game/players | Test | 201 | `CREATED` |
-| GET | api/Game/get-die/{gameBoardId} | Test | 400 | `BAD REQUEST` |
-| :--- | api/Game/ | Test | 404 | `NOT FOUND` |
-| :--- | api/Game/ | Test | 500 | `INTERNAL SERVER ERROR` |
+| Verb| URI | MethodName | Description | Success | Failure |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| POST | api/Game/gameboards | :--- | Posting a new game board. | 200 | `OK` |
+| POST | api/Game/players | :--- | Posting a new player. | 201 | `CREATED` |
+| GET | api/Game/get-gameboards | :--- | Returns all gameboards. | 400 | `BAD REQUEST` |
+| GET | api/Game/get-gameboards/{gameBoardId} | :--- | Returns gameboard by Id | 404 | `NOT FOUND` |
+| :--- | api/Game/ | :--- | Test | 500 | `INTERNAL SERVER ERROR` |
+| :--- | api/Game/ | :--- | Test | 500 | `INTERNAL SERVER ERROR` |
+| :--- | api/Game/ | :--- | Test | 500 | `INTERNAL SERVER ERROR` |
+| :--- | api/Game/ | :--- | Test | 500 | `INTERNAL SERVER ERROR` |
+| :--- | api/Game/ | :--- | Test | 500 | `INTERNAL SERVER ERROR` |
 
 [Back to start](#Table-of-contents)
