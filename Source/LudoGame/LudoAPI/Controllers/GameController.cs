@@ -171,16 +171,13 @@ namespace LudoAPI.Controllers
                     piece.Position = 0;
                     piece.Steps++;
                 }
-                else if (piece.Steps >= 9)
+                else if (piece.Steps > 9)
                 {
 
                     piece.IsDone = true;
                     if (donePieces.Count() == 4)
                     {
                         gameBoard.Winner = currentPlayer.Name;
-                        //dbcontext.GameBoards.Update(gameBoard);
-                        //dbcontext.Pieces.Update(piece);
-                        //dbcontext.SaveChanges();
 
                     }
                 }
