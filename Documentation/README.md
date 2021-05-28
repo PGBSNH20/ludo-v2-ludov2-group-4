@@ -3,8 +3,8 @@ It's an ASP.NET Core Web App built with Razor pages that is backed up by an API 
 
 - [Features](#Features)
 - [Getting started](#Getting-started)
-- [Requests](#Requests)
 - [Database](#Database)
+- [Requests](#Requests)
 
 ## Features
 The essence of the game is to compete against your friends and move all your pieces across the finish line before everyone else. If you end up on the same position as someone else you'll knock their piece back to their base. This is how you play the game:
