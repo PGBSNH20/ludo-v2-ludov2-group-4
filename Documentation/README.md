@@ -89,9 +89,9 @@ This is how the Piece table look like in the database with some data:
 ## Requests
 
 | Verb| URI | Description | Success | Failure |
-| POST | api/Game/gameboards | :--- | :--- | :--- |
-| POST | api/Game/players | Test | 200 | `OK` |
-| :--- | api/Game/ | Test | 201 | `CREATED` |
+| :--- | :--- | :--- | :--- | :--- |
+| POST | api/Game/gameboards | Test | 200 | `OK` |
+| POST | api/Game/players | Test | 201 | `CREATED` |
 | GET | api/Game/get-die/{gameBoardId} | Test | 400 | `BAD REQUEST` |
 | :--- | api/Game/ | Test | 404 | `NOT FOUND` |
 | :--- | api/Game/ | Test | 500 | `INTERNAL SERVER ERROR` |
