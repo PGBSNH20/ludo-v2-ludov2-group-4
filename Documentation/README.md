@@ -1,5 +1,7 @@
 # Welcome to Kevin & Calles Ludo Game!
-It's an ASP.NET Core Web App built with Razor pages that is backed up by an API in the same solution! To get a quick overview and sense of what we're trying to do here, we've wrapped up this README-file into a table of contents:
+It's an ASP.NET Core Web App built with Razor pages that is backed up by an API in the same solution! To get a quick overview and sense of what we're trying to do here, we've wrapped up this README-file:
+
+## Table of contents
 
 - [Features](#Features)
 - [Getting started](#Getting-started)
@@ -94,4 +96,4 @@ This is how the Piece table look like in the database with some data:
 | :--- | Test | Test | 404 | `NOT FOUND` |
 | :--- | Test | Test | 500 | `INTERNAL SERVER ERROR` |
 
-[Welcome to Kevin & Calles Ludo Game!](#Back to start)
+[Table of contents](#Table of contents)
